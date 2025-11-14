@@ -1,33 +1,30 @@
 ## LDTS_t13g05 - Diamond Maze
 
 > Um cavaleiro encontra-se perdido num labirinto que parece não ter fim. Precisa de encontrar a chave secreta para conseguir escapar pelo portal.
+
 > Este projeto foi desenvolvido por "Ricardo Estevéns" (up202405321@up.pt), "Gustavo Oliveira" (up202205770@up.pt) e "Rogério Barbosa" (up202406902@up.pt), para LDTS 2025/26.
 
 ### IMPLEMENTED FEATURE
 
 > This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
-> Tem de se ter em atenção o limite de tempo. Distribuídos pelo mapa, existem alimentos que aumentam esse limite de tempo. Caso o jogador não consiga abrir o portal dentro do limite de tempo, o nível reinicia.
-> Para conseguir atingir uma maior pontuação, o jogador precisa de apanhar os diamantes distribuídos pelo mapa aleatoriamente.
-> Para conseguir capturar a chave, o jogador tem de descobrir qual dos diamantes é que guarda a chave.
-> Para dificultar o jogo, existem inimigos espalhados pelo mapa. Caso um inimigo apanhe o jogador, o nível reinicia.
 
 **Examples**:
 
-- **Cavaleiro** - 
-- **Inimigos** -
-- **Tempo** - Existe um contador do tempo, quando  
+- **Cavaleiro** - Personagem do jogo.
+- **Inimigos** - Existem espalhados pelo mapa.
+- **Tempo** - Existe um contador do tempo para completar o nível.  
 - **Movimento** - Usando as setas (cima, baixo, esquerda e direita).
-- **Diamantes** - .
-- **Poções** - . 
-- **Portal** -
-- **Muros** 
-- **Chave** 
+- **Diamantes** - Existem em sítios aleatórios no mapa. 
+- **Portal** - Permite passaar ao nível seguinte.
+- **Muros** - Limitam a área de movimento dentro do mapa. 
+- **Chave** - Vai estar escondida em um diamante. Serve para abrir o portal.
 
 ### PLANNED FEATURES
 
 > This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
-- **S** -  
-- **Diamantes** - 
+- **Score** - Vai ser crucial para conseguir abrir o portal (minimum score).
+- **Potions** - Podem dar algo positivo ou negativo ao nível. 
+- **Unveiling the map** - O jogador terá de andar pelo mapa para o conseguir revelar.
   
 ### DESIGN
 
