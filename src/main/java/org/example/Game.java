@@ -1,37 +1,44 @@
 package org.example;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import com.googlecode.lanterna.terminal.swing.SwingTerminalFrame;
+
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
 public class Game {
     private Screen screen;
     private Maze maze;
 
-    public Game() {
+    public Game() throws IOException {
         try {
-            SwingTerminalFrame terminal = new SwingTerminalFrame();
+            TerminalSize terminalSize = new TerminalSize(40, 20);
+            DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
 
-            Font font = new Font("Fira Code", Font.PLAIN, 18);
-            terminal.setTerminalFont(font);
+            Terminal terminal = terminalFactory.createTerminal();
+            screen = new TerminalScreen(terminal);
 
-            terminal.setVisible(true);
-
-            screen.setCursorPosition(null);
-            screen.startScreen();
-            screen.doResizeIfNecessary();
-
-            maze = new Maze(40, 20);
+            screen.setCursorPosition(null);   // we don't need a cursor
+            screen.startScreen();             // screens must be started
+            screen.doResizeIfNecessary();     // resize screen if necessary
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void run() throws IOException, FontFormatException, URISyntaxException {
+    public void run() throws IOException, FontFormatException, URISyntaxException {
         URL resource = getClass().getClassLoader().getResource("square.ttf");
         File fontFile = new File(resource.toURI());
         Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
