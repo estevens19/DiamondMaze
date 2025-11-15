@@ -21,24 +21,7 @@ public class Game {
     private Screen screen;
     private Maze maze;
 
-    public Game() throws IOException {
-        try {
-            TerminalSize terminalSize = new TerminalSize(40, 20);
-            DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-
-            Terminal terminal = terminalFactory.createTerminal();
-            screen = new TerminalScreen(terminal);
-
-            screen.setCursorPosition(null);   // we don't need a cursor
-            screen.startScreen();             // screens must be started
-            screen.doResizeIfNecessary();     // resize screen if necessary
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void run() throws IOException, FontFormatException, URISyntaxException {
+    public Game() throws IOException, URISyntaxException, FontFormatException {
         URL resource = getClass().getClassLoader().getResource("square.ttf");
         File fontFile = new File(resource.toURI());
         Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -62,12 +45,14 @@ public class Game {
             }
         });
 
-        Screen screen = new TerminalScreen(terminal);
+        screen = new TerminalScreen(terminal);
         screen.setCursorPosition(null);   // we don't need a cursor
         screen.startScreen();             // screens must be started
         screen.doResizeIfNecessary();     // resize screen if necessary
+    }
 
-        screen.setCharacter(10, 10, TextCharacter.fromCharacter('C')[0]);
-        screen.refresh();
+    public void run() {
+
+
     }
 }
