@@ -11,6 +11,6 @@ public class Maze {
         this.width = width;
         this.height = height;
     }
-    
+
 
 }

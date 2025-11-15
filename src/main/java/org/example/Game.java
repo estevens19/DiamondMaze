@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import com.googlecode.lanterna.terminal.swing.SwingTerminalFrame;
 
 public class Game {
     private Screen screen;
@@ -12,11 +13,12 @@ public class Game {
 
     public Game() {
         try {
-            TerminalSize terminalSize = new TerminalSize(100, 50);
-            DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
+            SwingTerminalFrame terminal = new SwingTerminalFrame();
 
-            Terminal terminal = terminalFactory.createTerminal();
-            screen = new TerminalScreen(terminal);
+            Font font = new Font("Fira Code", Font.PLAIN, 18);
+            terminal.setTerminalFont(font);
+
+            terminal.setVisible(true);
 
             screen.setCursorPosition(null);
             screen.startScreen();
