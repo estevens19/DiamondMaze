@@ -5,6 +5,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -16,7 +17,22 @@ public class Image implements Drawable {
         this.position = position;
         this.sprite = ImageIO.read(getClass().getClassLoader().getResourceAsStream(path));
     }
-    
+
+    public Image(Position position, BufferedImage sprite) {
+        this.position = position;
+        this.sprite = sprite;
+    }
+
+    public Image resizeImage(int new_width, int new_height) throws IOException {
+        BufferedImage resized_img = new BufferedImage(new_width, new_height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = resized_img.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(this.sprite, 0, 0, new_width, new_height, null);
+        g2.dispose();
+
+        return new Image(this.position, resized_img);
+    }
+
     @Override
     public void draw(TextGraphics graphics) {
         for (int x = 0; x < sprite.getWidth(); x++) {

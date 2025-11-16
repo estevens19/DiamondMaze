@@ -3,6 +3,7 @@ package org.example;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -28,14 +29,14 @@ public class Game {
         Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
-        Font newfont = font.deriveFont(Font.PLAIN, 30);
+        Font newfont = font.deriveFont(Font.PLAIN, 10);
 
         AWTTerminalFontConfiguration cfg = AWTTerminalFontConfiguration.newInstance(newfont);
 
         DefaultTerminalFactory factory = new DefaultTerminalFactory();
         factory.setTerminalEmulatorFontConfiguration(cfg);
         factory.setForceAWTOverSwing(true);
-        factory.setInitialTerminalSize(new TerminalSize(100, 100));
+        factory.setInitialTerminalSize(new TerminalSize(400, 100));
 
         Terminal terminal = factory.createTerminal();
         ((AWTTerminalFrame)terminal).addWindowListener(new WindowAdapter() {
@@ -54,18 +55,20 @@ public class Game {
     }
 
     public void run() throws IOException {
-        Image background = new Image(new Position(0, 0), "images/menu_background.png");
+        Image original_menu_background = new Image(new Position(0, 0), "images/menu_background.png");
+        Image menu_background = original_menu_background.resizeImage(400, 100);
         List<Button> buttons = new ArrayList<Button>();
-        Menu menu = new Menu(buttons, background);
+        Menu menu = new Menu(buttons, menu_background);
         TextGraphics graphics = screen.newTextGraphics();
 
         while (true) {
             menu.draw(graphics);
-            screen.refresh();
 
             if (screen.pollInput() != null) {
                 break;
             }
+
+            screen.refresh();
         }
 
         screen.stopScreen();

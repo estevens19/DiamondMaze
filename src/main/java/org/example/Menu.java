@@ -3,7 +3,6 @@ package org.example;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.awt.*;
-import java.io.IOException;
 import java.util.List;
 
 public class Menu implements Drawable {
@@ -16,7 +15,7 @@ public class Menu implements Drawable {
     }
 
     @Override
-    public void draw(TextGraphics graphics) throws IOException {
+    public void draw(TextGraphics graphics) {
         background.draw(graphics);
     }
 
