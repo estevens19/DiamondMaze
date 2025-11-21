@@ -3,7 +3,6 @@ package org.example;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -13,6 +12,8 @@ import java.util.List;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -36,7 +37,7 @@ public class Game {
         DefaultTerminalFactory factory = new DefaultTerminalFactory();
         factory.setTerminalEmulatorFontConfiguration(cfg);
         factory.setForceAWTOverSwing(true);
-        factory.setInitialTerminalSize(new TerminalSize(400, 200));
+        factory.setInitialTerminalSize(new TerminalSize(465, 145));
 
         Terminal terminal = factory.createTerminal();
         ((AWTTerminalFrame)terminal).addWindowListener(new WindowAdapter() {
@@ -55,8 +56,8 @@ public class Game {
     }
 
     public void run() throws IOException {
-        Image original_menu_background = new Image(new Position(0, 0), "images/mm-test.png");
-        Image menu_background = original_menu_background.resizeImage(400, 100);
+        Image original_menu_background = new Image(new Position(0, 0), "images/1.Main Menu.png");
+        Image menu_background = original_menu_background.resizeImage(465, 112);
         List<Button> buttons = new ArrayList<Button>();
         Menu menu = new Menu(buttons, menu_background);
         TextGraphics graphics = screen.newTextGraphics();
@@ -64,8 +65,11 @@ public class Game {
         while (true) {
             menu.draw(graphics);
 
-            if (screen.pollInput() != null) {
-                break;
+            KeyStroke key = screen.pollInput();
+            if (key != null) {
+                if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
+                    break;
+                }
             }
 
             screen.refresh();
