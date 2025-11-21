@@ -36,7 +36,7 @@ public class Game {
         DefaultTerminalFactory factory = new DefaultTerminalFactory();
         factory.setTerminalEmulatorFontConfiguration(cfg);
         factory.setForceAWTOverSwing(true);
-        factory.setInitialTerminalSize(new TerminalSize(400, 100));
+        factory.setInitialTerminalSize(new TerminalSize(400, 200));
 
         Terminal terminal = factory.createTerminal();
         ((AWTTerminalFrame)terminal).addWindowListener(new WindowAdapter() {
@@ -55,7 +55,7 @@ public class Game {
     }
 
     public void run() throws IOException {
-        Image original_menu_background = new Image(new Position(0, 0), "images/1.Main Menu.png");
+        Image original_menu_background = new Image(new Position(0, 0), "images/mm-test.png");
         Image menu_background = original_menu_background.resizeImage(400, 100);
         List<Button> buttons = new ArrayList<Button>();
         Menu menu = new Menu(buttons, menu_background);
