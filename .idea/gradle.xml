@@ -6,10 +6,10 @@
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="" />
-        <option name="gradleJvm" value="21" />
+        <option name="gradleJvm" value="jbr-21" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/../../Laboratório de Desenho e Teste de Software/project-t13g05" />
           </set>
         </option>
       </GradleProjectSettings>
