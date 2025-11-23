@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Image implements Drawable {
+public class Image {
     private final Position position;
     private final BufferedImage sprite;
 
@@ -35,7 +35,6 @@ public class Image implements Drawable {
         return new Image(this.position, resized_img);
     }
 
-    @Override
     public void draw(TextGraphics graphics) {
         for (int x = 0; x < sprite.getWidth(); x++) {
             for (int y = 0; y < sprite.getHeight(); y++) {

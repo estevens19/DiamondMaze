@@ -30,7 +30,7 @@ public class Game {
         Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
-        Font newfont = font.deriveFont(Font.PLAIN, 10);
+        Font newfont = font.deriveFont(Font.PLAIN, 3);
 
         AWTTerminalFontConfiguration cfg = AWTTerminalFontConfiguration.newInstance(newfont);
 
@@ -60,7 +60,6 @@ public class Game {
 
     public void run() throws IOException {
 
-        List<Button> buttons = new ArrayList<Button>();
         Menu menu = new Menu();
         TextGraphics graphics = screen.newTextGraphics();
 
