@@ -37,9 +37,12 @@ public class Game {
         DefaultTerminalFactory factory = new DefaultTerminalFactory();
         factory.setTerminalEmulatorFontConfiguration(cfg);
         factory.setForceAWTOverSwing(true);
-        factory.setInitialTerminalSize(new TerminalSize(465, 145));
+        factory.setInitialTerminalSize(new TerminalSize(100, 50));
 
         Terminal terminal = factory.createTerminal();
+
+        ((AWTTerminalFrame)terminal).setExtendedState(Frame.MAXIMIZED_BOTH);
+
         ((AWTTerminalFrame)terminal).addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -50,9 +53,9 @@ public class Game {
         ((AWTTerminalFrame) terminal).setTitle("Diamond Maze");
 
         screen = new TerminalScreen(terminal);
-        screen.setCursorPosition(null);   // we don't need a cursor
-        screen.startScreen();             // screens must be started
-        screen.doResizeIfNecessary();     // resize screen if necessary
+        screen.setCursorPosition(null);
+        screen.startScreen();
+        screen.doResizeIfNecessary();
     }
 
     public void run() throws IOException {
@@ -61,7 +64,17 @@ public class Game {
         Menu menu = new Menu();
         TextGraphics graphics = screen.newTextGraphics();
 
+        TerminalSize initialSize = screen.getTerminalSize();
+        menu.updateSize(initialSize.getColumns(), initialSize.getRows());
+
         while (true) {
+            TerminalSize newSize = screen.doResizeIfNecessary();
+
+            if (newSize != null) {
+                menu.updateSize(newSize.getColumns(), newSize.getRows());
+                screen.clear();
+            }
+
             menu.draw(graphics);
 
             KeyStroke key = screen.pollInput();

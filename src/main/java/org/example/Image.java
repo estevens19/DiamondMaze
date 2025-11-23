@@ -26,7 +26,9 @@ public class Image implements Drawable {
     public Image resizeImage(int new_width, int new_height) throws IOException {
         BufferedImage resized_img = new BufferedImage(new_width, new_height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = resized_img.createGraphics();
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+
         g2.drawImage(this.sprite, 0, 0, new_width, new_height, null);
         g2.dispose();
 
@@ -42,7 +44,7 @@ public class Image implements Drawable {
                 int red = (a >> 16) & 255;
                 int green = (a >> 8) & 255;
                 int blue = a & 255;
-    
+
                 if (alpha != 0) {
                     TextCharacter c = new TextCharacter(' ', new TextColor.RGB(red, green, blue), new TextColor.RGB(red, green, blue));
                     graphics.setCharacter(position.getX() + x, position.getY() + y, c);

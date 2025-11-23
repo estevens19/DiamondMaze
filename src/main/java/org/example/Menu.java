@@ -8,13 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Menu implements Drawable {
-    private final List<java.awt.Button> buttons;
-    private final Image background;
+    private final List<Button> buttons;
+    private Image background;
+    private final Image originalBackground;
 
     public Menu() throws IOException {
         buttons = new ArrayList<Button>();
-        Image original_menu_background = new Image(new Position(0, 0), "images/1.Main Menu.png");
-        background = original_menu_background.resizeImage(465, 112);
+
+        this.originalBackground = new Image(new Position(0, 0), "images/1.Main Menu.png");
+
+        this.background = originalBackground.resizeImage(100, 50);
+    }
+
+    public void updateSize(int width, int height) throws IOException {
+        this.background = originalBackground.resizeImage(width, height);
     }
 
     @Override
