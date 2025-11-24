@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Image {
-    private final Position position;
+    private Position position;
     private final BufferedImage sprite;
 
     public Image(Position position, String path) throws IOException {
@@ -23,12 +23,26 @@ public class Image {
         this.sprite = sprite;
     }
 
+    public Position getPosition(Image image) {
+        return new Position(image.getWidth(), image.getHeight());
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public int getWidth() {
+        return sprite.getWidth();
+    }
+
+    public int getHeight() {
+        return sprite.getHeight();
+    }
+
     public Image resizeImage(int new_width, int new_height) throws IOException {
         BufferedImage resized_img = new BufferedImage(new_width, new_height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = resized_img.createGraphics();
-
         g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
-
         g2.drawImage(this.sprite, 0, 0, new_width, new_height, null);
         g2.dispose();
 
