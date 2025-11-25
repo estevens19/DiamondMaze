@@ -71,6 +71,11 @@ public class Game {
             if (!running)
                 break;
 
+            if (key.getCharacter() == 'q') {
+                screen.stopScreen();
+                break;
+            }
+
             screen.refresh();
         }
     }

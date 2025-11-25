@@ -70,9 +70,10 @@ public class Menu implements InputHandler {
             case Character:
                 if (currButton == 1 && key.getCharacter() == ' ') {}
                 else if (currButton == 2 && key.getCharacter() == ' ') {}
-                else if (currButton == 3 && key.getCharacter() == ' ')
+                else if (currButton == 3 && key.getCharacter() == ' ') {
                     screen.stopScreen();
                     running = false;
+                }
                 break;
         }
 
