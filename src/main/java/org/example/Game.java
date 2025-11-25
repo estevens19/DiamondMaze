@@ -1,14 +1,11 @@
 package org.example;
 
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -42,14 +39,6 @@ public class Game {
         Terminal terminal = factory.createTerminal();
 
         ((AWTTerminalFrame)terminal).setExtendedState(Frame.MAXIMIZED_BOTH);
-
-        ((AWTTerminalFrame)terminal).addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                e.getWindow().dispose();
-            }
-        });
-
         ((AWTTerminalFrame) terminal).setTitle("Diamond Maze");
 
         screen = new TerminalScreen(terminal);
@@ -59,7 +48,6 @@ public class Game {
     }
 
     public void run() throws IOException {
-
         Menu menu = new Menu();
         TextGraphics graphics = screen.newTextGraphics();
 
@@ -68,19 +56,20 @@ public class Game {
 
         while (true) {
             TerminalSize newSize = screen.doResizeIfNecessary();
+            menu.draw(graphics);
 
             if (newSize != null) {
                 menu.updateSize(newSize.getColumns(), newSize.getRows());
                 screen.clear();
             }
 
-            menu.draw(graphics);
-
             KeyStroke key = screen.pollInput();
             if (key != null) {
                 if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
                     break;
                 }
+
+                menu.getKey(key);
             }
 
             screen.refresh();
