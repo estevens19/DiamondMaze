@@ -23,7 +23,7 @@ public class Menu implements InputHandler {
         background = background.resizeImage(320, 280);
 
         title = new Image(new Position(0, 0), "images_menu/Title.png");
-        title = title.resizeImage(1330, 250);
+        title = title.resizeImage(1300, 250);
 
         refreshButtons();
     }
@@ -88,7 +88,6 @@ public class Menu implements InputHandler {
         start.setPosition(new Position(centerX - (start.getWidth() / 2), 70));
         controls.setPosition(new Position(centerX - (controls.getWidth() / 2), 130));
         exit.setPosition(new Position(centerX - (exit.getWidth() / 2), 190));
-
     }
 
     public void draw(TextGraphics graphics) {

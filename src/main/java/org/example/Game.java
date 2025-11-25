@@ -1,7 +1,6 @@
 package org.example;
 
 import java.awt.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -24,7 +23,7 @@ public class Game {
     public Game() throws IOException, URISyntaxException, FontFormatException {
         URL resource = getClass().getClassLoader().getResource("fonts/charybdis.regular.ttf");
         File fontFile = new File(resource.toURI());
-        Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
+        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
         Font newfont = font.deriveFont(Font.PLAIN, 3);
@@ -34,12 +33,12 @@ public class Game {
         DefaultTerminalFactory factory = new DefaultTerminalFactory();
         factory.setTerminalEmulatorFontConfiguration(cfg);
         factory.setForceAWTOverSwing(true);
-        factory.setInitialTerminalSize(new TerminalSize(100, 50));
+        factory.setInitialTerminalSize(new TerminalSize(320, 280));
 
         Terminal terminal = factory.createTerminal();
 
         ((AWTTerminalFrame)terminal).setExtendedState(Frame.MAXIMIZED_BOTH);
-        ((AWTTerminalFrame) terminal).setTitle("Diamond Maze");
+        ((AWTTerminalFrame)terminal).setTitle("Diamond Maze");
 
         screen = new TerminalScreen(terminal);
         screen.setCursorPosition(null);
@@ -50,33 +49,36 @@ public class Game {
     public void run() throws IOException {
         Menu menu = new Menu();
         TextGraphics graphics = screen.newTextGraphics();
-
         TerminalSize initialSize = screen.getTerminalSize();
         menu.updateSize(initialSize.getColumns(), initialSize.getRows());
 
-        while (true) {
+        while (running) {
             TerminalSize newSize = screen.doResizeIfNecessary();
-            menu.draw(graphics);
-
             if (newSize != null) {
                 menu.updateSize(newSize.getColumns(), newSize.getRows());
                 screen.clear();
             }
 
+            menu.draw(graphics);
+            screen.refresh();
+
             KeyStroke key = screen.pollInput();
             if (key != null) {
                 menu.getKey(key);
+
+                if (key.getCharacter() != null && key.getCharacter() == 'q') {
+                    running = false;
+                }
             }
 
-            if (!running)
-                break;
-
-            if (key.getCharacter() == 'q') {
-                screen.stopScreen();
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
                 break;
             }
-
-            screen.refresh();
         }
+
+        screen.stopScreen();
     }
 }
