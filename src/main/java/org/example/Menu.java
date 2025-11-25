@@ -5,6 +5,9 @@ import com.googlecode.lanterna.input.KeyStroke;
 
 import java.io.IOException;
 
+import static org.example.Game.running;
+import static org.example.Game.screen;
+
 public class Menu implements InputHandler {
     private Image background;
     private Image title;
@@ -64,9 +67,15 @@ public class Menu implements InputHandler {
                 if (currButton < 3)
                     currButton++;
                 break;
-            case Enter:
+            case Character:
+                if (currButton == 1 && key.getCharacter() == ' ') {}
+                else if (currButton == 2 && key.getCharacter() == ' ') {}
+                else if (currButton == 3 && key.getCharacter() == ' ')
+                    screen.stopScreen();
+                    running = false;
                 break;
         }
+
         refreshButtons();
     }
 

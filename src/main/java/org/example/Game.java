@@ -10,7 +10,6 @@ import java.net.URL;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -19,7 +18,8 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
 public class Game {
-    private Screen screen;
+    public static Screen screen;
+    public static boolean running = true;
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
         URL resource = getClass().getClassLoader().getResource("fonts/charybdis.regular.ttf");
@@ -65,16 +65,13 @@ public class Game {
 
             KeyStroke key = screen.pollInput();
             if (key != null) {
-                if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
-                    break;
-                }
-
                 menu.getKey(key);
             }
 
+            if (!running)
+                break;
+
             screen.refresh();
         }
-
-        screen.stopScreen();
     }
 }
