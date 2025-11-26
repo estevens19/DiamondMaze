@@ -1,7 +1,9 @@
+
 package org.example;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 
 import java.io.IOException;
 
@@ -18,6 +20,12 @@ public class Menu implements InputHandler {
     private final int buttonWidth = 320;
     private final int buttonHeight = 90;
 
+    private Menu_Levels menuLevels;
+    private boolean inLevels = false;
+
+    //private Menu_Levels menuControls;
+    //private boolean inControls = false;
+
     public Menu() throws IOException {
         background = new Image(new Position(0, 0), "images_menu/Main_Menu.png");
         background = background.resizeImage(320, 280);
@@ -25,6 +33,7 @@ public class Menu implements InputHandler {
         title = new Image(new Position(0, 0), "images_menu/Title.png");
         title = title.resizeImage(1300, 250);
 
+        menuLevels = new Menu_Levels();
         refreshButtons();
     }
 
@@ -58,26 +67,47 @@ public class Menu implements InputHandler {
 
     @Override
     public void getKey(KeyStroke key) throws IOException {
+        if (inLevels) {
+            menuLevels.getKey(key);
+
+            if (key.getKeyType() == KeyType.Character && key.getCharacter() == ' ') {
+                if (menuLevels.isBackSelected()) {
+                    inLevels = false;
+                }
+            }
+            return;
+        }
+
         switch (key.getKeyType()) {
             case ArrowUp:
-                if (currButton > 1)
+                if (currButton > 1) {
                     currButton--;
+                    refreshButtons();
+                }
                 break;
             case ArrowDown:
-                if (currButton < 3)
+                if (currButton < 3) {
                     currButton++;
+                    refreshButtons();
+                }
                 break;
             case Character:
-                if (currButton == 1 && key.getCharacter() == ' ') {}
-                else if (currButton == 2 && key.getCharacter() == ' ') {}
-                else if (currButton == 3 && key.getCharacter() == ' ') {
-                    screen.stopScreen();
-                    running = false;
+                if (key.getCharacter() == ' ') {
+                    if (currButton == 1) {
+                        menuLevels.resetSelection();
+                        inLevels = true;
+                        menuLevels.updateSize(background.getWidth(), background.getHeight());
+                    }
+                    else if (currButton == 2) {
+
+                    }
+                    else if (currButton == 3) {
+                        screen.stopScreen();
+                        running = false;
+                    }
                 }
                 break;
         }
-
-        refreshButtons();
     }
 
     public void updateSize(int width, int height) throws IOException {
@@ -88,13 +118,21 @@ public class Menu implements InputHandler {
         start.setPosition(new Position(centerX - (start.getWidth() / 2), 70));
         controls.setPosition(new Position(centerX - (controls.getWidth() / 2), 130));
         exit.setPosition(new Position(centerX - (exit.getWidth() / 2), 190));
+
+        if (menuLevels != null) {
+            menuLevels.updateSize(width, height);
+        }
     }
 
     public void draw(TextGraphics graphics) {
-        background.draw(graphics);
-        title.draw(graphics);
-        start.draw(graphics);
-        controls.draw(graphics);
-        exit.draw(graphics);
+        if (inLevels) {
+            menuLevels.draw(graphics);
+        } else {
+            background.draw(graphics);
+            title.draw(graphics);
+            start.draw(graphics);
+            controls.draw(graphics);
+            exit.draw(graphics);
+        }
     }
 }
