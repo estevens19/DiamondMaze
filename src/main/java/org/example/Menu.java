@@ -19,7 +19,6 @@ public class Menu implements InputHandler {
     private int currButton = 1;
     private final int buttonWidth = 320;
     private final int buttonHeight = 90;
-
     private Menu_Levels menuLevels;
     private boolean inLevels = false;
 
@@ -32,7 +31,6 @@ public class Menu implements InputHandler {
 
         title = new Image(new Position(0, 0), "images_menu/Title.png");
         title = title.resizeImage(1300, 250);
-
         menuLevels = new Menu_Levels();
         refreshButtons();
     }
