@@ -122,7 +122,7 @@ public class Menu implements InputHandler {
         }
     }
 
-    public void draw(TextGraphics graphics) {
+    public void draw(TextGraphics graphics) throws IOException {
         if (inLevels) {
             menuLevels.draw(graphics);
         } else {
