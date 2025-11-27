@@ -13,6 +13,16 @@ public class Diamond extends Element {
     public void setKey(){
         isKey = true;
     }
+    public boolean isKey(){
+        return isKey;
+    }
+
+    /*
+    public void addScore(Score score){
+        score += ;
+    }
+    */
+
     @Override
     public void draw(TextGraphics graphics) {
         getImage().draw(graphics);
