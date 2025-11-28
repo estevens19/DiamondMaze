@@ -1,17 +1,17 @@
-package org.example;
+package org.example.model;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
-
-import java.awt.*;
+import org.example.Image;
+import org.example.Position;
 
 public abstract class Character {
-    private Image image;
+    private org.example.Image image;
 
-    public Character(Image image) {
+    public Character(org.example.Image image) {
         this.image = image;
     }
 
-    public Image getImage() {
+    public org.example.Image getImage() {
         return image;
     }
 

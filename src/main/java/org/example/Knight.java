@@ -1,6 +1,7 @@
 package org.example;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
+import org.example.model.Character;
 
 import java.io.IOException;
 
