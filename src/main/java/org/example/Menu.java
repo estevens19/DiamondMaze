@@ -4,13 +4,17 @@ package org.example;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import org.example.controller.InputHandler;
+import org.example.model.Image;
+import org.example.model.Position;
+import org.example.viewer.LanternaGUI;
 
 import java.io.IOException;
 
 import static org.example.Game.running;
 import static org.example.Game.screen;
 
-public class Menu implements InputHandler {
+public class Menu implements InputHandler, LanternaGUI {
     private Image background;
     private Image title;
     private Image start;
@@ -124,7 +128,8 @@ public class Menu implements InputHandler {
         }
     }
 
-    public void draw(TextGraphics graphics) {
+    @Override
+    public void draw(TextGraphics graphics) throws IOException {
         if (inLevels) {
             menuLevels.draw(graphics);
         } else {

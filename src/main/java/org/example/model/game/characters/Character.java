@@ -1,17 +1,17 @@
-package org.example.model;
+package org.example.model.game.characters;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.example.Image;
-import org.example.Position;
+import org.example.model.Image;
+import org.example.model.Position;
 
 public abstract class Character {
-    private org.example.Image image;
+    private Image image;
 
-    public Character(org.example.Image image) {
+    public Character(Image image) {
         this.image = image;
     }
 
-    public org.example.Image getImage() {
+    public Image getImage() {
         return image;
     }
 

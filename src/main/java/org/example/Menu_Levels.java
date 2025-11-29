@@ -1,11 +1,16 @@
+
 package org.example;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import org.example.controller.InputHandler;
+import org.example.model.Image;
+import org.example.model.Position;
+import org.example.viewer.LanternaGUI;
 
 import java.io.IOException;
 
-public class Menu_Levels implements InputHandler {
+public class Menu_Levels implements InputHandler, LanternaGUI {
     private Image background;
     private Image level1;
     private Image level2;
@@ -15,13 +20,14 @@ public class Menu_Levels implements InputHandler {
     private final int buttonWidth = 320;
     private final int buttonHeight = 90;
 
+    private Maze maze;
     private boolean inLevel1 = false;
-    //private boolean inLevel2 = false;
-    //private boolean inLevel3 = false;
 
     public Menu_Levels() throws IOException {
         background = new Image(new Position(0, 0), "images_menu/Main_Menu.png");
         background = background.resizeImage(320, 280);
+
+        maze = new Maze();
 
         refreshButtons();
     }
@@ -54,6 +60,11 @@ public class Menu_Levels implements InputHandler {
     }
 
     public void updateSize(int width, int height) throws IOException {
+        if (inLevel1) {
+            maze.updateSize(width, height);
+            return;
+        }
+
         background = background.resizeImage(width, height);
 
         int centerX = width / 2;
@@ -70,12 +81,17 @@ public class Menu_Levels implements InputHandler {
         back.setPosition(new Position(backX, backY));
     }
 
-    public void draw(TextGraphics graphics) {
-        background.draw(graphics);
-        level1.draw(graphics);
-        level2.draw(graphics);
-        level3.draw(graphics);
-        back.draw(graphics);
+    @Override
+    public void draw(TextGraphics graphics) throws IOException {
+        if (inLevel1) {
+            maze.draw(graphics);
+        } else {
+            background.draw(graphics);
+            level1.draw(graphics);
+            level2.draw(graphics);
+            level3.draw(graphics);
+            back.draw(graphics);
+        }
     }
 
     public boolean isBackSelected() {
@@ -89,6 +105,19 @@ public class Menu_Levels implements InputHandler {
 
     @Override
     public void getKey(KeyStroke key) throws IOException {
+        if (inLevel1) {
+            maze.getKey(key);
+
+            if (maze.isExitSelected()) {
+                inLevel1 = false;
+                updateSize(background.getWidth(), background.getHeight());
+            }
+            return;
+        }
+        else {
+            maze = new Maze();
+        }
+
         switch (key.getKeyType()) {
             case ArrowUp:
                 if (currButton == 1) {
@@ -107,12 +136,14 @@ public class Menu_Levels implements InputHandler {
             case ArrowRight:
                 break;
             case Character:
-                if (currButton == 1 && key.getCharacter() == ' ')
-                    break;
-
+                if (key.getCharacter() == ' ') {
+                    if (currButton == 1) {
+                        inLevel1 = true;
+                        maze.reset();
+                        maze.updateSize(background.getWidth(), background.getHeight());
+                    }
+                }
                 break;
-
-
         }
     }
 }

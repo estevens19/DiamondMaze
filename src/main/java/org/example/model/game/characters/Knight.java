@@ -1,7 +1,9 @@
-package org.example;
+package org.example.model.game.characters;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.example.model.Character;
+import org.example.model.Image;
+import org.example.model.Position;
+import org.example.viewer.LanternaGUI;
 
 import java.io.IOException;
 
