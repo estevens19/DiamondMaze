@@ -15,6 +15,7 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+import org.example.model.menu.Menu;
 
 public class Game {
     public static Screen screen;
@@ -47,7 +48,7 @@ public class Game {
     }
 
     public void run() throws IOException {
-        Menu menu = new Menu();
+        org.example.model.menu.Menu menu = new Menu();
         TextGraphics graphics = screen.newTextGraphics();
         TerminalSize initialSize = screen.getTerminalSize();
         menu.updateSize(initialSize.getColumns(), initialSize.getRows());

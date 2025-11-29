@@ -1,11 +1,14 @@
-package org.example;
+package org.example.model.menu;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import org.example.Image;
+import org.example.InputHandler;
+import org.example.Position;
 
 import java.io.IOException;
 
-public class Menu_Levels implements InputHandler {
+public class Menu_Levels extends Menu {
     private Image background;
     private Image level1;
     private Image level2;
@@ -69,7 +72,7 @@ public class Menu_Levels implements InputHandler {
 
         back.setPosition(new Position(backX, backY));
     }
-
+/*
     public void draw(TextGraphics graphics) {
         background.draw(graphics);
         level1.draw(graphics);
@@ -77,7 +80,7 @@ public class Menu_Levels implements InputHandler {
         level3.draw(graphics);
         back.draw(graphics);
     }
-
+*/
     public boolean isBackSelected() {
         return currButton == 0;
     }
