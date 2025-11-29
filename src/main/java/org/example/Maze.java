@@ -3,7 +3,7 @@ package org.example;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import org.example.controller.InputHandler;
-import org.example.model.Image;
+import org.example.viewer.Image;
 import org.example.model.Position;
 import org.example.model.game.characters.Guard;
 import org.example.model.game.characters.Knight;

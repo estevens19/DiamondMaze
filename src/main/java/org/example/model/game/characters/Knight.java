@@ -1,7 +1,7 @@
 package org.example.model.game.characters;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.example.model.Image;
+import org.example.viewer.Image;
 import org.example.model.Position;
 import org.example.viewer.LanternaGUI;
 

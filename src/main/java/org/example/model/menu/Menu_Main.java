@@ -1,20 +1,19 @@
 
-package org.example;
+package org.example.model.menu;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import org.example.controller.InputHandler;
-import org.example.model.Image;
-import org.example.model.Position;
-import org.example.viewer.LanternaGUI;
+import org.example.Image;
+import org.example.InputHandler;
+import org.example.Position;
 
 import java.io.IOException;
 
 import static org.example.Game.running;
 import static org.example.Game.screen;
 
-public class Menu implements InputHandler, LanternaGUI {
+public class Menu_Main extends Menu {
     private Image background;
     private Image title;
     private Image start;
@@ -30,7 +29,7 @@ public class Menu implements InputHandler, LanternaGUI {
     //private Menu_Levels menuControls;
     //private boolean inControls = false;
 
-    public Menu() throws IOException {
+    public Menu_Main() throws IOException {
         background = new Image(new Position(0, 0), "images_menu/Main_Menu.png");
         background = background.resizeImage(320, 280);
 
@@ -127,9 +126,8 @@ public class Menu implements InputHandler, LanternaGUI {
             menuLevels.updateSize(width, height);
         }
     }
-
-    @Override
-    public void draw(TextGraphics graphics) throws IOException {
+/*
+    public void draw(TextGraphics graphics) {
         if (inLevels) {
             menuLevels.draw(graphics);
         } else {
@@ -140,4 +138,6 @@ public class Menu implements InputHandler, LanternaGUI {
             exit.draw(graphics);
         }
     }
+
+ */
 }

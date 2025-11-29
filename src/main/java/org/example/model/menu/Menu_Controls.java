@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model.menu;
 
 public class Menu_Controls {
 }
