@@ -19,21 +19,17 @@ public abstract class MazeBuilder {
 
         return maze;
     }
-
-    protected abstract int getWidth();
-
-    protected abstract int getHeight();
-
-    //protected abstract List<Wall> createWalls();
+/*
+    protected abstract List<Wall> createWalls();
 
     protected abstract List<Guard> createGuards() throws IOException;
-
-    protected abstract Knight createKnight() throws IOException;
 
     protected abstract List<Diamond> createDiamonds() throws IOException;
 
     protected abstract Key createKey() throws IOException;
 
     protected abstract Door createDoor() throws IOException;
+*/
+    protected abstract Knight createKnight() throws IOException;
 
-    }
+}
