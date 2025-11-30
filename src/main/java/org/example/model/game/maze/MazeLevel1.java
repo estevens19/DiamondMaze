@@ -76,7 +76,7 @@ public class MazeLevel1 extends Maze  {
 }
 
 
-
+/*
 public class MazeLevel1 extends Maze {
     private Image background;
     private Image backButton;
@@ -133,3 +133,4 @@ public class MazeLevel1 extends Maze {
         exitSelected = false;
     }
 }
+*/

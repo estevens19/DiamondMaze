@@ -2,7 +2,6 @@ package org.example.model.game.maze;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
-import org.example.InputHandler;
 
 import java.io.IOException;
 

@@ -1,8 +1,9 @@
-package org.example;
+package org.example.viewer;
 
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import org.example.model.Position;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

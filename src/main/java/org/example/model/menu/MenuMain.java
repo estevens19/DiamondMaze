@@ -1,17 +1,12 @@
+package org.example.model.menu;
 
-package org.example;
-
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
+import org.example.model.Position;
+import org.example.state.State;
+import org.example.viewer.Image;
 
 import java.io.IOException;
 
-import static org.example.Game.running;
-import static org.example.Game.screen;
-
-public class Menu implements InputHandler {
-    private Image background;
+public class MenuMain extends Menu {
     private Image title;
     private Image start;
     private Image controls;
@@ -20,21 +15,27 @@ public class Menu implements InputHandler {
     private final int buttonWidth = 320;
     private final int buttonHeight = 90;
 
-    private Menu_Levels menuLevels;
-    private boolean inLevels = false;
+    private MenuLevels menuLevels;
+    private inLevels = false;
 
     //private Menu_Levels menuControls;
     //private boolean inControls = false;
 
-    public Menu() throws IOException {
-        background = new Image(new Position(0, 0), "images_menu/Main_Menu.png");
-        background = background.resizeImage(320, 280);
-
+    public MenuMain() throws IOException {
+        super();
         title = new Image(new Position(0, 0), "images_menu/Title.png");
         title = title.resizeImage(1300, 250);
 
-        menuLevels = new Menu_Levels();
+        menuLevels = new MenuLevels();
         refreshButtons();
+    }
+
+    public MenuLevels getMenuLevels() {
+        return inLevels;
+    }
+
+    public void setMenuLevels(boolean value) {
+        inLevels = value;
     }
 
     private void refreshButtons() throws IOException {
@@ -65,51 +66,6 @@ public class Menu implements InputHandler {
         exit = exit.resizeImage(buttonWidth, buttonHeight);
     }
 
-    @Override
-    public void getKey(KeyStroke key) throws IOException {
-        if (inLevels) {
-            menuLevels.getKey(key);
-
-            if (key.getKeyType() == KeyType.Character && key.getCharacter() == ' ') {
-                if (menuLevels.isBackSelected()) {
-                    inLevels = false;
-                }
-            }
-            return;
-        }
-
-        switch (key.getKeyType()) {
-            case ArrowUp:
-                if (currButton > 1) {
-                    currButton--;
-                    refreshButtons();
-                }
-                break;
-            case ArrowDown:
-                if (currButton < 3) {
-                    currButton++;
-                    refreshButtons();
-                }
-                break;
-            case Character:
-                if (key.getCharacter() == ' ') {
-                    if (currButton == 1) {
-                        menuLevels.resetSelection();
-                        inLevels = true;
-                        menuLevels.updateSize(background.getWidth(), background.getHeight());
-                    }
-                    else if (currButton == 2) {
-
-                    }
-                    else if (currButton == 3) {
-                        screen.stopScreen();
-                        running = false;
-                    }
-                }
-                break;
-        }
-    }
-
     public void updateSize(int width, int height) throws IOException {
         background = background.resizeImage(width, height);
         int centerX = width / 2;
@@ -123,7 +79,7 @@ public class Menu implements InputHandler {
             menuLevels.updateSize(width, height);
         }
     }
-
+/*
     public void draw(TextGraphics graphics) {
         if (inLevels) {
             menuLevels.draw(graphics);
@@ -135,4 +91,31 @@ public class Menu implements InputHandler {
             exit.draw(graphics);
         }
     }
+
+ */
+
+    public void backCurrButton() throws IOException {
+        currButton--;
+        refreshButtons();
+    }
+
+    public void nextCurrButton() throws IOException {
+        currButton++;
+        refreshButtons();
+    }
+
+    public int getCurrButton() throws IOException {
+        return currButton;
+    }
+
+/*
+    public State getStateInLevels() {
+        return stateInLevels;
+    }
+
+    public void setStateInLevels(State stateInLevels) {
+        this.stateInLevels = stateInLevels;
+    }
+
+*/
 }

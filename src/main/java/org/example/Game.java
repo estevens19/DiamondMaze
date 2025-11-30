@@ -1,24 +1,17 @@
 package org.example;
 
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
+import org.example.gui.LanternaGUI;
+import org.example.state.MenuState;
+import org.example.state.State;
 
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
-import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
-
+/*
 public class Game {
     public static Screen screen;
     public static boolean running = true;
+
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
         URL resource = getClass().getClassLoader().getResource("fonts/charybdis.regular.ttf");
@@ -72,7 +65,7 @@ public class Game {
             }
 
             try {
-                Thread.sleep(5);
+                Thread.sleep(0);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 break;
@@ -80,5 +73,42 @@ public class Game {
         }
 
         screen.stopScreen();
+    }
+}
+
+ */
+
+public class Game {
+    private final LanternaGUI gui;
+    private State state;
+
+    public Game() throws FontFormatException, IOException, URISyntaxException {
+        this.gui = new LanternaGUI(20, 20);
+        this.state = new MenuState(new Menu());
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    private void start() throws IOException {
+        int FPS = 60;
+        int frameTime = 1000 / FPS;
+
+        while (this.state != null) {
+            long startTime = System.currentTimeMillis();
+
+            state.step(this, gui, startTime);
+
+            long elapsedTime = System.currentTimeMillis() - startTime;
+            long sleepTime = frameTime - elapsedTime;
+
+            try {
+                if (sleepTime > 0) Thread.sleep(sleepTime);
+            } catch (InterruptedException e) {
+            }
+        }
+
+        gui.close();
     }
 }
