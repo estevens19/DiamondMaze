@@ -8,3 +8,4 @@ public class GuardViewer implements CharacterViewer<Guard> {
     public void draw(Guard guard, GUI gui) {
         gui.drawGuard(guard.getPosition());
     }
+}

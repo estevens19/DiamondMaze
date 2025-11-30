@@ -1,14 +1,13 @@
 package org.example.viewer.menu;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
+import org.example.gui.GUI;
 import org.example.model.menu.Menu;
 
-public interface MenuViewer extends Viewer<T extends Menu> {
-    public MenuViewer(Menu menu) {
-        super(menu);
-    }
-
-    public void drawMenu(TextGraphics graphics) {
+public interface MenuViewer<T extends Menu> {
+    void draw(T element, GUI gui);
+/*
+{
         if (inLevels) {
             menuLevels.draw(graphics);
         } else {
@@ -20,7 +19,7 @@ public interface MenuViewer extends Viewer<T extends Menu> {
         }
     }
 
-    public void drawMenuLevels(TextGraphics graphics) {
+    public void drawMenuLevels(T element, GUI gui)) {
         background.draw(graphics);
         level1.draw(graphics);
         level2.draw(graphics);
@@ -28,3 +27,4 @@ public interface MenuViewer extends Viewer<T extends Menu> {
         back.draw(graphics);
     }
 }
+*/

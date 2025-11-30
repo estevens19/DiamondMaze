@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import com.googlecode.lanterna.input.KeyStroke;
 import org.example.Game;
 import org.example.gui.GUI;
 

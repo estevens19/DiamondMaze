@@ -69,51 +69,34 @@ public class LanternaGUI implements GUI {
         return cfg;
     }
 
-    public ACTION getNextAction() throws IOException {
-        KeyStroke keyStroke = screen.pollInput();
-        if (keyStroke == null) return ACTION.NONE;
+    public ACTION getKey() throws IOException {
+        KeyStroke key = screen.pollInput();
+        if (key == null) return ACTION.NONE;
 
-        if (keyStroke.getKeyType() == KeyType.EOF) return ACTION.QUIT;
-        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'q') return ACTION.QUIT;
+        if (key.getKeyType() == KeyType.EOF) return ACTION.QUIT;
+        if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') return ACTION.QUIT;
 
-        if (keyStroke.getKeyType() == KeyType.ArrowUp) return ACTION.UP;
-        if (keyStroke.getKeyType() == KeyType.ArrowRight) return ACTION.RIGHT;
-        if (keyStroke.getKeyType() == KeyType.ArrowDown) return ACTION.DOWN;
-        if (keyStroke.getKeyType() == KeyType.ArrowLeft) return ACTION.LEFT;
+        if (key.getKeyType() == KeyType.ArrowUp) return ACTION.UP;
+        if (key.getKeyType() == KeyType.ArrowRight) return ACTION.RIGHT;
+        if (key.getKeyType() == KeyType.ArrowDown) return ACTION.DOWN;
+        if (key.getKeyType() == KeyType.ArrowLeft) return ACTION.LEFT;
 
-        if (keyStroke.getKeyType() == KeyType.Enter) return ACTION.SELECT;
+        if (key.getKeyType() == KeyType.Character && key.getCharacter() == ' ') return ACTION.SELECT;
 
         return ACTION.NONE;
     }
-
-    @Override
-    public void drawKnight(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'H', "#FFD700");
-    }
-
-    @Override
-    public void drawGuard(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'H', "#FFD700");
-    }
-
+/*
     @Override
     public void drawWall(Position position) {
         drawCharacter(position.getX(), position.getY(), '#', "#3333FF");
     }
-
     @Override
     public void drawText(Position position, String text, String color) {
-        TextGraphics tg = screen.newTextGraphics();
-        tg.setForegroundColor(TextColor.Factory.fromString(color));
-        tg.putString(position.getX(), position.getY(), text);
+        TextGraphics graphics = screen.newTextGraphics();
+        graphics.setForegroundColor(TextColor.Factory.fromString(color));
+        graphics.putString(position.getX(), position.getY(), text);
     }
-
-    private void drawCharacter(int x, int y, char c, String color) {
-        TextGraphics tg = screen.newTextGraphics();
-        tg.setForegroundColor(TextColor.Factory.fromString(color));
-        tg.putString(x, y + 1, "" + c);
-    }
-
+*/
     @Override
     public void clear() {
         screen.clear();
@@ -127,5 +110,10 @@ public class LanternaGUI implements GUI {
     @Override
     public void close() throws IOException {
         screen.close();
+    }
+
+    @Override
+    public void stopScreen() throws IOException {
+        screen.stopScreen();
     }
 }

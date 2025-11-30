@@ -1,6 +1,6 @@
 package org.example.state;
 
-import org.example.controller.menu.MenuController;
+import org.example.controller.menu.MenuMainController;
 import org.example.model.menu.Menu;
 import org.example.controller.Controller;
 import org.example.viewer.Viewer;
@@ -18,6 +18,6 @@ public class MenuState extends State<Menu> {
 
     @Override
     protected Controller<Menu> getController() {
-        return new MenuController(getModel());
+        return new MenuMainController(getModel());
     }
 }

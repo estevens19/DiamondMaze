@@ -1,13 +1,12 @@
-package com.org.example.controller.game;
+package org.example.controller.game;
 
 import org.example.Game;
-import org.example.Maze;
-import org.example.model.Position;
-import org.example.controller.game.GameController;
 import org.example.gui.GUI;
+import org.example.model.Position;
+import org.example.model.game.maze.Maze;
 
 public class KnightController extends GameController {
-    public HeroController(Maze maze) {
+    public KnightController(Maze maze) {
         super(maze);
     }
 

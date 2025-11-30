@@ -1,14 +1,11 @@
 package org.example.model.menu;
 
-import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import org.example.Image;
-import org.example.InputHandler;
-import org.example.Position;
+import org.example.model.Position;
+import org.example.viewer.Image;
 
 import java.io.IOException;
 
-public class Menu_Levels extends Menu {
+public class MenuLevels extends Menu {
     private Image background;
     private Image level1;
     private Image level2;
@@ -22,7 +19,7 @@ public class Menu_Levels extends Menu {
     //private boolean inLevel2 = false;
     //private boolean inLevel3 = false;
 
-    public Menu_Levels() throws IOException {
+    public MenuLevels() throws IOException {
         background = new Image(new Position(0, 0), "images_menu/Main_Menu.png");
         background = background.resizeImage(320, 280);
 

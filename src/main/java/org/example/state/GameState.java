@@ -1,7 +1,8 @@
 package org.example.state;
 
-import org.example.Maze;
 import org.example.controller.Controller;
+import org.example.controller.game.MazeController;
+import org.example.model.game.maze.Maze;
 import org.example.viewer.Viewer;
 import org.example.viewer.game.GameViewer;
 
