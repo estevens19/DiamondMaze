@@ -67,7 +67,7 @@ public class MenuMain extends Menu {
         setBackground(getBackground().resizeImage(width, height));
         int centerX = width / 2;
 
-        title.setPosition(new Position(centerX - title.getWidth() / 2, -85));
+        title.setPosition(new Position(centerX - title.getWidth() / 2, -110));
         start.setPosition(new Position(centerX - (start.getWidth() / 2), 70));
         controls.setPosition(new Position(centerX - (controls.getWidth() / 2), 130));
         exit.setPosition(new Position(centerX - (exit.getWidth() / 2), 190));
