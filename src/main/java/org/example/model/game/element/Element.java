@@ -1,13 +1,13 @@
 package org.example.model.game.element;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.example.Image;
-import org.example.Position;
+import org.example.model.Position;
+import org.example.viewer.Image;
 
 public abstract class Element {
-    private final org.example.Image image;
+    private final Image image;
 
-    public Element(org.example.Image image) {
+    public Element(Image image) {
         this.image = image;
     }
 

@@ -16,7 +16,7 @@ public class MazeViewer extends Viewer<Maze> {
     }
 
     @Override
-    public void drawElements(GUI gui) {
+    public void draw(GUI gui) {
         //drawElements(gui, getModel().getWalls(), new WallViewer());
         //drawElements(gui, getModel().getGuards(), new GuardViewer());
         drawCharacter(gui, getModel().getKnight(), new KnightViewer());

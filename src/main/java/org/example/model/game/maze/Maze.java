@@ -10,11 +10,11 @@ public abstract class Maze {
 
     //public abstract void draw(TextGraphics graphics) throws IOException;
 
-    public abstract void updateSize(int width, int height) throws IOException;
+    //public abstract void updateSize(int width, int height) throws IOException;
 
-    public abstract boolean isExitSelected();
+    //public abstract boolean isExitSelected();
 
-    public abstract void reset();
+    //public abstract void reset();
 
     public abstract Knight getKnight();
 

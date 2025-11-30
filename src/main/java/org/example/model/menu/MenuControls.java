@@ -1,4 +1,3 @@
 package org.example.model.menu;
 
-public class MenuControls extends Menu{
-}
+//public class MenuControls extends Menu{ }

@@ -18,27 +18,16 @@ public class MazeLevel1 extends Maze  {
     private final int buttonHeight = 90;
     private boolean exitSelected = false;
 
-
-    private final int width;
-    private final int height;
-
     private Knight knight;
 
     private List<Guard> guards;
     //private List<Wall> walls;
 
-    public MazeLevel1(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public MazeLevel1() throws IOException {
+        background = new Image(new Position(0, 0), "images/Background_Maze.png");
+        backButton = new Image(new Position(0, 0), "images_menu/Back_shine.png");
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
 
     public Knight getKnight() {
         return knight;

@@ -7,7 +7,7 @@ import org.example.model.Position;
 
 import java.io.IOException;
 
-public class Knight extends Character{
+public class Knight extends Character {
     public Knight(int x, int y) throws IOException {
         super(new Image(new Position(x, y), "images/Knight.png").resizeImage(300, 55));
     }

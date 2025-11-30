@@ -27,10 +27,7 @@ public class KnightController extends GameController {
     }
 
     private void moveKnight(Position position) {
-        if (getModel().isEmpty(position)) {
-            getModel().getKnight().setPosition(position);
-            if (getModel().isGuard(position)) getModel().getKnight().decreaseEnergy();
-        }
+
     }
 
     @Override

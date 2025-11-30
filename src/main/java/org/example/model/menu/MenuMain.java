@@ -1,7 +1,6 @@
 package org.example.model.menu;
 
 import org.example.model.Position;
-import org.example.state.State;
 import org.example.viewer.Image;
 
 import java.io.IOException;
@@ -16,7 +15,7 @@ public class MenuMain extends Menu {
     private final int buttonHeight = 90;
 
     private MenuLevels menuLevels;
-    private inLevels = false;
+    private boolean inLevels = false;
 
     //private Menu_Levels menuControls;
     //private boolean inControls = false;
@@ -30,7 +29,7 @@ public class MenuMain extends Menu {
         refreshButtons();
     }
 
-    public MenuLevels getMenuLevels() {
+    public boolean getMenuLevels() {
         return inLevels;
     }
 
@@ -67,7 +66,7 @@ public class MenuMain extends Menu {
     }
 
     public void updateSize(int width, int height) throws IOException {
-        background = background.resizeImage(width, height);
+        getBackground().resizeImage(width, height);
         int centerX = width / 2;
 
         title.setPosition(new Position(centerX - title.getWidth() / 2, -85));

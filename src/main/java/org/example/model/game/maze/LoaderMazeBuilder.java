@@ -86,3 +86,4 @@ public class LoaderMazeBuilder extends MazeBuilder {
         return knight;
     }
 }
+

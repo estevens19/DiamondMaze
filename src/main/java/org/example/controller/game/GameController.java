@@ -1,6 +1,5 @@
 package org.example.controller.game;
 
-
 import org.example.controller.Controller;
 import org.example.model.game.maze.Maze;
 

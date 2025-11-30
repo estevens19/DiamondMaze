@@ -9,12 +9,14 @@ import org.example.model.game.element.Key;
 import java.io.IOException;
 import java.util.List;
 
+import java.util.List;
+
 public abstract class MazeBuilder {
-    public Maze createMaze() {
-        Maze maze = new Maze(getWidth(), getHeight());
+    public Maze createMaze() throws IOException {
+        MazeLevel1 maze = new MazeLevel1();
 
         maze.setKnight(createKnight());
-        maze.setGuards(createGuards());
+        //maze.setGuards(createGuards());
         //maze.setWalls(createWalls());
 
         return maze;
