@@ -1,95 +1,134 @@
 ## LDTS_t13g05 - Diamond Maze
 
-> Um cavaleiro encontra-se perdido num labirinto que parece não ter fim. Precisa de encontrar a chave secreta para conseguir escapar pelo portal.
+> A knight finds himself lost in a labyrinth that seems to have no end. He needs to find the secret key to escape through the gate.
 
-> Tem de se ter em atenção o limite de tempo. Distribuídos pelo mapa, existem alimentos que aumentam esse limite de tempo. Caso o jogador não consiga abrir o portal dentro do limite de tempo, o nível reinicia.
-  Para conseguir atingir uma maior pontuação, o jogador precisa de apanhar os diamantes distribuídos pelo mapa aleatoriamente.
-  Para conseguir capturar a chave, o jogador tem de descobrir qual dos diamantes é que guarda a chave.
-  Para dificultar o jogo, existem inimigos espalhados pelo mapa. Caso um inimigo apanhe o jogador, o nível reinicia.
-	
-> Este projeto foi desenvolvido por "Ricardo Estevéns" (up202405321@up.pt), "Gustavo Oliveira" (up202205770@up.pt) e "Rogério Barbosa" (up202406902@up.pt), para LDTS 2025/26.
+> ⁠The time limit must be taken into account. Scattered throughout the map, there are items that increase this time limit. If the player fails to open the portal within the time limit, the level restarts.
+⁠To achieve a higher score, the player needs to collect the diamonds randomly distributed throughout the map.
+To capture the key, the player must discover which of the diamonds holds the key.
+⁠To make the game more difficult, there are guards scattered throughout the map. If an guard catches the player, the level restarts.
+
+> 	⁠This project was developed by *Ricardo Estevéns* ([up202405321@up.pt](mailto:up202405321@up.pt)), *Gustavo Oliveira* ([up202205770@up.pt](mailto:up202205770@up.pt)), and *Rogério Barbosa* ([up202406902@up.pt](mailto:up202406902@up.pt)) for LDTS 2025/26.
+
 
 ### IMPLEMENTED FEATURE
 
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
+- *Knight* - The game's character.
+- *Guards* - Scattered throughout the map.
+- *Time* - There is a timer to complete the level.
+- *Key* - It will be hidden in a diamond. It is used to open the portal.
+- *Diamonds* - Located in random places on the map.
+- ⁠*Gate* - Allows you to proceed to the next level.
+- ⁠*Maze* - Limits the movement area within the map.
+- ⁠*Movement* - Using the arrow keys (up, down, left, and right).
+<br>
 
-**Examples**:
+- *Main Menu*
+<img width="1862" height="1048" alt="Mockup 1" src="https://github.com/user-attachments/assets/89a0d485-e3da-4746-8e51-30a9ea5562e6" />
 
-- **Cavaleiro** - Personagem do jogo.
-- **Inimigos** - Existem espalhados pelo mapa.
-- **Tempo** - Existe um contador do tempo para completar o nível.  
-- **Movimento** - Usando as setas (cima, baixo, esquerda e direita).
-- **Chave** - Vai estar escondida em um diamante. Serve para abrir o portal.
-- **Diamantes** - Existem em sítios aleatórios no mapa. 
-- **Portal** - Permite passaar ao nível seguinte.
-- **Labirinto** - Limitam a área de movimento dentro do mapa. 
+- *Levels Menu*
+<img width="1862" height="1048" alt="Mockup 2" src="https://github.com/user-attachments/assets/6a97a074-3c0e-464e-be4b-f4bb2c813230" />
+
+- *Level 1*
+<img width="1862" height="1048" alt="Mockup 3" src="https://github.com/user-attachments/assets/631a92b8-3863-49b1-aa78-ff3f097872cf" />
+
 
 ### PLANNED FEATURES
 
-> This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
-- **Score** - Vai ser crucial para conseguir abrir o portal (minimum score).
-- **Potions** - Podem dar algo positivo ou negativo ao nível. 
-- **Unveiling the map** - O jogador terá de andar pelo mapa para o conseguir revelar.
-  
+- *Score* - It will be crucial for being able to open the portal (minimum score).
+- ⁠*Potions* - They can have either a positive or negative effect on the level.
+- ⁠*Unveiling the map* - The player will have to walk around the map to reveal it.
+
 ### DESIGN
 
-> This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
+<img width="5728" height="1789" alt="UML" src="https://github.com/user-attachments/assets/c8c3ed52-e6c2-4a50-8a87-bfcae97636bc" />
 
-- **Problem in Context.** The description of the design context and the concrete problem that motivated the instantiation of the pattern. Someone else other than the original developer should be able to read and understand all the motivations for the decisions made. When refering to the implementation before the pattern was applied, don’t forget to [link to the relevant lines of code](https://help.github.com/en/articles/creating-a-permanent-link-to-a-code-snippet) in the appropriate version.
-- **The Pattern.** Identify the design pattern to be applied, why it was selected and how it is a good fit considering the existing design context and the problem at hand.
-- **Implementation.** Show how the pattern roles, operations and associations were mapped to the concrete design classes. Illustrate it with a UML class diagram, and refer to the corresponding source code with links to the relevant lines (these should be [relative links](https://help.github.com/en/articles/about-readmes#relative-links-and-image-paths-in-readme-files). When doing this, always point to the latest version of the code.
-- **Consequences.** Benefits and liabilities of the design after the pattern instantiation, eventually comparing these consequences with those of alternative solutions.
+*Problem in Context.*
 
-**Example of one of such subsections**:
+To improve code organization, we needed a design approach that would allow us to implement a better *separation of concerns* for each game object. The core problem was the *excessive interdependence* between the game's logic, visual presentation, and user input handling.
 
-------
+*The Pattern*
 
-#### THE JUMP ACTION OF THE KANGAROOBOY SHOULD BEHAVE DIFFERENTLY DEPENDING ON ITS STATE
+We implemented the *MVC (Model-View-Controller) Architectural Pattern*. This pattern organizes the code into three distinct components:
 
-**Problem in Context**
+- ⁠*Model*: Responsible for the entities in the game, such as MenuMain, MenuLevels, and the Maze for each level.
+- ⁠*View*: Handles rendering the current state of the game—for example, MazeViewer draws the maze for each level, and MenuMainViewer renders the main menu.
+- ⁠*Controller*: Manages state transitions based on user input and updates the Model accordingly, as seen in KnightController, which controls the knight’s movement within the maze.
 
-There was a lot of scattered conditional logic when deciding how the KangarooBoy should behave when jumping, as the jumps should be different depending on the items that came to his possession during the game (an helix will alow him to fly, driking a potion will allow him to jump double the height, etc.). This is a violation of the **Single Responsability Principle**. We could concentrate all the conditional logic in the same method to circumscribe the issue to that one method but the **Single Responsability Principle** would still be violated.
+This structure ensures a clear separation of concerns, improving both maintainability and scalability.
 
-**The Pattern**
+*Implementation*
 
-We have applied the **State** pattern. This pattern allows you to represent different states with different subclasses. We can switch to a different state of the application by switching to another implementation (i.e., another subclass). This pattern allowed to address the identified problems because […].
+UML reprensentation showing above.
 
-**Implementation**
+*Consequences.* 
 
-The following figure shows how the pattern’s roles were mapped to the application classes.
+Benefits and liabilities of the design after the pattern instantiation, eventually comparing these consequences with those of alternative solutions.
 
-![img](https://www.fe.up.pt/~arestivo/page/img/examples/lpoo/state.svg)
+- *Enhanced Maintainability:* Changes to the GUI can be made without touching the game logic (Model). For instance, changing the knight's sprite is now isolated to the ⁠ KnightViewer ⁠ class.
+- ⁠*Improved Testability:* The Model can be tested in isolation with unit tests, as it has no dependencies on the View or Controller. For example, we can write tests for ⁠ knight.move() ⁠ without testing into the game.
+- ⁠*Parallel Development:* The clear boundaries allow one developer to work on the ⁠ Maze ⁠ logic (Model) while another works on the ⁠ MazeViewer ⁠ (View), with minimal conflict.
+- ⁠*Clarity and Structure:* The code is now organized according to a well-known pattern, making it instantly more understandable to new developers joining the project.
 
-These classes can be found in the following files:
+*Problem in Context.*
 
-- [Character](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/Character.java)
-- [JumpAbilityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/JumpAbilityState.java)
-- [DoubleJumpState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/DoubleJumpState.java)
-- [HelicopterState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/HelicopterState.java)
-- [IncreasedGravityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/IncreasedGravityState.java)
+The game currently uses extensive conditional logic within different Game objects:
 
-**Consequences**
+The menu navigation relies on numerous conditional statements to determine which button is selected and what happens when buttons are pressed. 
+
+For the state of Maze we need an approach to control the flow of the Game, for Characters and Elements.
+
+*The Pattern*
+
+We implemented the *State Pattern* to encapsulate state-specific behavior into dedicated classes. This pattern provides a structured approach to managing state-dependent behavior.
+
+State changes become clear, explicit operations rather than implicit side effects of conditional logic.
+
+New states can be added without modifying existing state logic, following the Open/Closed Principle.
+
+*Implementation*
+
+[GameState] [https://github.com/FEUPLDTS2025/projectt13g05/blob/main/src/main/java/org/example/state/GameState.java](https://github.com/FEUP-LDTS-2025/project-t13g05/blob/main/src/main/java/org/example/state/GameState.java)
+
+[MenuLevelsState] [https://github.com/FEUP-LDTS 2025/projectt13g05/blob/main/src/main/java/org/example/state/MenuLevelsState.java](https://github.com/FEUP-LDTS-2025/project-t13g05/blob/main/src/main/java/org/example/state/MenuLevelsState.java)
+
+[MenuMainState] https://github.com/FEUP-LDTS-2025/project-t13g05/blob/main/src/main/java/org/example/state/MenuMainState.java
+
+[State] [https://github.com/FEUP-LDTS-2025/project-t13g05/blob/main/src/main/java/org/example/state/State.java](https://github.com/FEUP-LDTS-2025/project-t13g05/blob/main/src/main/java/org/example/state/MenuMainState.java)
+
+*Consequences.* 
 
 The use of the State Pattern in the current design allows the following benefits:
 
-- The several states that represent the character’s hability to jump become explicit in the code, instead of relying on a series of flags.
-- We don’t need to have a long set of conditional if or switch statements associated with the various states; instead, polimorphism is used to activate the right behavior.
-- There are now more classes and instances to manage, but still in a reasonable number.
+- ⁠*Improve Code Readability:* The several states that represent the Maze changes with different stages of the Game become more explicit in the code.
+- ⁠*State Management:* The implementation now involves a greater number of classes and instances, but this added structure *significantly simplifies overall management and scalability*.
 
-#### KNOWN CODE SMELLS
+*Problem in Context.*
 
-> This section should describe 3 to 5 different code smells that you have identified in your current implementation.
+To address the complexity inherent in Maze implementations containing numerous diverse components, a approach was required to enable more organized and maintainable Maze creation.
 
-### TESTING
+*The Pattern*
 
-- Screenshot of coverage report.
-- Link to mutation testing report.
+We implemented the *Builder Pattern.* It’s primarily used to address challenges related to *creating complex objects* that have numerous parameters, particularly when many of these parameters are optional or require step-by-step construction.
+
+*Implementation*
+
+[LoaderMazeBuilder]
+[https://github.com/FEUPLDTS2025/projectt13g05/blob/main/src/main/java/org/example/model/game/maze/LoaderMazeBuilder.java](https://github.com/FEUP-LDTS2025/projectt13g05/blob/main/src/main/java/org/example/model/game/maze/LoaderMazeBuilder.java)
+
+[MazeBuilder]
+[https://github.com/FEUPLDTS2025/projectt13g05/blob/main/src/main/java/org/example/model/game/maze/MazeBuilder.java](https://github.com/FEUP-LDTS-2025/projectt13g05/blob/main/src/main/java/org/example/model/game/maze/LoaderMazeBuilder.java)
+
+*Consequences.* 
+
+The use of the *Builder Pattern* in the current Maze design allows for the following key benefits:
+
+- *Encapsulated Construction Logic:* It encapsulates the complex algorithm for creating a maze (like generating guards, knight and elements). The client code doesn't need to know how a maze is assembled, it only specifies what it wants.
+- ⁠*Step-by-Step Construction:* It allows the maze to be constructed step-by-step. The ⁠ MazeBuilder ⁠ can first create Maze and ⁠ LoaderMazeBuilder ⁠ populate the ⁠ Maze ⁠ with characters and elements, all within a single controlled process.
+- ⁠*Validation and Consistency:* This ensures that every ⁠ Maze ⁠ object is in a consistent and valid state upon creation.
+- ⁠*Separation of Concerns:* It separates the code for constructing a maze from the ⁠ Maze ⁠ class itself. The ⁠ Maze ⁠ class can remain focused on its core responsibility representing the maze structure and providing an interface for navigation and interaction.
 
 ### SELF-EVALUATION
 
-> In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
-
-**Example**:
-
-- John Doe: 40%
-- Jane Doe: 60%
+- ⁠Gustavo Oliveira: 34%
+- ⁠Ricardo Estevéns: 33%
+- ⁠Rogério Barbosa: 33%
