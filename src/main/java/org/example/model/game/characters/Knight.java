@@ -7,7 +7,7 @@ import org.example.model.Position;
 
 import java.io.IOException;
 
-public class Knight extends Character implements LanternaGUI {
+public class Knight extends Character {
     public Knight() throws IOException {
         super(new Image(new Position(800, 100), "images/Knight.png").resizeImage(300, 55));
     }

@@ -17,7 +17,7 @@ public abstract class Menu {
     //private MenuControls menuControls;
     //private boolean inControls = false;
 
-    public Menu() {
+    public Menu() throws IOException {
         background = new Image(new Position(0, 0), "images_menu/Main_Menu.png");
         background = background.resizeImage(320, 280);
     }

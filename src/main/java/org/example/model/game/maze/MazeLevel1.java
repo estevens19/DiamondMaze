@@ -3,37 +3,32 @@ package org.example.model.game.maze;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import org.example.*;
+import org.example.model.Position;
+import org.example.model.game.characters.Guard;
+import org.example.model.game.characters.Knight;
+import org.example.viewer.Image;
 
 import java.io.IOException;
 import java.util.List;
 
-public class MazeLevel1 extends Maze  {
+public class MazeLevel1 extends Maze {
+    private Position position;
     private Image background;
     private Image backButton;
     private final int buttonWidth = 320;
     private final int buttonHeight = 90;
-    private boolean exitSelected = false;
-
-
-    private final int width;
-    private final int height;
+    private boolean backSelected = false;
 
     private Knight knight;
 
     private List<Guard> guard;
-    private List<Wall> walls;
+//  private List<Wall> walls;
 
-    public MazeLevel1(int width, int height) {
-        this.width = width;
-        this.height = height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
+    public MazeLevel1() throws IOException {
+        this.position = position;
+        this.background = background;
+        background = new Image(new Position(0, 0), "images/Background_Maze.png");
+        backButton = new Image(new Position(0, 0), "images_menu/Back_shine.png");
     }
 
     public Knight getKnight() {
@@ -52,7 +47,23 @@ public class MazeLevel1 extends Maze  {
         this.guard = guard;
     }
 
-    public List<Wall> getWalls() {
+    @Override
+    public void updateSize(int width, int height) throws IOException {
+
+    }
+
+    @Override
+    public boolean isExitSelected() {
+        return false;
+    }
+
+    @Override
+    public void reset() {
+
+    }
+}
+
+ /*   public List<Wall> getWalls() {
         return walls;
     }
 
@@ -60,21 +71,23 @@ public class MazeLevel1 extends Maze  {
         this.walls = walls;
     }
 
+
     public boolean isEmpty(Position position) {
         for (Wall wall : walls)
             if (wall.getPosition().equals(position))
                 return false;
         return true;
     }
-
-    public boolean isMonster(Position position) {
-        for (Monster monster : monsters)
-            if (monster.getPosition().equals(position))
+*/
+/*
+    public boolean isGuard(Position position) {
+        for (Guard guard : guards)
+            if (guard.getPosition().equals(position))
                 return true;
         return false;
     }
 }
-
+*/
 
 /*
 public class MazeLevel1 extends Maze {

@@ -1,21 +1,22 @@
 package org.example.viewer.game;
 
+import org.example.gui.GUI;
+import org.example.model.Position;
 import org.example.model.game.maze.Maze;
+import org.example.viewer.Viewer;
 
 import java.util.List;
 
+/*
 public class MazeViewer extends Viewer<Maze> {
     public MazeViewer(Maze maze) {
         super(maze);
     }
 
     @Override
-    public void drawElements(GUI gui) {
-        drawElements(gui, getModel().getWalls(), new WallViewer());
-        drawElements(gui, getModel().getMonsters(), new GuardViewer());
-        drawElement(gui, getModel().getHero(), new KnightViewer());
-
-        gui.drawText(new Position(0, 0), "Energy: " + getModel().getKnight().getEnergy(), "#FFD700");
+    public void draw(GUI gui) {
+        draw(gui, getModel().getKnight(), new KnightViewer());
+        draw(gui, getModel().getGuard(), new GuardViewer());
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
@@ -23,7 +24,11 @@ public class MazeViewer extends Viewer<Maze> {
             drawElement(gui, element, viewer);
     }
 
-    private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) {
-        viewer.draw(element, gui);
+    private <T extends Character> void drawCharacter(GUI gui, T element, CharacterViewer<T> viewer) {
+        viewer.draw(knight, gui);
+        for (T guard : guards)
+            drawCharacter(gui, guard, viewer);
     }
 }
+
+*/

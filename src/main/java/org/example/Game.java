@@ -4,7 +4,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import org.example.gui.LanternaGUI;
-import org.example.state.MenuState;
+import org.example.model.menu.MenuMain;
+import org.example.state.MenuMainState;
 import org.example.state.State;
 
 /*
@@ -83,8 +84,8 @@ public class Game {
     private State state;
 
     public Game() throws FontFormatException, IOException, URISyntaxException {
-        this.gui = new LanternaGUI(20, 20);
-        this.state = new MenuState(new Menu());
+        this.gui = new LanternaGUI(320, 280);
+        this.state = new MenuMainState(new MenuMain());
     }
 
     public void setState(State state) {

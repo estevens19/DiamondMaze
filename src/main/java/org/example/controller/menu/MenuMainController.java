@@ -12,24 +12,25 @@ import java.io.IOException;
 import static org.example.gui.LanternaGUI.screen;
 
 public class MenuMainController extends Controller<MenuMain> {
-    public MenuMainController(Menu menu) {
+    public MenuMainController(MenuMain menu) {
         super(menu);
     }
 
-/*
-    @Override
-    public void (Game game key) throws IOException {
-        if (inLevels) {
-            menuLevels.getKey(key);
 
-            if (key.getKeyType() == KeyType.Character && key.getCharacter() == ' ') {
-                if (menuLevels.isBackSelected()) {
-                    inLevels = false;
+    /*
+        @Override
+        public void (Keystroke key) throws IOException {
+            if (inLevels) {
+                menuLevels.getKey(key);
+
+                if (key.getKeyType() == KeyType.Character && key.getCharacter() == ' ') {
+                    if (menuLevels.isBackSelected()) {
+                        inLevels = false;
+                    }
                 }
             }
         }
-    }
- */
+     */
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         switch (action) {

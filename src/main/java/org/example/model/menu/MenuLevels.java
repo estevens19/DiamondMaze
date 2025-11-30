@@ -1,6 +1,7 @@
 package org.example.model.menu;
 
 import org.example.model.Position;
+import org.example.model.game.maze.MazeLevel1;
 import org.example.viewer.Image;
 
 import java.io.IOException;
@@ -15,6 +16,8 @@ public class MenuLevels extends Menu {
     private final int buttonWidth = 320;
     private final int buttonHeight = 90;
 
+    private MazeLevel1 mazeLevel1;
+
     private boolean inLevel1 = false;
     //private boolean inLevel2 = false;
     //private boolean inLevel3 = false;
@@ -23,6 +26,7 @@ public class MenuLevels extends Menu {
         background = new Image(new Position(0, 0), "images_menu/Main_Menu.png");
         background = background.resizeImage(320, 280);
 
+        mazeLevel1 = new MazeLevel1();
         refreshButtons();
     }
 
@@ -87,32 +91,25 @@ public class MenuLevels extends Menu {
         refreshButtons();
     }
 
-    @Override
-    public void getKey(KeyStroke key) throws IOException {
-        switch (key.getKeyType()) {
-            case ArrowUp:
-                if (currButton == 1) {
-                    currButton = 0;
-                    refreshButtons();
-                }
-                break;
-            case ArrowDown:
-                if (currButton == 0) {
-                    currButton = 1;
-                    refreshButtons();
-                }
-                break;
-            case ArrowLeft:
-                break;
-            case ArrowRight:
-                break;
-            case Character:
-                if (currButton == 1 && key.getCharacter() == ' ')
-                    break;
+    public void backCurrButton() throws IOException {
+        currButton--;
+        refreshButtons();
+    }
 
-                break;
+    public void nextCurrButton() throws IOException {
+        currButton++;
+        refreshButtons();
+    }
 
+    public int getCurrButton() throws IOException {
+        return currButton;
+    }
 
-        }
+    public boolean getMazeLevel1() throws IOException {
+        return inLevel1;
+    }
+
+    public void setMazeLevel1(boolean inLevel1) throws IOException {
+        this.inLevel1 = inLevel1;
     }
 }

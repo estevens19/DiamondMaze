@@ -12,6 +12,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import org.example.model.Position;
+import org.example.model.menu.Menu;
 
 import java.awt.*;
 import java.io.File;
@@ -85,18 +86,29 @@ public class LanternaGUI implements GUI {
 
         return ACTION.NONE;
     }
-/*
+
     @Override
-    public void drawWall(Position position) {
-        drawCharacter(position.getX(), position.getY(), '#', "#3333FF");
+    public void drawKnight(Position position) {
+
     }
+
     @Override
-    public void drawText(Position position, String text, String color) {
-        TextGraphics graphics = screen.newTextGraphics();
-        graphics.setForegroundColor(TextColor.Factory.fromString(color));
-        graphics.putString(position.getX(), position.getY(), text);
+    public void drawGuard(Position position) {
+
     }
-*/
+
+    /*
+        @Override
+        public void drawWall(Position position) {
+            drawCharacter(position.getX(), position.getY(), '#', "#3333FF");
+        }
+        @Override
+        public void drawText(Position position, String text, String color) {
+            TextGraphics graphics = screen.newTextGraphics();
+            graphics.setForegroundColor(TextColor.Factory.fromString(color));
+            graphics.putString(position.getX(), position.getY(), text);
+        }
+    */
     @Override
     public void clear() {
         screen.clear();
@@ -110,10 +122,5 @@ public class LanternaGUI implements GUI {
     @Override
     public void close() throws IOException {
         screen.close();
-    }
-
-    @Override
-    public void stopScreen() throws IOException {
-        screen.stopScreen();
     }
 }

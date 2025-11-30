@@ -5,9 +5,8 @@ import com.googlecode.lanterna.input.KeyStroke;
 
 import java.io.IOException;
 
-public abstract class Maze implements InputHandler {
-
-    public abstract void draw(TextGraphics graphics) throws IOException;
+public abstract class Maze {
+    //public abstract void draw(TextGraphics graphics) throws IOException;
 
     public abstract void updateSize(int width, int height) throws IOException;
 
@@ -15,8 +14,13 @@ public abstract class Maze implements InputHandler {
 
     public abstract void reset();
 
-    @Override
-    public abstract void getKey(KeyStroke key) throws IOException;
+    public Object getGuards() {
+    }
 
+    public Object getKnight() {
+        return null;
+    }
 
+    //@Override
+    //public abstract void getKey(KeyStroke key) throws IOException;
 }

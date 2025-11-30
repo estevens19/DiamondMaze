@@ -4,7 +4,8 @@ import org.example.Game;
 import org.example.gui.GUI;
 import org.example.model.game.maze.Maze;
 import org.example.model.menu.Menu;
-import org.example.state.MenuState;
+import org.example.model.menu.MenuMain;
+import org.example.state.MenuMainState;
 import org.example.controller.game.KnightController;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class MazeController extends GameController {
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         if (action == GUI.ACTION.QUIT)
-            game.setState(new MenuState(new Menu()));
+            game.setState(new MenuMainState(new MenuMain()));
         else {
             knightController.step(game, action, time);
             guardController.step(game, action, time);

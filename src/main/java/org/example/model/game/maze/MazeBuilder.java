@@ -1,13 +1,16 @@
 package org.example.model.game.maze;
 
+import org.example.model.game.characters.Guard;
 import org.example.model.game.characters.Knight;
+
+import java.util.List;
 
 public abstract class MazeBuilder {
     public Maze createMaze() {
         Maze maze = new Maze(getWidth(), getHeight());
 
-        maze.setKnight(createHero());
-        maze.setGuards(createMonsters());
+        maze.setKnight(createKnight());
+        maze.setGuards(createGuards());
         //maze.setWalls(createWalls());
 
         return maze;

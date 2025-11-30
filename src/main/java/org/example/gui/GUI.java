@@ -2,15 +2,16 @@ package org.example.gui;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import org.example.model.Position;
+import org.example.model.menu.Menu;
 
 import java.io.IOException;
 
 public interface GUI {
     ACTION getKey() throws IOException;
 
-    //void drawKnight(Position position);
+    void drawKnight(Position position);
 
-    //void drawGuard(Position position);
+    void drawGuard(Position position);
 
     //void drawWall(Position position);
 
@@ -21,8 +22,6 @@ public interface GUI {
     void refresh() throws IOException;
 
     void close() throws IOException;
-
-    void stopScreen() throws IOException;
 
     enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT}
 }
