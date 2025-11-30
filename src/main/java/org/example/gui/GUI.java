@@ -1,21 +1,13 @@
 package org.example.gui;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import org.example.model.Position;
-import org.example.model.menu.Menu;
-
+import org.example.viewer.Image;
 import java.io.IOException;
 
 public interface GUI {
     ACTION getKey() throws IOException;
 
-    void drawKnight(Position position);
-
-    void drawGuard(Position position);
-
-    //void drawWall(Position position);
-
-    //void drawText(Position position, String text, String color);
+    // Novo método genérico para desenhar qualquer imagem
+    void drawImage(Image image);
 
     void clear();
 

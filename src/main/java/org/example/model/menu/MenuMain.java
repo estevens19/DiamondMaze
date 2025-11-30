@@ -17,9 +17,6 @@ public class MenuMain extends Menu {
     private MenuLevels menuLevels;
     private boolean inLevels = false;
 
-    //private Menu_Levels menuControls;
-    //private boolean inControls = false;
-
     public MenuMain() throws IOException {
         super();
         title = new Image(new Position(0, 0), "images_menu/Title.png");
@@ -27,17 +24,25 @@ public class MenuMain extends Menu {
 
         menuLevels = new MenuLevels();
         refreshButtons();
+
+        // CORREÇÃO CRUCIAL: Definir posições iniciais
+        updateSize(320, 280);
     }
 
-    public boolean getMenuLevels() {
-        return inLevels;
-    }
+    // --- GETTERS NECESSÁRIOS PARA O VIEWER ---
+    public Image getTitle() { return title; }
+    public Image getStart() { return start; }
+    public Image getControls() { return controls; }
+    public Image getExit() { return exit; }
+    public boolean getMenuLevels() { return inLevels; }
+    // ----------------------------------------
 
     public void setMenuLevels(boolean value) {
         inLevels = value;
     }
 
     private void refreshButtons() throws IOException {
+        // Manter a posição atual se já existir, senão (0,0)
         Position startPos = (start != null) ? start.getPosition() : new Position(0, 0);
         Position controlsPos = (controls != null) ? controls.getPosition() : new Position(0, 0);
         Position exitPos = (exit != null) ? exit.getPosition() : new Position(0, 0);
@@ -66,7 +71,9 @@ public class MenuMain extends Menu {
     }
 
     public void updateSize(int width, int height) throws IOException {
-        getBackground().resizeImage(width, height);
+        // CORREÇÃO: Atualizar o background na classe pai
+        setBackground(getBackground().resizeImage(width, height));
+
         int centerX = width / 2;
 
         title.setPosition(new Position(centerX - title.getWidth() / 2, -85));
@@ -78,20 +85,6 @@ public class MenuMain extends Menu {
             menuLevels.updateSize(width, height);
         }
     }
-/*
-    public void draw(TextGraphics graphics) {
-        if (inLevels) {
-            menuLevels.draw(graphics);
-        } else {
-            background.draw(graphics);
-            title.draw(graphics);
-            start.draw(graphics);
-            controls.draw(graphics);
-            exit.draw(graphics);
-        }
-    }
-
- */
 
     public void backCurrButton() throws IOException {
         currButton--;
@@ -106,15 +99,4 @@ public class MenuMain extends Menu {
     public int getCurrButton() throws IOException {
         return currButton;
     }
-
-/*
-    public State getStateInLevels() {
-        return stateInLevels;
-    }
-
-    public void setStateInLevels(State stateInLevels) {
-        this.stateInLevels = stateInLevels;
-    }
-
-*/
 }

@@ -6,6 +6,7 @@ import org.example.gui.GUI;
 public class KnightViewer implements CharacterViewer<Knight> {
     @Override
     public void draw(Knight knight, GUI gui) {
-        gui.drawKnight(knight.getPosition());
+        // Agora passamos a imagem completa, não apenas a posição
+        gui.drawImage(knight.getImage());
     }
 }

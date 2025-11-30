@@ -3,34 +3,17 @@ package org.example.controller.menu;
 import org.example.Game;
 import org.example.controller.Controller;
 import org.example.gui.GUI;
-import org.example.model.menu.Menu;
 import org.example.model.menu.MenuMain;
-import org.example.state.GameState;
+import org.example.model.menu.MenuLevels;
+import org.example.state.MenuLevelsState;
 
 import java.io.IOException;
-
-import static org.example.gui.LanternaGUI.screen;
 
 public class MenuMainController extends Controller<MenuMain> {
     public MenuMainController(MenuMain menu) {
         super(menu);
     }
 
-
-    /*
-        @Override
-        public void (Keystroke key) throws IOException {
-            if (inLevels) {
-                menuLevels.getKey(key);
-
-                if (key.getKeyType() == KeyType.Character && key.getCharacter() == ' ') {
-                    if (menuLevels.isBackSelected()) {
-                        inLevels = false;
-                    }
-                }
-            }
-        }
-     */
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         switch (action) {
@@ -46,15 +29,17 @@ public class MenuMainController extends Controller<MenuMain> {
                 break;
             case SELECT:
                 if (getModel().getCurrButton() == 1) {
-                    getModel().setMenuLevels(true);
-                    getModel().updateSize(getModel().getBackground().getWidth(), getModel().getBackground().getHeight());
+                    // CORREÇÃO: Transição de estado correta para o menu de níveis
+                    game.setState(new MenuLevelsState(new MenuLevels()));
                 }
                 else if (getModel().getCurrButton() == 2) {
-
+                    // Lógica para Controls (se implementado futuramente)
                 }
                 else if (getModel().getCurrButton() == 3) {
+                    // Sai do jogo
                     game.setState(null);
                 }
+                break;
         }
     }
 }

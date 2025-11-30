@@ -6,6 +6,6 @@ import org.example.gui.GUI;
 public class GuardViewer implements CharacterViewer<Guard> {
     @Override
     public void draw(Guard guard, GUI gui) {
-        gui.drawGuard(guard.getPosition());
+        //gui.drawGuard(guard.getPosition());
     }
 }
