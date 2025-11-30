@@ -15,6 +15,5 @@ public abstract class Viewer<T> {
         return model;
     }
 
-    public void draw(GUI gui) {
-    }
+    public abstract void draw(GUI gui) throws IOException;
 }

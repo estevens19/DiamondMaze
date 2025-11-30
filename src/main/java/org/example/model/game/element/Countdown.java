@@ -1,7 +1,5 @@
 package org.example.model.game.element;
 
-import com.googlecode.lanterna.graphics.TextGraphics;
-
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,7 +34,7 @@ public class Countdown {
         System.out.println("Timer: " + seconds/60 +":"+ seconds%60);
         graphics.putString(150,100,seconds/60 + ":" + seconds%60);
     }
-    */
+*/
 }
 
 

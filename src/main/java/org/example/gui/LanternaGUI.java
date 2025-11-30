@@ -1,6 +1,7 @@
 package org.example.gui;
 
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -16,25 +17,53 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public class LanternaGUI implements GUI {
-    public static Screen screen;
+    private Screen screen;
+    private TextGraphics graphics;
+    private Terminal terminal;
+    private int screenWidth;
+    private int screenHeight;
 
     public LanternaGUI(Screen screen) {
         this.screen = screen;
+        this.graphics = screen.newTextGraphics();
     }
 
     public LanternaGUI(int width, int height) throws IOException, FontFormatException, URISyntaxException {
         AWTTerminalFontConfiguration cfg = loadFont();
-        Terminal terminal = createTerminal(width, height, cfg);
+        this.terminal = createTerminal(width, height, cfg);
         this.screen = createScreen(terminal);
+        this.graphics = screen.newTextGraphics();
 
-        // CORREÇÃO: Voltamos a maximizar a janela!
-        ((AWTTerminalFrame)terminal).setExtendedState(Frame.MAXIMIZED_BOTH);
-        ((AWTTerminalFrame)terminal).setTitle("Diamond Maze");
+        TerminalSize terminalSize = screen.getTerminalSize();
+        this.screenWidth = terminalSize.getColumns();
+        this.screenHeight = terminalSize.getRows();
+
+        if (terminal instanceof AWTTerminalFrame) {
+            AWTTerminalFrame frame = (AWTTerminalFrame) terminal;
+            frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+            frame.setTitle("Diamond Maze");
+        }
+    }
+
+    public LanternaGUI() throws IOException, FontFormatException, URISyntaxException {
+        AWTTerminalFontConfiguration cfg = loadFont();
+        this.terminal = createTerminal(320, 280, cfg);
+        this.screen = createScreen(terminal);
+        this.graphics = screen.newTextGraphics();
+
+        TerminalSize terminalSize = screen.getTerminalSize();
+        this.screenWidth = terminalSize.getColumns();
+        this.screenHeight = terminalSize.getRows();
+
+        if (terminal instanceof AWTTerminalFrame) {
+            AWTTerminalFrame frame = (AWTTerminalFrame) terminal;
+            frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+            frame.setTitle("Diamond Maze");
+        }
     }
 
     private Screen createScreen(Terminal terminal) throws IOException {
-        final Screen screen;
-        screen = new TerminalScreen(terminal);
+        final Screen screen = new TerminalScreen(terminal);
         screen.setCursorPosition(null);
         screen.startScreen();
         screen.doResizeIfNecessary();
@@ -51,14 +80,16 @@ public class LanternaGUI implements GUI {
 
     private AWTTerminalFontConfiguration loadFont() throws URISyntaxException, FontFormatException, IOException {
         URL resource = getClass().getClassLoader().getResource("fonts/charybdis.regular.ttf");
+        if (resource == null) {
+            throw new IOException("Font file not found");
+        }
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        // CORREÇÃO: Fonte tamanho 2 para caberem 1300 caracteres num monitor HD
-        Font newfont = font.deriveFont(Font.PLAIN, 2);
-        return AWTTerminalFontConfiguration.newInstance(newfont);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 3);
+        return AWTTerminalFontConfiguration.newInstance(loadedFont);
     }
 
     @Override
@@ -75,15 +106,15 @@ public class LanternaGUI implements GUI {
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowLeft) return ACTION.LEFT;
 
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character && key.getCharacter() == ' ') return ACTION.SELECT;
+        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Enter) return ACTION.SELECT;
+        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Escape) return ACTION.QUIT;
 
         return ACTION.NONE;
     }
 
     @Override
     public void drawImage(Image image) {
-        if (image != null) {
-            image.draw(screen.newTextGraphics());
-        }
+        image.draw(graphics);
     }
 
     @Override
@@ -99,5 +130,19 @@ public class LanternaGUI implements GUI {
     @Override
     public void close() throws IOException {
         screen.close();
+    }
+
+    public int getScreenWidth() {
+        return screenWidth;
+    }
+
+    public int getScreenHeight() {
+        return screenHeight;
+    }
+
+    public void updateScreenSize() {
+        TerminalSize terminalSize = screen.getTerminalSize();
+        this.screenWidth = terminalSize.getColumns();
+        this.screenHeight = terminalSize.getRows();
     }
 }

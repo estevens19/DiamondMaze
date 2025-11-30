@@ -7,7 +7,6 @@ import org.example.viewer.Image;
 import java.io.IOException;
 
 public class MenuLevels extends Menu {
-    private Image background;
     private Image level1;
     private Image level2;
     private Image level3;
@@ -16,18 +15,14 @@ public class MenuLevels extends Menu {
     private final int buttonWidth = 320;
     private final int buttonHeight = 90;
 
-    private MazeLevel1 mazeLevel1;
-
-    private boolean inLevel1 = false;
-    //private boolean inLevel2 = false;
-    //private boolean inLevel3 = false;
+    //private MazeLevel1 mazeLevel1;
+    //private boolean inLevel1 = false;
 
     public MenuLevels() throws IOException {
-        background = new Image(new Position(0, 0), "images_menu/Main_Menu.png");
-        background = background.resizeImage(320, 280);
-
-        mazeLevel1 = new MazeLevel1();
+        this.screenWidth = 1850;
+        this.screenHeight = 340;
         refreshButtons();
+        updateSize(screenWidth, screenHeight);
     }
 
     private void refreshButtons() throws IOException {
@@ -36,20 +31,32 @@ public class MenuLevels extends Menu {
         Position l3Pos = (level3 != null) ? level3.getPosition() : new Position(0, 0);
         Position backPos = (back != null) ? back.getPosition() : new Position(0, 0);
 
-        if (currButton == 1) {
-            level1 = new Image(l1Pos, "images_menu/Level_1_shine.png");
-            back = new Image(backPos, "images_menu/Back.png");
+        switch (currButton) {
+            case 1:
+                level1 = new Image(l1Pos, "images_menu/Level_1_shine.png");
+                level2 = new Image(l2Pos, "images_menu/Level_2.png");
+                level3 = new Image(l3Pos, "images_menu/Level_3.png");
+                back = new Image(backPos, "images_menu/Back.png");
+                break;
+            case 2:
+                level1 = new Image(l1Pos, "images_menu/Level_1.png");
+                level2 = new Image(l2Pos, "images_menu/Level_2_shine.png");
+                level3 = new Image(l3Pos, "images_menu/Level_3.png");
+                back = new Image(backPos, "images_menu/Back.png");
+                break;
+            case 3:
+                level1 = new Image(l1Pos, "images_menu/Level_1.png");
+                level2 = new Image(l2Pos, "images_menu/Level_2.png");
+                level3 = new Image(l3Pos, "images_menu/Level_3_shine.png");
+                back = new Image(backPos, "images_menu/Back.png");
+                break;
+            case 0:
+                level1 = new Image(l1Pos, "images_menu/Level_1.png");
+                level2 = new Image(l2Pos, "images_menu/Level_2.png");
+                level3 = new Image(l3Pos, "images_menu/Level_3.png");
+                back = new Image(backPos, "images_menu/Back_shine.png");
+                break;
         }
-        else if (currButton == 0) {
-            level1 = new Image(l1Pos, "images_menu/Level_1.png");
-            back = new Image(backPos, "images_menu/Back_shine.png");
-        }
-        else {
-            level1 = new Image(l1Pos, "images_menu/Level_1.png");
-            back = new Image(backPos, "images_menu/Back.png");
-        }
-        level2 = new Image(l2Pos, "images_menu/Level_2.png");
-        level3 = new Image(l3Pos, "images_menu/Level_3.png");
 
         level1 = level1.resizeImage(buttonWidth, buttonHeight);
         level2 = level2.resizeImage(buttonWidth, buttonHeight);
@@ -57,8 +64,9 @@ public class MenuLevels extends Menu {
         back = back.resizeImage(buttonWidth, buttonHeight);
     }
 
+    @Override
     public void updateSize(int width, int height) throws IOException {
-        background = background.resizeImage(width, height);
+        setBackground(getBackground().resizeImage(width, height));
 
         int centerX = width / 2;
         int centerY = (height / 2) - (buttonHeight / 2);
@@ -74,14 +82,6 @@ public class MenuLevels extends Menu {
         back.setPosition(new Position(backX, backY));
     }
 /*
-    public void draw(TextGraphics graphics) {
-        background.draw(graphics);
-        level1.draw(graphics);
-        level2.draw(graphics);
-        level3.draw(graphics);
-        back.draw(graphics);
-    }
-*/
     public boolean isBackSelected() {
         return currButton == 0;
     }
@@ -89,6 +89,44 @@ public class MenuLevels extends Menu {
     public void resetSelection() throws IOException {
         this.currButton = 1;
         refreshButtons();
+        updateSize(screenWidth, screenHeight);
+    }
+
+    public void previousButton() throws IOException {
+        if (currButton > 0) {
+            currButton--;
+            refreshButtons();
+            updateSize(screenWidth, screenHeight);
+        }
+    }
+
+    public void nextButton() throws IOException {
+        if (currButton < 3) {
+            currButton++;
+            refreshButtons();
+            updateSize(screenWidth, screenHeight);
+        }
+    }
+*/
+
+    public int getCurrButton() {
+        return currButton;
+    }
+
+    public Image getBack() {
+        return back;
+    }
+
+    public Image getLevel1() {
+        return level1;
+    }
+
+    public Image getLevel2() {
+        return level2;
+    }
+
+    public Image getLevel3() {
+        return level3;
     }
 
     public void backCurrButton() throws IOException {
@@ -99,25 +137,5 @@ public class MenuLevels extends Menu {
     public void nextCurrButton() throws IOException {
         currButton++;
         refreshButtons();
-    }
-
-    public int getCurrButton() throws IOException {
-        return currButton;
-    }
-
-    public boolean getMenuLevels(){
-        return inLevel1;
-    }
-
-    public boolean getMazeLevel1() throws IOException {
-        return inLevel1;
-    }
-
-    public void setMenuLevels(boolean value){
-        inLevel1 = value;
-    }
-
-    public void setMazeLevel1(boolean inLevel1) throws IOException {
-        this.inLevel1 = inLevel1;
     }
 }

@@ -1,9 +1,7 @@
 package org.example.model.game.element;
 
-import com.googlecode.lanterna.graphics.TextGraphics;
 import org.example.model.Position;
 import org.example.viewer.Image;
-
 
 import java.io.IOException;
 

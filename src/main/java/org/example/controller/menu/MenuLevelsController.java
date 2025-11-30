@@ -3,8 +3,11 @@ package org.example.controller.menu;
 import org.example.Game;
 import org.example.controller.Controller;
 import org.example.gui.GUI;
-import org.example.model.menu.Menu;
+import org.example.model.game.maze.LoaderMazeBuilder;
 import org.example.model.menu.MenuLevels;
+import org.example.model.menu.MenuMain;
+import org.example.state.GameState;
+import org.example.state.MenuMainState;
 
 import java.io.IOException;
 
@@ -32,14 +35,14 @@ public class MenuLevelsController extends Controller<MenuLevels> {
                 break;
             case SELECT:
                 if (getModel().getCurrButton() == 1) {
-                    getModel().resetSelection();
-                    getModel().setMazeLevel1(true);
-                    getModel().updateSize(getModel().getBackground().getWidth(), getModel().getBackground().getHeight());
+                    game.setState(new GameState(new LoaderMazeBuilder(1).createMaze()));
                 }
-                /*else if (getModel().getCurrButton() == 0) {
-                    menu_main.state(true);
-                    menu_levels.state(false);
-                }*/
+                else if (getModel().getCurrButton() == 0) {
+                    game.setState(new MenuMainState(new MenuMain()));
+                }
+                break;
+            case QUIT:
+                game.setState(null);
                 break;
         }
     }

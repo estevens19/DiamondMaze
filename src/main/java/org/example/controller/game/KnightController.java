@@ -27,7 +27,7 @@ public class KnightController extends GameController {
     }
 
     private void moveKnight(Position position) {
-
+        getModel().getKnight().move(position);
     }
 
     @Override

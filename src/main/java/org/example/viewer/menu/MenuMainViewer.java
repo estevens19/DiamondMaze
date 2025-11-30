@@ -4,22 +4,21 @@ import org.example.gui.GUI;
 import org.example.model.menu.MenuMain;
 import org.example.viewer.Viewer;
 
+import java.io.IOException;
+
 public class MenuMainViewer extends Viewer<MenuMain> {
     public MenuMainViewer(MenuMain menu) {
         super(menu);
     }
 
     @Override
-    public void draw(GUI gui) {
+    public void draw(GUI gui) throws IOException {
         gui.clear();
 
-        // Desenha o fundo
         gui.drawImage(getModel().getBackground());
-
-        // Desenha os elementos do menu
-        if (getModel().getTitle() != null) gui.drawImage(getModel().getTitle());
-        if (getModel().getStart() != null) gui.drawImage(getModel().getStart());
-        if (getModel().getControls() != null) gui.drawImage(getModel().getControls());
-        if (getModel().getExit() != null) gui.drawImage(getModel().getExit());
+        gui.drawImage(getModel().getTitle());
+        gui.drawImage(getModel().getStart());
+        gui.drawImage(getModel().getControls());
+        gui.drawImage(getModel().getExit());
     }
 }

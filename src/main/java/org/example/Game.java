@@ -13,9 +13,13 @@ public class Game {
     private State state;
 
     public Game() throws FontFormatException, IOException, URISyntaxException {
-        // CORREÇÃO CRUCIAL: Aumentar a resolução para 1300x750 para caber o mapa e o título
-        this.gui = new LanternaGUI(1300, 750);
+        this.gui = new LanternaGUI(1850, 340);
         this.state = new MenuMainState(new MenuMain());
+
+        if (state instanceof MenuMainState) {
+            MenuMainState menuState = (MenuMainState) state;
+            menuState.getModel().updateSize(gui.getScreenWidth(), gui.getScreenHeight());
+        }
     }
 
     public void setState(State state) {
@@ -23,7 +27,7 @@ public class Game {
     }
 
     public void start() throws IOException {
-        int FPS = 60;
+        int FPS = 200;
         int frameTime = 1000 / FPS;
 
         while (this.state != null) {
@@ -39,6 +43,8 @@ public class Game {
                 if (sleepTime > 0) Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
             }
+
+            gui.updateScreenSize();
         }
 
         gui.close();

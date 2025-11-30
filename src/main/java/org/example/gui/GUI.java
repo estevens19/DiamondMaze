@@ -6,7 +6,6 @@ import java.io.IOException;
 public interface GUI {
     ACTION getKey() throws IOException;
 
-    // Novo método genérico para desenhar qualquer imagem
     void drawImage(Image image);
 
     void clear();

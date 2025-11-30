@@ -1,4 +1,4 @@
-package org.example.viewer.game;
+package org.example.viewer.game.character;
 
 import org.example.model.game.characters.Guard;
 import org.example.gui.GUI;

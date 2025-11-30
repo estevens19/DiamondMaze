@@ -28,6 +28,7 @@ public abstract class Character {
     }
 
     public abstract void draw(TextGraphics graphics);
+
     public abstract void move(Position newPosition);
     //public abstract void attack(Character target);
 }

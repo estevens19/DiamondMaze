@@ -1,17 +1,10 @@
 package org.example.model.game.maze;
 
 import org.example.model.Position;
-import org.example.model.game.characters.Guard;
 import org.example.model.game.characters.Knight;
-import org.example.model.game.element.Diamond;
-import org.example.model.game.element.Door;
-import org.example.model.game.element.Key;
 import org.example.viewer.Image;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoaderMazeBuilder extends MazeBuilder {
     private Image background;
@@ -26,7 +19,7 @@ public class LoaderMazeBuilder extends MazeBuilder {
     private List<Diamond> diamonds;
     private Key key;
     private Door door;
-*/
+    */
     public LoaderMazeBuilder(int level) throws IOException {
         this.level = level;
 
@@ -77,6 +70,7 @@ public class LoaderMazeBuilder extends MazeBuilder {
         return new Door(900, 600);
     }
 */
+
     @Override
     protected Knight createKnight() throws IOException {
         return new Knight(800,100);
@@ -86,4 +80,3 @@ public class LoaderMazeBuilder extends MazeBuilder {
         return knight;
     }
 }
-

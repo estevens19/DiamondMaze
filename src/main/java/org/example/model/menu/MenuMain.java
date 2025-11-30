@@ -15,34 +15,26 @@ public class MenuMain extends Menu {
     private final int buttonHeight = 90;
 
     private MenuLevels menuLevels;
-    private boolean inLevels = false;
 
     public MenuMain() throws IOException {
         super();
         title = new Image(new Position(0, 0), "images_menu/Title.png");
-        title = title.resizeImage(1300, 250);
+        title = title.resizeImage(1300, 300);
 
         menuLevels = new MenuLevels();
         refreshButtons();
 
-        // CORREÇÃO CRUCIAL: Definir posições iniciais
-        updateSize(320, 280);
+        this.screenWidth = 1850;
+        this.screenHeight = 340;
+        updateSize(screenWidth, screenHeight);
     }
 
-    // --- GETTERS NECESSÁRIOS PARA O VIEWER ---
     public Image getTitle() { return title; }
     public Image getStart() { return start; }
     public Image getControls() { return controls; }
     public Image getExit() { return exit; }
-    public boolean getMenuLevels() { return inLevels; }
-    // ----------------------------------------
-
-    public void setMenuLevels(boolean value) {
-        inLevels = value;
-    }
 
     private void refreshButtons() throws IOException {
-        // Manter a posição atual se já existir, senão (0,0)
         Position startPos = (start != null) ? start.getPosition() : new Position(0, 0);
         Position controlsPos = (controls != null) ? controls.getPosition() : new Position(0, 0);
         Position exitPos = (exit != null) ? exit.getPosition() : new Position(0, 0);
@@ -70,10 +62,9 @@ public class MenuMain extends Menu {
         exit = exit.resizeImage(buttonWidth, buttonHeight);
     }
 
+    @Override
     public void updateSize(int width, int height) throws IOException {
-        // CORREÇÃO: Atualizar o background na classe pai
         setBackground(getBackground().resizeImage(width, height));
-
         int centerX = width / 2;
 
         title.setPosition(new Position(centerX - title.getWidth() / 2, -85));
@@ -85,6 +76,26 @@ public class MenuMain extends Menu {
             menuLevels.updateSize(width, height);
         }
     }
+/*
+    public void previousButton() throws IOException {
+        if (currButton > 1) {
+            currButton--;
+            refreshButtons();
+            updateSize(screenWidth, screenHeight);
+        }
+    }
+
+    public void nextButton() throws IOException {
+        if (currButton < 3) {
+            currButton++;
+            refreshButtons();
+            updateSize(screenWidth, screenHeight);
+        }
+    }
+*/
+    public int getCurrButton() {
+        return currButton;
+    }
 
     public void backCurrButton() throws IOException {
         currButton--;
@@ -94,9 +105,5 @@ public class MenuMain extends Menu {
     public void nextCurrButton() throws IOException {
         currButton++;
         refreshButtons();
-    }
-
-    public int getCurrButton() throws IOException {
-        return currButton;
     }
 }

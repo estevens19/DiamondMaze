@@ -29,16 +29,16 @@ public class MenuMainController extends Controller<MenuMain> {
                 break;
             case SELECT:
                 if (getModel().getCurrButton() == 1) {
-                    // CORREÇÃO: Transição de estado correta para o menu de níveis
                     game.setState(new MenuLevelsState(new MenuLevels()));
                 }
                 else if (getModel().getCurrButton() == 2) {
-                    // Lógica para Controls (se implementado futuramente)
                 }
                 else if (getModel().getCurrButton() == 3) {
-                    // Sai do jogo
                     game.setState(null);
                 }
+                break;
+            case QUIT:
+                game.setState(null);
                 break;
         }
     }

@@ -1,7 +1,6 @@
 package org.example.model.game.characters;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
-import org.example.gui.LanternaGUI;
 import org.example.viewer.Image;
 import org.example.model.Position;
 
@@ -17,6 +16,7 @@ public class Knight extends Character {
         getImage().draw(graphics);
     }
 
+    @Override
     public void move(Position newPosition) {
         setPosition(newPosition);
     }
