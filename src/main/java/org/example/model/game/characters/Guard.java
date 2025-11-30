@@ -1,15 +1,15 @@
 package org.example.model.game.characters;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
+import org.example.gui.LanternaGUI;
 import org.example.viewer.Image;
 import org.example.model.Position;
-import org.example.viewer.LanternaGUI;
 
 import java.io.IOException;
 
 public class Guard extends Character implements LanternaGUI {
-    public Guard() throws IOException {
-        super(new Image(new Position(800, 120), "images/Guard.png").resizeImage(140, 45));
+    public Guard(int x, int y) throws IOException {
+        super(new Image(new Position(x, y), "images/Guard.png").resizeImage(140, 45));
     }
 
     @Override

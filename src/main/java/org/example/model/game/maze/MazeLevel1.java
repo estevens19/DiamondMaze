@@ -3,6 +3,10 @@ package org.example.model.game.maze;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import org.example.*;
+import org.example.model.Position;
+import org.example.model.game.characters.Guard;
+import org.example.model.game.characters.Knight;
+import org.example.viewer.Image;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,8 +24,8 @@ public class MazeLevel1 extends Maze  {
 
     private Knight knight;
 
-    private List<Guard> guard;
-    private List<Wall> walls;
+    private List<Guard> guards;
+    //private List<Wall> walls;
 
     public MazeLevel1(int width, int height) {
         this.width = width;
@@ -45,13 +49,13 @@ public class MazeLevel1 extends Maze  {
     }
 
     public List<Guard> getGuard() {
-        return guard;
+        return guards;
     }
 
     public void setGuard(List<Guard> guard) {
-        this.guard = guard;
+        this.guards = guard;
     }
-
+/*
     public List<Wall> getWalls() {
         return walls;
     }
@@ -66,10 +70,10 @@ public class MazeLevel1 extends Maze  {
                 return false;
         return true;
     }
-
-    public boolean isMonster(Position position) {
-        for (Monster monster : monsters)
-            if (monster.getPosition().equals(position))
+*/
+    public boolean isGuard(Position position) {
+        for (Guard guard : guards)
+            if (guard.getPosition().equals(position))
                 return true;
         return false;
     }
