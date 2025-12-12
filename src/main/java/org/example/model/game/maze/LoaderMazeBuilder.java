@@ -1,25 +1,30 @@
 package org.example.model.game.maze;
 
 import org.example.model.Position;
+import org.example.model.game.characters.Guard;
 import org.example.model.game.characters.Knight;
+import org.example.model.game.element.Diamond;
+import org.example.model.game.element.Door;
+import org.example.model.game.element.Key;
 import org.example.viewer.Image;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class LoaderMazeBuilder extends MazeBuilder {
     private Image background;
     private Image backButton;
     private final int buttonWidth = 320;
     private final int buttonHeight = 90;
-    private boolean exitSelected = false;
     private int level;
+    private boolean exitSelected = false;
     private Knight knight;
-    /*
     private List<Guard> guards;
     private List<Diamond> diamonds;
     private Key key;
     private Door door;
-    */
+
     public LoaderMazeBuilder(int level) throws IOException {
         this.level = level;
 
@@ -32,8 +37,7 @@ public class LoaderMazeBuilder extends MazeBuilder {
             this.diamonds = createDiamonds();
             this.key = createKey();
             this.door = createDoor();
-             */
-
+            */
         }
         else if (level == 2) {
 
