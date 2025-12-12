@@ -2,6 +2,7 @@ package org.example.gui;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -94,8 +95,15 @@ public class LanternaGUI implements GUI {
 
     @Override
     public ACTION getKey() throws IOException {
-        com.googlecode.lanterna.input.KeyStroke key = screen.pollInput();
+        KeyStroke key = screen.pollInput();
+
         if (key == null) return ACTION.NONE;
+
+        KeyStroke currentKey = screen.pollInput();
+        while (currentKey != null) {
+            key = currentKey;
+            currentKey = screen.pollInput();
+        }
 
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.EOF) return ACTION.QUIT;
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character && key.getCharacter() == 'q') return ACTION.QUIT;
@@ -104,7 +112,6 @@ public class LanternaGUI implements GUI {
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowRight) return ACTION.RIGHT;
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowDown) return ACTION.DOWN;
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowLeft) return ACTION.LEFT;
-
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character && key.getCharacter() == ' ') return ACTION.SELECT;
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Enter) return ACTION.SELECT;
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Escape) return ACTION.QUIT;

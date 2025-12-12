@@ -8,15 +8,15 @@ import java.io.IOException;
 
 public class Guard extends Character {
     public Guard() throws IOException {
-        super(new Image(new Position(800, 120), "images/Guard.png").resizeImage(140, 45));
+        super(new Image(new Position(800, 120), "images/Guard.png").resizeImage(140, 45), new Image(new Position(800, 120), "images/Guard_invert.png").resizeImage(140, 45));
     }
 
     @Override
     public void draw(TextGraphics graphics) {
-        getImage().draw(graphics);
+        getCurrentImage().draw(graphics);
     }
 
     public void move(Position newPosition) {
-        setPosition(newPosition);
+        setPosition_currentImage(newPosition);
     }
 }

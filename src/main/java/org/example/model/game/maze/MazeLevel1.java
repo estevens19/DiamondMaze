@@ -1,7 +1,7 @@
 package org.example.model.game.maze;
 
 import org.example.model.Position;
-import org.example.model.game.characters.Guard;
+//import org.example.model.game.characters.Guard;
 import org.example.model.game.characters.Knight;
 
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MazeLevel1 extends Maze {
     private Knight knight;
-    private List<Guard> guards;
+   // private List<Guard> guards;
     //private List<Wall> walls;
 
     public MazeLevel1() throws IOException {
@@ -27,14 +27,13 @@ public class MazeLevel1 extends Maze {
         this.knight = knight;
     }
 
+    //public List<Guard> getGuard() {
+      //  return guards;
+    //}
 
-    public List<Guard> getGuard() {
-        return guards;
-    }
-
-    public void setGuard(List<Guard> guard) {
-        this.guards = guard;
-    }
+    //public void setGuard(List<Guard> guard) {
+       // this.guards = guard;
+   // }
 
     /*
         public List<Wall> getWalls() {
@@ -52,11 +51,13 @@ public class MazeLevel1 extends Maze {
             return true;
         }
     */
-
+/*
     public boolean isGuard(Position position) {
         for (Guard guard : guards)
-            if (guard.getPosition().equals(position))
+            if (guard.getPosition_currentImage().equals(position))
                 return true;
         return false;
     }
+
+ */
 }

@@ -12,13 +12,13 @@ import java.io.IOException;
 
 public class MazeController extends GameController {
     private final KnightController knightController;
-    private final GuardController guardController;
+    //private final GuardController guardController;
 
     public MazeController(Maze maze) {
         super(maze);
 
         this.knightController = new KnightController(maze);
-        this.guardController = new GuardController(maze);
+      //  this.guardController = new GuardController(maze);
     }
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
@@ -28,7 +28,7 @@ public class MazeController extends GameController {
             game.setState(new MenuLevelsState(new MenuLevels()));
         else {
             knightController.step(game, action, time);
-            guardController.step(game, action, time);
+        //    guardController.step(game, action, time);
         }
     }
 }

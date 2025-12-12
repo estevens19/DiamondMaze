@@ -7,9 +7,18 @@ import java.io.IOException;
 
 public class MenuMain extends Menu {
     private Image title;
+
     private Image start;
     private Image controls;
     private Image exit;
+
+    private final Image startSelected;
+    private final Image startUnselected;
+    private final Image controlsSelected;
+    private final Image controlsUnselected;
+    private final Image exitSelected;
+    private final Image exitUnselected;
+
     private int currButton = 1;
     private final int buttonWidth = 320;
     private final int buttonHeight = 90;
@@ -20,6 +29,15 @@ public class MenuMain extends Menu {
         super();
         title = new Image(new Position(0, 0), "images_menu/Title.png");
         title = title.resizeImage(1300, 300);
+
+        startUnselected = new Image(new Position(0, 0), "images_menu/Start.png").resizeImage(buttonWidth, buttonHeight);
+        startSelected = new Image(new Position(0, 0), "images_menu/Start_shine.png").resizeImage(buttonWidth, buttonHeight);
+
+        controlsUnselected = new Image(new Position(0, 0), "images_menu/Controls.png").resizeImage(buttonWidth, buttonHeight);
+        controlsSelected = new Image(new Position(0, 0), "images_menu/Controls_shine.png").resizeImage(buttonWidth, buttonHeight);
+
+        exitUnselected = new Image(new Position(0, 0), "images_menu/Exit.png").resizeImage(buttonWidth, buttonHeight);
+        exitSelected = new Image(new Position(0, 0), "images_menu/Exit_shine.png").resizeImage(buttonWidth, buttonHeight);
 
         menuLevels = new MenuLevels();
         refreshButtons();
@@ -34,32 +52,32 @@ public class MenuMain extends Menu {
     public Image getControls() { return controls; }
     public Image getExit() { return exit; }
 
-    private void refreshButtons() throws IOException {
+    private void refreshButtons() {
         Position startPos = (start != null) ? start.getPosition() : new Position(0, 0);
         Position controlsPos = (controls != null) ? controls.getPosition() : new Position(0, 0);
         Position exitPos = (exit != null) ? exit.getPosition() : new Position(0, 0);
 
         switch (currButton) {
             case 1:
-                start = new Image(startPos, "images_menu/Start_shine.png");
-                controls = new Image(controlsPos, "images_menu/Controls.png");
-                exit = new Image(exitPos, "images_menu/Exit.png");
+                start = startSelected;
+                controls = controlsUnselected;
+                exit = exitUnselected;
                 break;
             case 2:
-                start = new Image(startPos, "images_menu/Start.png");
-                controls = new Image(controlsPos, "images_menu/Controls_shine.png");
-                exit = new Image(exitPos, "images_menu/Exit.png");
+                start = startUnselected;
+                controls = controlsSelected;
+                exit = exitUnselected;
                 break;
             case 3:
-                start = new Image(startPos, "images_menu/Start.png");
-                controls = new Image(controlsPos, "images_menu/Controls.png");
-                exit = new Image(exitPos, "images_menu/Exit_shine.png");
+                start = startUnselected;
+                controls = controlsUnselected;
+                exit = exitSelected;
                 break;
         }
 
-        start = start.resizeImage(buttonWidth, buttonHeight);
-        controls = controls.resizeImage(buttonWidth, buttonHeight);
-        exit = exit.resizeImage(buttonWidth, buttonHeight);
+        start.setPosition(startPos);
+        controls.setPosition(controlsPos);
+        exit.setPosition(exitPos);
     }
 
     @Override
@@ -76,34 +94,22 @@ public class MenuMain extends Menu {
             menuLevels.updateSize(width, height);
         }
     }
-/*
-    public void previousButton() throws IOException {
-        if (currButton > 1) {
-            currButton--;
-            refreshButtons();
-            updateSize(screenWidth, screenHeight);
-        }
-    }
 
-    public void nextButton() throws IOException {
-        if (currButton < 3) {
-            currButton++;
-            refreshButtons();
-            updateSize(screenWidth, screenHeight);
-        }
-    }
-*/
     public int getCurrButton() {
         return currButton;
     }
 
     public void backCurrButton() throws IOException {
-        currButton--;
-        refreshButtons();
+        if (currButton > 1) {
+            currButton--;
+            refreshButtons();
+        }
     }
 
     public void nextCurrButton() throws IOException {
-        currButton++;
-        refreshButtons();
+        if (currButton < 3) {
+            currButton++;
+            refreshButtons();
+        }
     }
 }

@@ -4,6 +4,7 @@ import org.example.Game;
 import org.example.gui.GUI;
 import org.example.model.Position;
 import org.example.model.game.maze.Maze;
+import org.example.viewer.Image;
 
 public class KnightController extends GameController {
     public KnightController(Maze maze) {
@@ -11,19 +12,29 @@ public class KnightController extends GameController {
     }
 
     public void moveKnightLeft() {
-        moveKnight(getModel().getKnight().getPosition().getLeft());
+        getModel().getKnight().setCurrentImage(getModel().getKnight().getImageLeft());
+        moveKnight(getModel().getKnight().getPosition_currentImage().getLeft());
+        getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
+        getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
     }
 
     public void moveKnightRight() {
-        moveKnight(getModel().getKnight().getPosition().getRight());
+        getModel().getKnight().setCurrentImage(getModel().getKnight().getImageRight());
+        moveKnight(getModel().getKnight().getPosition_currentImage().getRight());
+        getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
+        getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
     }
 
     public void moveKnightUp() {
-        moveKnight(getModel().getKnight().getPosition().getUp());
+        moveKnight(getModel().getKnight().getPosition_currentImage().getUp());
+        getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
+        getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
     }
 
     public void moveKnightDown() {
-        moveKnight(getModel().getKnight().getPosition().getDown());
+        moveKnight(getModel().getKnight().getPosition_currentImage().getDown());
+        getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
+        getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
     }
 
     private void moveKnight(Position position) {
