@@ -55,7 +55,7 @@ public class MazeParser {
         for (int y = 0; y < maze.length; y++) {
             for (int x = 0; x < maze[y].length; x++) {
                 if (maze[y][x] == symbol) {
-                    lst.add(creator.apply(new Position(x*30, y*30)));
+                    lst.add(creator.apply(new Position(x*50, y*20 + 25)));
                 }
             }
         }
