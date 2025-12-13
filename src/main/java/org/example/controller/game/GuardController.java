@@ -1,7 +1,7 @@
 package org.example.controller.game;
 
 import org.example.Game;
-import org.example.model.game.characters.Guard;
+import org.example.model.game.character.Guard;
 import org.example.model.Position;
 import org.example.gui.GUI;
 import org.example.model.game.maze.Maze;

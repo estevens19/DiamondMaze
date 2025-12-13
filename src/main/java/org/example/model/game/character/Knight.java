@@ -1,4 +1,4 @@
-package org.example.model.game.characters;
+package org.example.model.game.character;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.example.viewer.Image;

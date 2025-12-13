@@ -1,4 +1,4 @@
-package org.example.model.game.characters;
+package org.example.model.game.character;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.example.viewer.Image;
@@ -24,7 +24,7 @@ public abstract class Character {
     }
 
     public Position getPosition_currentImage() {
-       return getCurrentImage().getPosition();
+        return getCurrentImage().getPosition();
     }
 
     public void setPosition_currentImage(Position position) {

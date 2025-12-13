@@ -27,7 +27,7 @@ public class Game {
     }
 
     public void start() throws IOException {
-        int FPS = 30;
+        int FPS = 60;
         int frameTime = 1000 / FPS;
 
         while (this.state != null) {
@@ -42,6 +42,7 @@ public class Game {
             try {
                 if (sleepTime > 0) Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
+                e.printStackTrace();
             }
 
             gui.updateScreenSize();

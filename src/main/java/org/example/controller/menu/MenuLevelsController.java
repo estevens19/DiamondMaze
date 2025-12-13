@@ -3,7 +3,7 @@ package org.example.controller.menu;
 import org.example.Game;
 import org.example.controller.Controller;
 import org.example.gui.GUI;
-import org.example.model.game.maze.LoaderMazeBuilder;
+import org.example.model.game.maze.Level1MazeBuilder;
 import org.example.model.menu.MenuLevels;
 import org.example.model.menu.MenuMain;
 import org.example.state.GameState;
@@ -35,7 +35,7 @@ public class MenuLevelsController extends Controller<MenuLevels> {
                 break;
             case SELECT:
                 if (getModel().getCurrButton() == 1) {
-                    game.setState(new GameState(new LoaderMazeBuilder(1).createMaze()));
+                    game.setState(new GameState(new Level1MazeBuilder().build()));
                 }
                 else if (getModel().getCurrButton() == 0) {
                     game.setState(new MenuMainState(new MenuMain()));

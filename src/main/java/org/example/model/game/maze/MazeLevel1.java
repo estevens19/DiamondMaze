@@ -1,11 +1,9 @@
 package org.example.model.game.maze;
 
-import org.example.model.Position;
 //import org.example.model.game.characters.Guard;
-import org.example.model.game.characters.Knight;
+import org.example.model.game.character.Knight;
 
 import java.io.IOException;
-import java.util.List;
 
 public class MazeLevel1 extends Maze {
     private Knight knight;

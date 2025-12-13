@@ -1,7 +1,6 @@
 package org.example.model.menu;
 
 import org.example.model.Position;
-import org.example.model.game.maze.MazeLevel1;
 import org.example.viewer.Image;
 
 import java.io.IOException;

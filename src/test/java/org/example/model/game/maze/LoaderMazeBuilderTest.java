@@ -1,6 +1,6 @@
 package org.example.model.game.maze;
 
-import org.example.model.game.characters.Knight;
+import org.example.model.game.character.Knight;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 

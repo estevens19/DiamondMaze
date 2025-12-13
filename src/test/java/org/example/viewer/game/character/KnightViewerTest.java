@@ -1,7 +1,7 @@
 package org.example.viewer.game.character;
 
 import org.example.gui.GUI;
-import org.example.model.game.characters.Knight;
+import org.example.model.game.character.Knight;
 import org.example.viewer.Image;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
