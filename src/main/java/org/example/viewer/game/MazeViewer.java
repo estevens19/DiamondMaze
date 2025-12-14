@@ -1,8 +1,10 @@
 package org.example.viewer.game;
 
 import org.example.gui.GUI;
+import org.example.gui.LanternaGUI;
 import org.example.model.game.character.Character;
 import org.example.model.game.element.Element;
+import org.example.model.game.maze.Countdown;
 import org.example.model.game.maze.Maze;
 import org.example.viewer.Viewer;
 import org.example.viewer.game.character.CharacterViewer;
@@ -10,7 +12,9 @@ import org.example.viewer.game.character.GuardViewer;
 import org.example.viewer.game.character.KnightViewer;
 import org.example.viewer.game.element.*;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 public class MazeViewer extends Viewer<Maze> {
@@ -19,7 +23,7 @@ public class MazeViewer extends Viewer<Maze> {
     }
 
     @Override
-    public void draw(GUI gui) throws IOException {
+    public void draw(GUI gui) throws IOException, URISyntaxException, FontFormatException {
         gui.clear();
 
         drawElement(gui, getModel().getDoor(), new DoorViewer());
@@ -28,6 +32,7 @@ public class MazeViewer extends Viewer<Maze> {
         drawCharacter(gui, getModel().getKnight(), new KnightViewer());
         drawCharacters(gui, getModel().getGuards(), new GuardViewer());
         drawElements(gui, getModel().getWalls(), new WallViewer());
+        drawCountdown(gui, getModel().getCountdown());
 
     }
 
@@ -47,5 +52,9 @@ public class MazeViewer extends Viewer<Maze> {
 
     private <T extends Character> void drawCharacter(GUI gui, T character, CharacterViewer<T> viewer) {
         viewer.draw(character, gui);
+    }
+
+    private void drawCountdown(GUI gui, Countdown countdown) throws IOException, URISyntaxException, FontFormatException {
+        gui.drawImage(countdown.timeImage());
     }
 }

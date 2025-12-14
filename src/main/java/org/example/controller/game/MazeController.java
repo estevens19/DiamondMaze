@@ -8,7 +8,9 @@ import org.example.model.menu.MenuMain;
 import org.example.state.MenuLevelsState;
 import org.example.state.MenuMainState;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class MazeController extends GameController {
     private final KnightController knightController;
@@ -21,11 +23,14 @@ public class MazeController extends GameController {
       //  this.guardController = new GuardController(maze);
     }
 
-    public void step(Game game, GUI.ACTION action, long time) throws IOException {
+    public void step(Game game, GUI.ACTION action, long time) throws IOException, URISyntaxException, FontFormatException {
         if (action == GUI.ACTION.QUIT)
             game.setState(new MenuMainState(new MenuMain()));
         else if (action == GUI.ACTION.SELECT)
             game.setState(new MenuLevelsState(new MenuLevels()));
+        else if (getModel().getCountdown().getTime() == 0) {
+            game.setState(new MenuLevelsState(new MenuLevels()));
+        }
         else {
             knightController.step(game, action, time);
         //    guardController.step(game, action, time);

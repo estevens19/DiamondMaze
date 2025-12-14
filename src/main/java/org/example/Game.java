@@ -6,6 +6,7 @@ import java.net.URISyntaxException;
 
 import org.example.gui.GUI;
 import org.example.gui.LanternaGUI;
+import org.example.model.game.maze.Countdown;
 import org.example.model.menu.MenuMain;
 import org.example.state.MenuMainState;
 import org.example.state.State;
@@ -31,7 +32,7 @@ public class Game {
         this.state = null;
     }
 
-    public void step(long time) throws IOException {
+    public void step(long time) throws IOException, URISyntaxException, FontFormatException {
         if (state == null) return;
 
         GUI.ACTION action = gui.getKey();
@@ -43,7 +44,7 @@ public class Game {
         }
     }
 
-    public void start() throws IOException {
+    public void start() throws IOException, URISyntaxException, FontFormatException {
         final int FPS = 30;
         final int frameTime = 1000 / FPS;
 

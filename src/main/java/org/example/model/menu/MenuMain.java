@@ -3,7 +3,9 @@ package org.example.model.menu;
 import org.example.model.Position;
 import org.example.viewer.Image;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class MenuMain extends Menu {
     private Image title;
@@ -25,7 +27,7 @@ public class MenuMain extends Menu {
 
     private MenuLevels menuLevels;
 
-    public MenuMain() throws IOException {
+    public MenuMain() throws IOException, URISyntaxException, FontFormatException {
         super();
         title = new Image(new Position(0, 0), "images_menu/Title.png");
         title = title.resizeImage(465, 255);

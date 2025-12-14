@@ -9,6 +9,7 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+import org.example.model.Position;
 import org.example.viewer.Image;
 
 import java.awt.*;
@@ -58,12 +59,8 @@ public class LanternaGUI implements GUI {
     }
 
     private AWTTerminalFontConfiguration loadFont() throws URISyntaxException, FontFormatException, IOException {
-        URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
-        if (resource == null) {
-            throw new IOException("Font file not found");
-        }
-        File fontFile = new File(resource.toURI());
-        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+        Font font = getFont();
+
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
@@ -97,9 +94,23 @@ public class LanternaGUI implements GUI {
         return ACTION.NONE;
     }
 
+    public static Font getFont() throws IOException, FontFormatException, URISyntaxException {
+        URL resource = LanternaGUI.class.getClassLoader().getResource("fonts/square.ttf");
+        if (resource == null) {
+            throw new IOException("Font file not found");
+        }
+        File fontFile = new File(resource.toURI());
+        return Font.createFont(Font.TRUETYPE_FONT, fontFile);
+    }
+
     @Override
     public void drawImage(Image image) {
         image.draw(graphics);
+    }
+
+    @Override
+    public void drawText(Position position, String text) {
+        graphics.putString(position.getX(), position.getY(), text);
     }
 
     @Override

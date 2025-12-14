@@ -3,7 +3,9 @@ package org.example.model.menu;
 import org.example.model.Position;
 import org.example.viewer.Image;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class MenuLevels extends Menu {
     private Image level1;
@@ -18,14 +20,14 @@ public class MenuLevels extends Menu {
     //private MazeLevel1 mazeLevel1;
     //private boolean inLevel1 = false;
 
-    public MenuLevels() throws IOException {
+    public MenuLevels() throws IOException, URISyntaxException, FontFormatException {
         this.screenWidth = 640;
         this.screenHeight = 360;
         refreshButtons();
         updateSize(screenWidth, screenHeight);
     }
 
-    private void refreshButtons() throws IOException {
+    private void refreshButtons() throws IOException, URISyntaxException, FontFormatException {
         Position l1Pos = (level1 != null) ? level1.getPosition() : new Position(0, 0);
         Position l2Pos = (level2 != null) ? level2.getPosition() : new Position(0, 0);
         Position l3Pos = (level3 != null) ? level3.getPosition() : new Position(0, 0);
@@ -129,12 +131,12 @@ public class MenuLevels extends Menu {
         return level3;
     }
 
-    public void backCurrButton() throws IOException {
+    public void backCurrButton() throws IOException, URISyntaxException, FontFormatException {
         currButton--;
         refreshButtons();
     }
 
-    public void nextCurrButton() throws IOException {
+    public void nextCurrButton() throws IOException, URISyntaxException, FontFormatException {
         currButton++;
         refreshButtons();
     }

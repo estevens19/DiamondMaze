@@ -6,7 +6,9 @@ import org.example.model.game.character.Guard;
 import org.example.model.game.character.Knight;
 import org.example.model.game.element.*;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class Level1MazeBuilder extends MazeBuilder {
     private final ElementFactory elementFactory;
     private final CharacterFactory characterFactory;
 
-    public Level1MazeBuilder() throws IOException {
+    public Level1MazeBuilder() throws IOException, URISyntaxException, FontFormatException {
         LevelFactory factory = new LevelFactory();
         this.elementFactory = factory.elements();
         this.characterFactory = factory.characters();
@@ -28,13 +30,14 @@ public class Level1MazeBuilder extends MazeBuilder {
     }
 
     @Override
-    protected void createAllElements() throws IOException {
+    protected void createAllElements() throws IOException, URISyntaxException, FontFormatException {
         List<Wall> walls = new ArrayList<>();
         List<Diamond> diamonds = new ArrayList<>();
         List<Guard> guards = new ArrayList<>();
         Knight knight = null;
         Key key = null;
         Door door = null;
+        Countdown countdown = new Countdown(29);
 
         char[][] map = parser.getMaze();
         for (int y = 0; y < map.length; y++) {
@@ -57,6 +60,9 @@ public class Level1MazeBuilder extends MazeBuilder {
         this.maze.knight = knight;
         this.maze.key = key;
         this.maze.door = door;
+        this.maze.countdown = countdown;
+
+        this.maze.countdown.start();
     }
 
     @Override

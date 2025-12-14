@@ -7,7 +7,9 @@ import org.example.model.menu.MenuMain;
 import org.example.model.menu.MenuLevels;
 import org.example.state.MenuLevelsState;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class MenuMainController extends Controller<MenuMain> {
     public MenuMainController(MenuMain menu) {
@@ -15,7 +17,7 @@ public class MenuMainController extends Controller<MenuMain> {
     }
 
     @Override
-    public void step(Game game, GUI.ACTION action, long time) throws IOException {
+    public void step(Game game, GUI.ACTION action, long time) throws IOException, URISyntaxException, FontFormatException {
         switch (action) {
             case UP:
                 if (getModel().getCurrButton() > 1) {

@@ -3,12 +3,14 @@ package org.example.model.game.element;
 import org.example.model.Position;
 import org.example.viewer.Image;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class Diamond extends Element {
     private boolean isKey = false;
 
-    public Diamond(int x, int y) throws IOException {
+    public Diamond(int x, int y) throws IOException, URISyntaxException, FontFormatException {
         super(new Image(new Position(x,y), "images/Diamond.png").resizeImage(25,25));
     }
 

@@ -13,6 +13,7 @@ public abstract class Maze {
     protected List<Diamond> diamonds;
     protected Key key;
     protected Door door;
+    protected Countdown countdown;
 
     public Knight getKnight() { return knight; }
     public List<Guard> getGuards() { return guards; }
@@ -20,6 +21,7 @@ public abstract class Maze {
     public List<Diamond> getDiamonds() { return diamonds; }
     public Key getKey() { return key; }
     public Door getDoor() { return door; }
+    public Countdown getCountdown(){return countdown;}
 
 /*
     public boolean isWall(int x, int y) {
