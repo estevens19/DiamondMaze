@@ -14,36 +14,20 @@ public abstract class Maze {
     protected Key key;
     protected Door door;
 
-    public Knight getKnight() {
-        return knight;
-    }
+    public Knight getKnight() { return knight; }
+    public List<Guard> getGuards() { return guards; }
+    public List<Wall> getWalls() { return walls; }
+    public List<Diamond> getDiamonds() { return diamonds; }
+    public Key getKey() { return key; }
+    public Door getDoor() { return door; }
 
-    public List<Guard> getGuards() {
-        return guards;
-    }
-
-    public List<Wall> getWalls() {
-        return walls;
-    }
-
-    public List<Diamond> getDiamonds() {
-        return diamonds;
-    }
-
-    public Key getKey() {
-        return key;
-    }
-
-    public Door getDoor() {
-        return door;
-    }
 /*
-    public boolean isWall(Position position) {
-        return walls.stream().anyMatch(w -> w.getPosition().equals(position));
+    public boolean isWall(int x, int y) {
+        return walls.stream().anyMatch(w -> w.getPosition().equals(x, y));
     }
 
-    public boolean isGuard(Position position) {
-        return guards.stream().anyMatch(g -> g.getPosition().equals(position));
+    public boolean isGuard(int x, int y) {
+        return guards.stream().anyMatch(g -> g.getPosition().equals(x, y));
     }
  */
 }

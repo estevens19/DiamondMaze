@@ -38,7 +38,10 @@ public class MenuLevelsController extends Controller<MenuLevels> {
                     game.setState(new GameState(new Level1MazeBuilder().build()));
                 }
                 else if (getModel().getCurrButton() == 0) {
-                    game.setState(new MenuMainState(new MenuMain()));
+                    MenuMain menuMain = new MenuMain();
+                    menuMain.updateSize(getModel().getScreenWidth(), getModel().getScreenHeight());
+
+                    game.setState(new MenuMainState(menuMain));
                 }
                 break;
             case QUIT:

@@ -20,15 +20,15 @@ public class MenuMain extends Menu {
     private final Image exitUnselected;
 
     private int currButton = 1;
-    private final int buttonWidth = 320;
-    private final int buttonHeight = 90;
+    private final int buttonWidth = 130;
+    private final int buttonHeight = 105;
 
     private MenuLevels menuLevels;
 
     public MenuMain() throws IOException {
         super();
         title = new Image(new Position(0, 0), "images_menu/Title.png");
-        title = title.resizeImage(1300, 300);
+        title = title.resizeImage(465, 255);
 
         startUnselected = new Image(new Position(0, 0), "images_menu/Start.png").resizeImage(buttonWidth, buttonHeight);
         startSelected = new Image(new Position(0, 0), "images_menu/Start_shine.png").resizeImage(buttonWidth, buttonHeight);
@@ -42,8 +42,8 @@ public class MenuMain extends Menu {
         menuLevels = new MenuLevels();
         refreshButtons();
 
-        this.screenWidth = 1850;
-        this.screenHeight = 340;
+        this.screenWidth = 640;
+        this.screenHeight = 360;
         updateSize(screenWidth, screenHeight);
     }
 
@@ -85,10 +85,10 @@ public class MenuMain extends Menu {
         setBackground(getBackground().resizeImage(width, height));
         int centerX = width / 2;
 
-        title.setPosition(new Position(centerX - title.getWidth() / 2, -110));
-        start.setPosition(new Position(centerX - (start.getWidth() / 2), 70));
-        controls.setPosition(new Position(centerX - (controls.getWidth() / 2), 130));
-        exit.setPosition(new Position(centerX - (exit.getWidth() / 2), 190));
+        title.setPosition(new Position(centerX - title.getWidth() / 2, -60));
+        start.setPosition(new Position(centerX - (start.getWidth() / 2), 95));
+        controls.setPosition(new Position(centerX - (controls.getWidth() / 2), 165));
+        exit.setPosition(new Position(centerX - (exit.getWidth() / 2), 235));
 
         if (menuLevels != null) {
             menuLevels.updateSize(width, height);

@@ -1,13 +1,20 @@
 package org.example.model.game.element;
 
 import org.example.model.Position;
+import org.example.viewer.Image;
 
 import java.io.IOException;
 
 public class LevelElementFactory implements ElementFactory {
+    private Image wallImage;
+
+    public LevelElementFactory() throws IOException {
+        this.wallImage = new Image(new Position(0, 0), "images/Wall.png").resizeImage(20, 20);
+    }
+
     @Override
-    public Wall createWall(Position position) throws IOException {
-        return new Wall(position.getX(), position.getY());
+    public Wall createWall(Position position) {
+        return new Wall(position.getX(), position.getY(), wallImage.getSprite());
     }
 
     @Override

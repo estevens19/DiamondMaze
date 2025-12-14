@@ -24,31 +24,9 @@ public class LanternaGUI implements GUI {
     private int screenWidth;
     private int screenHeight;
 
-    public LanternaGUI(Screen screen) {
-        this.screen = screen;
-        this.graphics = screen.newTextGraphics();
-    }
-
     public LanternaGUI(int width, int height) throws IOException, FontFormatException, URISyntaxException {
         AWTTerminalFontConfiguration cfg = loadFont();
         this.terminal = createTerminal(width, height, cfg);
-        this.screen = createScreen(terminal);
-        this.graphics = screen.newTextGraphics();
-
-        TerminalSize terminalSize = screen.getTerminalSize();
-        this.screenWidth = terminalSize.getColumns();
-        this.screenHeight = terminalSize.getRows();
-
-        if (terminal instanceof AWTTerminalFrame) {
-            AWTTerminalFrame frame = (AWTTerminalFrame) terminal;
-            frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-            frame.setTitle("Diamond Maze");
-        }
-    }
-
-    public LanternaGUI() throws IOException, FontFormatException, URISyntaxException {
-        AWTTerminalFontConfiguration cfg = loadFont();
-        this.terminal = createTerminal(320, 280, cfg);
         this.screen = createScreen(terminal);
         this.graphics = screen.newTextGraphics();
 
@@ -80,7 +58,7 @@ public class LanternaGUI implements GUI {
     }
 
     private AWTTerminalFontConfiguration loadFont() throws URISyntaxException, FontFormatException, IOException {
-        URL resource = getClass().getClassLoader().getResource("fonts/charybdis.regular.ttf");
+        URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
         if (resource == null) {
             throw new IOException("Font file not found");
         }

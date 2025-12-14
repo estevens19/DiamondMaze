@@ -1,15 +1,17 @@
 package org.example.model.game.maze;
 
+import org.example.model.Position;
+import org.example.model.game.character.CharacterFactory;
 import org.example.model.game.character.Guard;
 import org.example.model.game.character.Knight;
-import org.example.model.game.character.CharacterFactory;
 import org.example.model.game.element.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Level1MazeBuilder extends MazeBuilder {
-    private final MazeParser mazeParser;
+    private final MazeParser parser;
     private final ElementFactory elementFactory;
     private final CharacterFactory characterFactory;
 
@@ -17,59 +19,61 @@ public class Level1MazeBuilder extends MazeBuilder {
         LevelFactory factory = new LevelFactory();
         this.elementFactory = factory.elements();
         this.characterFactory = factory.characters();
-        this.mazeParser = new MazeParser("levels/level1.txt");
+        this.parser = new MazeParser("levels/level1.txt");
     }
 
     @Override
-    public Maze createMaze() throws IOException {
-        return new Maze() { };
+    protected Maze createMaze() {
+        return new Maze() {};
     }
 
     @Override
-    protected Knight createKnight() throws IOException {
-        return characterFactory.createKnight(mazeParser.find('K'));
-    }
+    protected void createAllElements() throws IOException {
+        List<Wall> walls = new ArrayList<>();
+        List<Diamond> diamonds = new ArrayList<>();
+        List<Guard> guards = new ArrayList<>();
+        Knight knight = null;
+        Key key = null;
+        Door door = null;
 
-    @Override
-    protected List<Guard> createGuards() {
-        return mazeParser.findAll('g', pos -> {
-            try {
-                return characterFactory.createGuard(pos);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        char[][] map = parser.getMaze();
+        for (int y = 0; y < map.length; y++) {
+            for (int x = 0; x < map[y].length; x++) {
+                Position pos = parser.toPosition(x, y);
+                switch (map[y][x]) {
+                    case 'w': walls.add(elementFactory.createWall(pos)); break;
+                    case 'd': diamonds.add(elementFactory.createDiamond(pos)); break;
+                    case 'g': guards.add(characterFactory.createGuard(pos)); break;
+                    case 'K': knight = characterFactory.createKnight(pos); break;
+                    case 'k': key = elementFactory.createKey(pos); break;
+                    case 'D': door = elementFactory.createDoor(pos); break;
+                }
             }
-        });
+        }
+
+        this.maze.walls = walls;
+        this.maze.diamonds = diamonds;
+        this.maze.guards = guards;
+        this.maze.knight = knight;
+        this.maze.key = key;
+        this.maze.door = door;
     }
 
     @Override
-    protected List<Wall> createWalls() {
-        return mazeParser.findAll('w', pos -> {
-            try {
-                return elementFactory.createWall(pos);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-    }
+    protected Knight createKnight() { return maze.knight; }
 
     @Override
-    protected List<Diamond> createDiamonds() {
-        return mazeParser.findAll('d', pos -> {
-            try {
-                return elementFactory.createDiamond(pos);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-    }
+    protected List<Guard> createGuards() { return maze.guards; }
 
     @Override
-    protected Key createKey() throws IOException {
-        return elementFactory.createKey(mazeParser.find('k'));
-    }
+    protected List<Wall> createWalls() { return maze.walls; }
 
     @Override
-    protected Door createDoor() throws IOException {
-        return elementFactory.createDoor(mazeParser.find('D'));
-    }
+    protected List<Diamond> createDiamonds() { return maze.diamonds; }
+
+    @Override
+    protected Key createKey() { return maze.key; }
+
+    @Override
+    protected Door createDoor() { return maze.door; }
 }

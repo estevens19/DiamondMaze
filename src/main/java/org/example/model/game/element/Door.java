@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class Door extends Element {
     public Door(int x, int y) throws IOException {
-        super(new Image(new Position(x,y), "images/Door.png").resizeImage(75,25));
+        super(new Image(new Position(x,y), "images/Door.png").resizeImage(40,40));
     }
 /*
     public void openDoor(Key key) throws IOException {

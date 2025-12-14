@@ -8,21 +8,20 @@ import java.io.IOException;
 import java.util.List;
 
 public abstract class MazeBuilder {
-
     protected Maze maze;
 
     public Maze build() throws IOException {
         this.maze = createMaze();
-        maze.knight = createKnight();
-        maze.guards = createGuards();
-        maze.walls = createWalls();
-        maze.diamonds = createDiamonds();
-        maze.key = createKey();
-        maze.door = createDoor();
+        buildMaze();
         return maze;
     }
 
+    private void buildMaze() throws IOException {
+        createAllElements();
+    }
+
     protected abstract Maze createMaze() throws IOException;
+    protected abstract void createAllElements() throws IOException;
     protected abstract Knight createKnight() throws IOException;
     protected abstract List<Guard> createGuards() throws IOException;
     protected abstract List<Wall> createWalls() throws IOException;

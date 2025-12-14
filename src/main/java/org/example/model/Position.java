@@ -10,16 +10,16 @@ public class Position {
     }
 
     public Position getRight() {
-        return new Position(x+10,y);
+        return new Position(x+5,y);
     }
     public Position getLeft() {
-        return new Position(x-10,y);
+        return new Position(x-5,y);
     }
     public Position getUp() {
-        return new Position(x,y-10);
+        return new Position(x,y-5);
     }
     public Position getDown() {
-        return new Position(x,y+10);
+        return new Position(x,y+5);
     }
 
     public int getX() {

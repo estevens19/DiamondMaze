@@ -11,10 +11,10 @@ public abstract class Menu {
     protected int screenHeight;
 
     public Menu() throws IOException {
-        this.screenWidth = 320;
-        this.screenHeight = 280;
+        this.screenWidth = 640;
+        this.screenHeight = 360;
         this.background = new Image(new Position(0, 0), "images_menu/Main_Menu.png");
-        this.background = this.background.resizeImage(320, 280);
+        this.background = this.background.resizeImage(640, 360);
     }
 
     public Image getBackground() {

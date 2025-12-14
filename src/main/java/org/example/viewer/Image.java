@@ -41,10 +41,14 @@ public class Image {
                     int green = (a >> 8) & 255;
                     int blue = a & 255;
 
-                    cachedPixelData[x][y] = new TextCharacter(' ', new TextColor.RGB(red, green, blue), new TextColor.RGB(red, green, blue));
+                    cachedPixelData[x][y] = TextCharacter.fromCharacter(' ', new TextColor.RGB(red, green, blue), new TextColor.RGB(red, green, blue))[0];
                 }
             }
         }
+    }
+
+    public BufferedImage getSprite() {
+        return sprite;
     }
 
     public Position getPosition() { return this.position; }

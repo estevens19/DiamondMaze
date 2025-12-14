@@ -22,12 +22,13 @@ public class MazeViewer extends Viewer<Maze> {
     public void draw(GUI gui) throws IOException {
         gui.clear();
 
+        drawElement(gui, getModel().getDoor(), new DoorViewer());
+        drawElements(gui, getModel().getDiamonds(), new DiamondViewer());
+        drawElement(gui, getModel().getKey(), new KeyViewer());
         drawCharacter(gui, getModel().getKnight(), new KnightViewer());
         drawCharacters(gui, getModel().getGuards(), new GuardViewer());
         drawElements(gui, getModel().getWalls(), new WallViewer());
-        drawElements(gui, getModel().getDiamonds(), new DiamondViewer());
-        drawElement(gui, getModel().getKey(), new KeyViewer());
-        drawElement(gui, getModel().getDoor(), new DoorViewer());
+
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {

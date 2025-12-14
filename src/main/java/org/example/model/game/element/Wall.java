@@ -3,10 +3,10 @@ package org.example.model.game.element;
 import org.example.model.Position;
 import org.example.viewer.Image;
 
-import java.io.IOException;
+import java.awt.image.BufferedImage;
 
-public class Wall extends Element{
-    public Wall(int x, int y) throws IOException {
-        super(new Image(new Position(x, y), "images/Wall.png").resizeImage(75, 25));
+public class Wall extends Element {
+    public Wall(int x, int y, BufferedImage sprite) {
+        super(new Image(new Position(x, y), sprite));
     }
 }

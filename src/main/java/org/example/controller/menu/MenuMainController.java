@@ -34,11 +34,11 @@ public class MenuMainController extends Controller<MenuMain> {
                 else if (getModel().getCurrButton() == 2) {
                 }
                 else if (getModel().getCurrButton() == 3) {
-                    game.setState(null);
+                    game.exit();
                 }
                 break;
             case QUIT:
-                game.setState(null);
+                game.exit();
                 break;
         }
     }

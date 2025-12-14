@@ -3,6 +3,8 @@ package org.example;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
+
+import org.example.gui.GUI;
 import org.example.gui.LanternaGUI;
 import org.example.model.menu.MenuMain;
 import org.example.state.MenuMainState;
@@ -10,42 +12,62 @@ import org.example.state.State;
 
 public class Game {
     private final LanternaGUI gui;
-    private State state;
+    private State<?> state;
 
     public Game() throws FontFormatException, IOException, URISyntaxException {
-        this.gui = new LanternaGUI(1850, 340);
+        this.gui = new LanternaGUI(640, 360);
         this.state = new MenuMainState(new MenuMain());
 
-        if (state instanceof MenuMainState) {
-            MenuMainState menuState = (MenuMainState) state;
+        if (state instanceof MenuMainState menuState) {
             menuState.getModel().updateSize(gui.getScreenWidth(), gui.getScreenHeight());
         }
     }
 
-    public void setState(State state) {
+    public void setState(State<?> state) {
         this.state = state;
     }
 
+    public void exit() {
+        this.state = null;
+    }
+
+    public void step(long time) throws IOException {
+        if (state == null) return;
+
+        GUI.ACTION action = gui.getKey();
+        State<?> currentState = state;
+        currentState.getControllerInstance().step(this, action, time);
+
+        if (currentState == state) {
+            currentState.getViewerInstance().draw(gui);
+        }
+    }
+
     public void start() throws IOException {
-        int FPS = 60;
-        int frameTime = 1000 / FPS;
+        final int FPS = 30;
+        final int frameTime = 1000 / FPS;
 
-        while (this.state != null) {
-            long startTime = System.currentTimeMillis();
+        long lastTime = System.currentTimeMillis();
+        long lastResizeCheck = 0;
 
-            state.step(this, gui, startTime);
+        while (state != null) {
+            long currentTime = System.currentTimeMillis();
+            long delta = currentTime - lastTime;
+            lastTime = currentTime;
+
+            step(delta);
             gui.refresh();
 
-            long elapsedTime = System.currentTimeMillis() - startTime;
-            long sleepTime = frameTime - elapsedTime;
-
-            try {
-                if (sleepTime > 0) Thread.sleep(sleepTime);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (currentTime - lastResizeCheck > 500) {
+                gui.updateScreenSize();
+                lastResizeCheck = currentTime;
             }
 
-            gui.updateScreenSize();
+            long elapsed = System.currentTimeMillis() - currentTime;
+            long sleep = frameTime - elapsed;
+            if (sleep > 0) {
+                try { Thread.sleep(sleep); } catch (InterruptedException ignored) {}
+            }
         }
 
         gui.close();

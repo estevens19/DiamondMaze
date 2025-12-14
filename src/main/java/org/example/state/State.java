@@ -1,11 +1,7 @@
 package org.example.state;
 
-import org.example.Game;
 import org.example.controller.Controller;
-import org.example.gui.GUI;
 import org.example.viewer.Viewer;
-
-import java.io.IOException;
 
 public abstract class State<T> {
     private final T model;
@@ -19,16 +15,17 @@ public abstract class State<T> {
     }
 
     protected abstract Viewer<T> getViewer();
-
     protected abstract Controller<T> getController();
 
     public T getModel() {
         return model;
     }
 
-    public void step(Game game, GUI gui, long time) throws IOException {
-        GUI.ACTION action = gui.getKey();
-        controller.step(game, action, time);
-        viewer.draw(gui);
+    public Controller<T> getControllerInstance() {
+        return controller;
+    }
+
+    public Viewer<T> getViewerInstance() {
+        return viewer;
     }
 }

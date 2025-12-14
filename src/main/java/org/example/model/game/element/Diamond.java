@@ -7,8 +7,9 @@ import java.io.IOException;
 
 public class Diamond extends Element {
     private boolean isKey = false;
+
     public Diamond(int x, int y) throws IOException {
-        super(new Image(new Position(x,y), "images/Diamond.png").resizeImage(75,25));
+        super(new Image(new Position(x,y), "images/Diamond.png").resizeImage(25,25));
     }
 
     public void setKey(){

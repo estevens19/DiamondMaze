@@ -11,15 +11,16 @@ public class MenuLevels extends Menu {
     private Image level3;
     private Image back;
     private int currButton = 1;
-    private final int buttonWidth = 320;
-    private final int buttonHeight = 90;
+    private final int buttonWidth = 130;
+    private final int buttonHeight = 105;
 
+    private MenuMain menuMain;
     //private MazeLevel1 mazeLevel1;
     //private boolean inLevel1 = false;
 
     public MenuLevels() throws IOException {
-        this.screenWidth = 1850;
-        this.screenHeight = 340;
+        this.screenWidth = 640;
+        this.screenHeight = 360;
         refreshButtons();
         updateSize(screenWidth, screenHeight);
     }
@@ -69,7 +70,7 @@ public class MenuLevels extends Menu {
 
         int centerX = width / 2;
         int centerY = (height / 2) - (buttonHeight / 2);
-        int spacing = buttonWidth + 20;
+        int spacing = buttonWidth + 5;
 
         level1.setPosition(new Position(centerX - spacing - (buttonWidth / 2), centerY));
         level2.setPosition(new Position(centerX - (buttonWidth / 2), centerY));
@@ -78,7 +79,7 @@ public class MenuLevels extends Menu {
         int backX = width - buttonWidth - 20;
         int backY = 0;
 
-        back.setPosition(new Position(backX, backY));
+        back.setPosition(new Position(backX - 20, backY + 20));
     }
 /*
     public boolean isBackSelected() {

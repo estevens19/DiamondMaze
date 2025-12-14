@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Guard extends Character {
     public Guard(int x, int y) throws IOException {
-        super(new Image(new Position(x, y), "images/Guard.png").resizeImage(140, 45), new Image(new Position(800, 120), "images/Guard_invert.png").resizeImage(140, 45));
+        super(new Image(new Position(x, y), "images/Guard.png").resizeImage(55, 40), new Image(new Position(x, y), "images/Guard_invert.png").resizeImage(55, 40));
     }
 
     @Override
