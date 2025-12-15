@@ -46,7 +46,6 @@ public class MenuLevelsController extends Controller<MenuLevels> {
                 else if (getModel().getCurrButton() == 0) {
                     MenuMain menuMain = new MenuMain();
                     menuMain.updateSize(getModel().getScreenWidth(), getModel().getScreenHeight());
-
                     game.setState(new MenuMainState(menuMain));
                 }
                 break;
