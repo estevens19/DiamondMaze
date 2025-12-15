@@ -16,7 +16,6 @@ public class MazeController extends GameController {
 
     public MazeController(Maze maze) {
         super(maze);
-
         this.knightController = new KnightController(maze);
       //  this.guardController = new GuardController(maze);
     }

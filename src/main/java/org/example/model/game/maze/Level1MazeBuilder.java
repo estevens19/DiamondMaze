@@ -58,22 +58,4 @@ public class Level1MazeBuilder extends MazeBuilder {
         this.maze.key = key;
         this.maze.door = door;
     }
-
-    @Override
-    protected Knight createKnight() { return maze.knight; }
-
-    @Override
-    protected List<Guard> createGuards() { return maze.guards; }
-
-    @Override
-    protected List<Wall> createWalls() { return maze.walls; }
-
-    @Override
-    protected List<Diamond> createDiamonds() { return maze.diamonds; }
-
-    @Override
-    protected Key createKey() { return maze.key; }
-
-    @Override
-    protected Door createDoor() { return maze.door; }
 }

@@ -12,29 +12,41 @@ public class KnightController extends GameController {
     }
 
     public void moveKnightLeft() {
-        getModel().getKnight().setCurrentImage(getModel().getKnight().getImageLeft());
-        moveKnight(getModel().getKnight().getPosition_currentImage().getLeft());
-        getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
-        getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
+        Position posLeft = getModel().getKnight().getPosition_currentImage().getLeft();
+        if (!getModel().isWall(posLeft)) {
+            getModel().getKnight().setCurrentImage(getModel().getKnight().getImageLeft());
+            moveKnight(posLeft);
+            getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
+            getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
+        }
     }
 
     public void moveKnightRight() {
-        getModel().getKnight().setCurrentImage(getModel().getKnight().getImageRight());
-        moveKnight(getModel().getKnight().getPosition_currentImage().getRight());
-        getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
-        getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
+        Position posRight = getModel().getKnight().getPosition_currentImage().getRight();
+        if (!getModel().isWall(posRight)) {
+            getModel().getKnight().setCurrentImage(getModel().getKnight().getImageRight());
+            moveKnight(posRight);
+            getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
+            getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
+        }
     }
 
     public void moveKnightUp() {
-        moveKnight(getModel().getKnight().getPosition_currentImage().getUp());
-        getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
-        getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
+        Position posUp = getModel().getKnight().getPosition_currentImage().getUp();
+        if (!getModel().isWall(posUp)) {
+            moveKnight(posUp);
+            getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
+            getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
+        }
     }
 
     public void moveKnightDown() {
-        moveKnight(getModel().getKnight().getPosition_currentImage().getDown());
-        getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
-        getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
+        Position posDown = getModel().getKnight().getPosition_currentImage().getDown();
+        if (!getModel().isWall(posDown)) {
+            moveKnight(posDown);
+            getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
+            getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
+        }
     }
 
     private void moveKnight(Position position) {
