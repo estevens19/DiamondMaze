@@ -12,6 +12,16 @@ public class MenuLevels extends Menu {
     private Image level2;
     private Image level3;
     private Image back;
+
+    private final Image level1Unselected;
+    private final Image level1Selected;
+    private final Image level2Unselected;
+    private final Image level2Selected;
+    private final Image level3Unselected;
+    private final Image level3Selected;
+    private final Image backUnselected;
+    private final Image backSelected;
+
     private int currButton = 1;
     private final int buttonWidth = 130;
     private final int buttonHeight = 105;
@@ -23,11 +33,22 @@ public class MenuLevels extends Menu {
     public MenuLevels() throws IOException, URISyntaxException, FontFormatException {
         this.screenWidth = 640;
         this.screenHeight = 360;
+
+        level1Unselected = new Image(new Position(0, 0), "images_menu/Level_1.png").resizeImage(buttonWidth, buttonHeight);
+        level1Selected = new Image(new Position(0, 0), "images_menu/Level_1_shine.png").resizeImage(buttonWidth, buttonHeight);
+        level2Unselected = new Image(new Position(0, 0), "images_menu/Level_2.png").resizeImage(buttonWidth, buttonHeight);
+        level2Selected = new Image(new Position(0, 0), "images_menu/Level_2_shine.png").resizeImage(buttonWidth, buttonHeight);
+        level3Unselected = new Image(new Position(0, 0), "images_menu/Level_3.png").resizeImage(buttonWidth, buttonHeight);
+        level3Selected = new Image(new Position(0, 0), "images_menu/Level_3_shine.png").resizeImage(buttonWidth, buttonHeight);
+        backUnselected = new Image(new Position(0, 0), "images_menu/Back.png").resizeImage(buttonWidth, buttonHeight);
+        backSelected = new Image(new Position(0, 0), "images_menu/Back_shine.png").resizeImage(buttonWidth, buttonHeight);
+
         refreshButtons();
         updateSize(screenWidth, screenHeight);
     }
 
     private void refreshButtons() throws IOException, URISyntaxException, FontFormatException {
+
         Position l1Pos = (level1 != null) ? level1.getPosition() : new Position(0, 0);
         Position l2Pos = (level2 != null) ? level2.getPosition() : new Position(0, 0);
         Position l3Pos = (level3 != null) ? level3.getPosition() : new Position(0, 0);
@@ -35,35 +56,35 @@ public class MenuLevels extends Menu {
 
         switch (currButton) {
             case 1:
-                level1 = new Image(l1Pos, "images_menu/Level_1_shine.png");
-                level2 = new Image(l2Pos, "images_menu/Level_2.png");
-                level3 = new Image(l3Pos, "images_menu/Level_3.png");
-                back = new Image(backPos, "images_menu/Back.png");
+                level1 = level1Selected;
+                level2 = level2Unselected;
+                level3 = level3Unselected;
+                back = backUnselected;
                 break;
             case 2:
-                level1 = new Image(l1Pos, "images_menu/Level_1.png");
-                level2 = new Image(l2Pos, "images_menu/Level_2_shine.png");
-                level3 = new Image(l3Pos, "images_menu/Level_3.png");
-                back = new Image(backPos, "images_menu/Back.png");
+                level1 = level1Unselected;
+                level2 = level2Selected;
+                level3 = level3Unselected;
+                back = backUnselected;
                 break;
             case 3:
-                level1 = new Image(l1Pos, "images_menu/Level_1.png");
-                level2 = new Image(l2Pos, "images_menu/Level_2.png");
-                level3 = new Image(l3Pos, "images_menu/Level_3_shine.png");
-                back = new Image(backPos, "images_menu/Back.png");
+                level1 = level1Unselected;
+                level2 = level2Unselected;
+                level3 = level3Selected;
+                back = backUnselected;
                 break;
             case 0:
-                level1 = new Image(l1Pos, "images_menu/Level_1.png");
-                level2 = new Image(l2Pos, "images_menu/Level_2.png");
-                level3 = new Image(l3Pos, "images_menu/Level_3.png");
-                back = new Image(backPos, "images_menu/Back_shine.png");
+                level1 = level1Unselected;
+                level2 = level2Unselected;
+                level3 = level3Unselected;
+                back = backSelected;
                 break;
-        }
 
-        level1 = level1.resizeImage(buttonWidth, buttonHeight);
-        level2 = level2.resizeImage(buttonWidth, buttonHeight);
-        level3 = level3.resizeImage(buttonWidth, buttonHeight);
-        back = back.resizeImage(buttonWidth, buttonHeight);
+        }
+        level1.setPosition(l1Pos);
+        level2.setPosition(l2Pos);
+        level3.setPosition(l3Pos);
+        back.setPosition(backPos);
     }
 
     @Override
@@ -83,33 +104,6 @@ public class MenuLevels extends Menu {
 
         back.setPosition(new Position(backX - 20, backY + 20));
     }
-/*
-    public boolean isBackSelected() {
-        return currButton == 0;
-    }
-
-    public void resetSelection() throws IOException {
-        this.currButton = 1;
-        refreshButtons();
-        updateSize(screenWidth, screenHeight);
-    }
-
-    public void previousButton() throws IOException {
-        if (currButton > 0) {
-            currButton--;
-            refreshButtons();
-            updateSize(screenWidth, screenHeight);
-        }
-    }
-
-    public void nextButton() throws IOException {
-        if (currButton < 3) {
-            currButton++;
-            refreshButtons();
-            updateSize(screenWidth, screenHeight);
-        }
-    }
-*/
 
     public int getCurrButton() {
         return currButton;
@@ -133,6 +127,11 @@ public class MenuLevels extends Menu {
 
     public void backCurrButton() throws IOException, URISyntaxException, FontFormatException {
         currButton--;
+        refreshButtons();
+    }
+
+    public void backButton() throws IOException, URISyntaxException, FontFormatException {
+        currButton = 0;
         refreshButtons();
     }
 

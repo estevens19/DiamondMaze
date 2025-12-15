@@ -22,9 +22,7 @@ public class MenuLevelsController extends Controller<MenuLevels> {
     public void step(Game game, GUI.ACTION action, long time) throws IOException, URISyntaxException, FontFormatException {
         switch (action) {
             case UP:
-                if (getModel().getCurrButton() == 1) {
-                    getModel().backCurrButton();
-                }
+                getModel().backButton();
                 break;
             case DOWN:
                 if (getModel().getCurrButton() == 0) {
@@ -32,8 +30,14 @@ public class MenuLevelsController extends Controller<MenuLevels> {
                 }
                 break;
             case LEFT:
+                if(getModel().getCurrButton() > 1){
+                    getModel().backCurrButton();
+                }
                 break;
             case RIGHT:
+                if(getModel().getCurrButton() < 3){
+                    getModel().nextCurrButton();
+                }
                 break;
             case SELECT:
                 if (getModel().getCurrButton() == 1) {
