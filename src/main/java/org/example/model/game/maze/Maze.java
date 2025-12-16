@@ -16,6 +16,8 @@ public abstract class Maze {
     protected Door door;
     protected Countdown countdown;
 
+    protected int curLevel;
+
     public Knight getKnight() { return knight; }
     public List<Guard> getGuards() { return guards; }
     public List<Wall> getWalls() { return walls; }
@@ -23,6 +25,8 @@ public abstract class Maze {
     public Key getKey() { return key; }
     public Door getDoor() { return door; }
     public Countdown getCountdown(){return countdown;}
+
+    public int getCurLevel(){return curLevel;}
 
     public boolean isWallKnight(Position pos) {
         int knightWidth = 85;

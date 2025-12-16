@@ -10,9 +10,9 @@ import java.net.URISyntaxException;
 public class MenuGameOver extends Menu {
     private Image restart;
     private Image menu;
-    private Image title;
+    private final Image title;
 
-    private Image background;
+    private final Image background;
 
     private final Image restartUnselected;
     private final Image restartSelected;
@@ -24,11 +24,15 @@ public class MenuGameOver extends Menu {
     private final int buttonWidth = 130;
     private final int buttonHeight = 105;
 
+    private final int curLevel;
+
     private MenuMain menuMain;
     //private MazeLevel1 mazeLevel1;
     //private boolean inLevel1 = false;
 
-    public MenuGameOver() throws IOException, URISyntaxException, FontFormatException {
+    public MenuGameOver(int curLevel) throws IOException, URISyntaxException, FontFormatException {
+        this.curLevel = curLevel;
+
         this.screenWidth = 640;
         this.screenHeight = 360;
 
@@ -75,6 +79,8 @@ public class MenuGameOver extends Menu {
 
 
     }
+
+    public int getCurLevel() { return curLevel; }
 
     @Override
     public Image getBackground() {

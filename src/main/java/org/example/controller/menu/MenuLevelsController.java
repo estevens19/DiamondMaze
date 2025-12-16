@@ -4,6 +4,8 @@ import org.example.Game;
 import org.example.controller.Controller;
 import org.example.gui.GUI;
 import org.example.model.game.maze.Level1MazeBuilder;
+import org.example.model.game.maze.Level2MazeBuilder;
+import org.example.model.game.maze.Level3MazeBuilder;
 import org.example.model.menu.MenuLevels;
 import org.example.model.menu.MenuMain;
 import org.example.state.GameState;
@@ -42,6 +44,12 @@ public class MenuLevelsController extends Controller<MenuLevels> {
             case SELECT:
                 if (getModel().getCurrButton() == 1) {
                     game.setState(new GameState(new Level1MazeBuilder().build()));
+                }
+                if (getModel().getCurrButton() == 2) {
+                    game.setState(new GameState(new Level2MazeBuilder().build()));
+                }
+                if (getModel().getCurrButton() == 3) {
+                    game.setState(new GameState(new Level3MazeBuilder().build()));
                 }
                 else if (getModel().getCurrButton() == 0) {
                     MenuMain menuMain = new MenuMain();

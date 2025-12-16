@@ -30,7 +30,7 @@ public class MazeController extends GameController {
         else if (action == GUI.ACTION.SELECT)
             game.setState(new MenuLevelsState(new MenuLevels()));
         else if (getModel().getCountdown().getTime() == 0) {
-            game.setState(new MenuGameOverState((new MenuGameOver())));
+            game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
         }
         else {
             knightController.step(game, action, time);

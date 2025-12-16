@@ -30,6 +30,11 @@ public class Level1MazeBuilder extends MazeBuilder {
     }
 
     @Override
+    protected void setCurLevel(){
+        this.maze.curLevel = 1;
+    }
+
+    @Override
     protected void createAllElements() throws IOException, URISyntaxException, FontFormatException {
         List<Wall> walls = new ArrayList<>();
         List<Diamond> diamonds = new ArrayList<>();
@@ -37,7 +42,7 @@ public class Level1MazeBuilder extends MazeBuilder {
         Knight knight = null;
         Key key = null;
         Door door = null;
-        Countdown countdown = new Countdown(29);
+        Countdown countdown = new Countdown(19);
 
         char[][] map = parser.getMaze();
         for (int y = 0; y < map.length; y++) {
@@ -61,7 +66,6 @@ public class Level1MazeBuilder extends MazeBuilder {
         this.maze.key = key;
         this.maze.door = door;
         this.maze.countdown = countdown;
-
         this.maze.countdown.start();
     }
 }

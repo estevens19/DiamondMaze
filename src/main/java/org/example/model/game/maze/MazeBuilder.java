@@ -15,8 +15,10 @@ public abstract class MazeBuilder {
 
     private void buildMaze() throws IOException, URISyntaxException, FontFormatException {
         createAllElements();
+        setCurLevel();
     }
 
     protected abstract Maze createMaze() throws IOException;
     protected abstract void createAllElements() throws IOException, URISyntaxException, FontFormatException;
+    protected abstract void setCurLevel();
 }
