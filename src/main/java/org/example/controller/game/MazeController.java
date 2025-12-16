@@ -14,12 +14,12 @@ import java.net.URISyntaxException;
 
 public class MazeController extends GameController {
     private final KnightController knightController;
-    //private final GuardController guardController;
+    private final GuardController guardController;
 
     public MazeController(Maze maze) {
         super(maze);
         this.knightController = new KnightController(maze);
-      //  this.guardController = new GuardController(maze);
+        this.guardController = new GuardController(maze);
     }
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException, URISyntaxException, FontFormatException {
@@ -32,7 +32,7 @@ public class MazeController extends GameController {
         }
         else {
             knightController.step(game, action, time);
-        //    guardController.step(game, action, time);
+            guardController.step(game, action, time);
         }
     }
 }

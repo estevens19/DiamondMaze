@@ -83,37 +83,27 @@ public class Image {
 
     public static Image createTextImage(Position position, String text, int fontSize) throws IOException, URISyntaxException, FontFormatException {
         Font baseFont = LanternaGUI.getFont();
-        // É mais seguro usar float para o tamanho da fonte
         Font font = baseFont.deriveFont(Font.PLAIN, (float)fontSize);
 
-        // --- PASSO 1: Calcular o tamanho CORRETO da imagem ---
         BufferedImage imgTemp = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2dTemp = imgTemp.createGraphics();
 
-        // CRÍTICO: Tem de definir a fonte ANTES de medir o texto
         g2dTemp.setFont(font);
         FontMetrics fm = g2dTemp.getFontMetrics();
         int width = fm.stringWidth(text);
         int height = fm.getHeight();
         g2dTemp.dispose();
 
-        // --- PASSO 2: Desenhar o texto ---
-        // Adicionamos +5 pixeis de margem para evitar cortes laterais por arredondamento
         BufferedImage img = new BufferedImage(width + 5, height + 5, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = img.createGraphics();
 
-        // Desligar o Anti-aliasing para ficar nítido
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
         g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_OFF);
 
         g2d.setFont(font);
-
-        // CRÍTICO: Definir uma cor visível (Branco).
-        // Se a sua classe Image usa a cor do pixel para pintar o caractere, isto garante que não é preto.
         g2d.setColor(Color.WHITE);
 
-        // O 'y' deve ser o 'Ascent' para a letra ficar na linha correta
         g2d.drawString(text, 0, fm.getAscent());
         g2d.dispose();
 

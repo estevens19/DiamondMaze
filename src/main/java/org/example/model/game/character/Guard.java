@@ -18,6 +18,7 @@ public class Guard extends Character {
         getCurrentImage().draw(graphics);
     }
 
+    @Override
     public void move(Position newPosition) {
         setPosition_currentImage(newPosition);
     }

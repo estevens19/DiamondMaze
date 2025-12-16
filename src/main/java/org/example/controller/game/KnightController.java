@@ -13,7 +13,7 @@ public class KnightController extends GameController {
 
     public void moveKnightLeft() {
         Position posLeft = getModel().getKnight().getPosition_currentImage().getLeft();
-        if (!getModel().isWall(posLeft)) {
+        if (!getModel().isWallKnight(posLeft)) {
             getModel().getKnight().setCurrentImage(getModel().getKnight().getImageLeft());
             moveKnight(posLeft);
             getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
@@ -23,7 +23,7 @@ public class KnightController extends GameController {
 
     public void moveKnightRight() {
         Position posRight = getModel().getKnight().getPosition_currentImage().getRight();
-        if (!getModel().isWall(posRight)) {
+        if (!getModel().isWallKnight(posRight)) {
             getModel().getKnight().setCurrentImage(getModel().getKnight().getImageRight());
             moveKnight(posRight);
             getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
@@ -33,7 +33,7 @@ public class KnightController extends GameController {
 
     public void moveKnightUp() {
         Position posUp = getModel().getKnight().getPosition_currentImage().getUp();
-        if (!getModel().isWall(posUp)) {
+        if (!getModel().isWallKnight(posUp)) {
             moveKnight(posUp);
             getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
             getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
@@ -42,7 +42,7 @@ public class KnightController extends GameController {
 
     public void moveKnightDown() {
         Position posDown = getModel().getKnight().getPosition_currentImage().getDown();
-        if (!getModel().isWall(posDown)) {
+        if (!getModel().isWallKnight(posDown)) {
             moveKnight(posDown);
             getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
             getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
