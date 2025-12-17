@@ -61,7 +61,6 @@ public class Level1MazeBuilder extends MazeBuilder {
         this.maze.key = key;
         this.maze.door = door;
         this.maze.countdown = countdown;
-
         this.maze.countdown.start();
     }
 }

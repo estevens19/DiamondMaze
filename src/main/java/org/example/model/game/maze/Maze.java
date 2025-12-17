@@ -61,8 +61,16 @@ public abstract class Maze {
     }
 
     public boolean isGuard(Position pos) {
+        int guardWidth = 55;
+        int guardHeight = 40;
+        
         for (Guard guard : guards) {
-            if (guard.getPosition_currentImage().equals(pos)) {
+            Position guardPos = guard.getPosition_currentImage();
+
+            boolean overlapX = (pos.getX() < guardPos.getX() - 10) && (pos.getX() + guardWidth > guardPos.getX());
+            boolean overlapY = (pos.getY() < guardPos.getY() + 5) && (pos.getY() + guardHeight > guardPos.getY() + 5);
+
+            if (overlapX && overlapY) {
                 return true;
             }
         }

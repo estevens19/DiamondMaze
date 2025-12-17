@@ -59,7 +59,7 @@ public class GuardController extends GameController {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
-        lastMovement += time;
+        /*lastMovement += time;
 
         if (lastMovement > 800) {
             Random rand = new Random();
@@ -74,6 +74,6 @@ public class GuardController extends GameController {
                 if (actionNumber == 3) moveGuardLeft();
             }
             lastMovement = 0;
-        }
+        }*/
     }
 }
