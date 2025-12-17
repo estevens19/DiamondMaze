@@ -69,28 +69,28 @@ public class KnightController extends GameController {
             if (!getModel().isGuard(posUp))
                 moveKnightUp();
             else
-                game.setState(new MenuGameOverState((new MenuGameOver())));
+                game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
         }
         if (action == GUI.ACTION.RIGHT) {
             Position posRight = getModel().getKnight().getPosition_currentImage().getRight();
             if (!getModel().isGuard(posRight))
                 moveKnightRight();
             else
-                game.setState(new MenuGameOverState((new MenuGameOver())));
+                game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
         }
         if (action == GUI.ACTION.DOWN) {
             Position posDown = getModel().getKnight().getPosition_currentImage().getDown();
             if (!getModel().isGuard(posDown))
                 moveKnightDown();
             else
-                game.setState(new MenuGameOverState((new MenuGameOver())));
+                game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
         }
         if (action == GUI.ACTION.LEFT) {
             Position posLeft = getModel().getKnight().getPosition_currentImage().getLeft();
             if (!getModel().isGuard(posLeft))
                 moveKnightLeft();
             else
-                game.setState(new MenuGameOverState((new MenuGameOver())));
+                game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
         }
     }
 }
