@@ -3,17 +3,23 @@ package org.example;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Objects;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 import org.example.gui.GUI;
 import org.example.gui.LanternaGUI;
-import org.example.model.game.maze.Countdown;
 import org.example.model.menu.MenuMain;
+import org.example.sound.MenuMusicPlayer;
+import org.example.sound.MusicLoader;
 import org.example.state.MenuMainState;
 import org.example.state.State;
 
 public class Game {
     private final LanternaGUI gui;
     private State<?> state;
+    private MenuMusicPlayer menuMusicPlayer;
 
     public Game() throws FontFormatException, IOException, URISyntaxException {
         this.gui = new LanternaGUI(640, 360);
@@ -21,6 +27,19 @@ public class Game {
 
         if (state instanceof MenuMainState menuState) {
             menuState.getModel().updateSize(gui.getScreenWidth(), gui.getScreenHeight());
+        }
+
+        try {
+            Clip clip = new MusicLoader().loadSound(
+                    AudioSystem.getAudioInputStream(
+                            Objects.requireNonNull(getClass().getClassLoader().getResource("music/soundtrack.wav"))
+                    ),
+                    AudioSystem.getClip()
+            );
+            this.menuMusicPlayer = new MenuMusicPlayer(clip);
+        } catch (Exception e) {
+            System.out.println("Aviso: Não foi possível carregar a música de fundo.");
+            e.printStackTrace();
         }
     }
 
@@ -48,6 +67,10 @@ public class Game {
         final int FPS = 30;
         final int frameTime = 1000 / FPS;
 
+        if (this.menuMusicPlayer != null) {
+            this.menuMusicPlayer.start();
+        }
+
         long lastTime = System.currentTimeMillis();
         long lastResizeCheck = 0;
 
@@ -69,6 +92,10 @@ public class Game {
             if (sleep > 0) {
                 try { Thread.sleep(sleep); } catch (InterruptedException ignored) {}
             }
+        }
+
+        if (this.menuMusicPlayer != null) {
+            this.menuMusicPlayer.stop();
         }
 
         gui.close();
