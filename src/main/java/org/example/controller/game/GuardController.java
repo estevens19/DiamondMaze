@@ -16,7 +16,7 @@ public class GuardController extends GameController {
     }
 
     public void moveGuardLeft() {
-        Position posLeft = guard.getPosition_currentImage().getLeft();
+        Position posLeft = guard.getPosition_currentImage().getLeft(getModel().getGuardSpeed());
         if (!getModel().isWallGuard(posLeft)) {
             guard.setCurrentImage(guard.getImageLeft());
             moveGuard(posLeft);
@@ -26,7 +26,7 @@ public class GuardController extends GameController {
     }
 
     public void moveGuardRight() {
-        Position posRight = guard.getPosition_currentImage().getRight();
+        Position posRight = guard.getPosition_currentImage().getRight(getModel().getGuardSpeed());
         if (!getModel().isWallGuard(posRight)) {
             guard.setCurrentImage(guard.getImageRight());
             moveGuard(posRight);
@@ -36,7 +36,7 @@ public class GuardController extends GameController {
     }
 
     public void moveGuardUp() {
-        Position posUp = guard.getPosition_currentImage().getUp();
+        Position posUp = guard.getPosition_currentImage().getUp(getModel().getGuardSpeed());
         if (!getModel().isWallGuard(posUp)) {
             moveGuard(posUp);
             guard.setPosition_imageLeft(guard.getCurrentImage().getPosition());
@@ -45,7 +45,7 @@ public class GuardController extends GameController {
     }
 
     public void moveGuardDown() {
-        Position posDown = guard.getPosition_currentImage().getDown();
+        Position posDown = guard.getPosition_currentImage().getDown(getModel().getGuardSpeed());
         if (!getModel().isWallGuard(posDown)) {
             moveGuard(posDown);
             guard.setPosition_imageLeft(guard.getCurrentImage().getPosition());
@@ -61,7 +61,7 @@ public class GuardController extends GameController {
     public void step(Game game, GUI.ACTION action, long time) {
         lastMovement += time;
 
-        if (lastMovement > 800) {
+        if (lastMovement > getModel().getGuardInterval()) {
             Random rand = new Random();
 
             for (Guard guard : getModel().getGuards()) {

@@ -39,6 +39,7 @@ public class Level3MazeBuilder extends MazeBuilder {
         java.util.List<Wall> walls = new ArrayList<>();
         java.util.List<Diamond> diamonds = new ArrayList<>();
         List<Guard> guards = new ArrayList<>();
+        List<Potion> potions = new ArrayList<>();
         Knight knight = null;
         Key key = null;
         Door door = null;
@@ -53,6 +54,7 @@ public class Level3MazeBuilder extends MazeBuilder {
                     case 'd': diamonds.add(elementFactory.createDiamond(pos)); break;
                     case 'g': guards.add(characterFactory.createGuard(pos)); break;
                     case 'K': knight = characterFactory.createKnight(pos); break;
+                    case 'p': potions.add(elementFactory.createPotion(pos)); break;
                     case 'k': key = elementFactory.createKey(pos); break;
                     case 'D': door = elementFactory.createDoor(pos); break;
                 }
@@ -65,6 +67,7 @@ public class Level3MazeBuilder extends MazeBuilder {
         this.maze.knight = knight;
         this.maze.key = key;
         this.maze.door = door;
+        this.maze.potions = potions;
         this.maze.countdown = countdown;
         this.maze.countdown.start();
 

@@ -28,6 +28,7 @@ public class MazeViewer extends Viewer<Maze> {
 
         drawElement(gui, getModel().getDoor(), new DoorViewer());
         drawElements(gui, getModel().getDiamonds(), new DiamondViewer());
+        drawElements(gui, getModel().getPotions(), new PotionViewer());
         drawElement(gui, getModel().getKey(), new KeyViewer());
         drawCharacter(gui, getModel().getKnight(), new KnightViewer());
         drawCharacters(gui, getModel().getGuards(), new GuardViewer());
