@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Level2MazeBuilder extends MazeBuilder {
     private final MazeParser parser;
@@ -25,7 +26,7 @@ public class Level2MazeBuilder extends MazeBuilder {
     }
 
     @Override
-    protected Maze createMaze() {
+    protected Maze createMaze() throws IOException, URISyntaxException, FontFormatException {
         return new Maze() {};
     }
 
@@ -42,7 +43,7 @@ public class Level2MazeBuilder extends MazeBuilder {
         Knight knight = null;
         Key key = null;
         Door door = null;
-        Countdown countdown = new Countdown(25);
+        Countdown countdown = new Countdown(900);
 
         char[][] map = parser.getMaze();
         for (int y = 0; y < map.length; y++) {
@@ -58,6 +59,10 @@ public class Level2MazeBuilder extends MazeBuilder {
                 }
             }
         }
+
+        Random rand = new Random();
+        int val = rand.nextInt(diamonds.size()-1);
+        diamonds.get(val).setKey();
 
         this.maze.walls = walls;
         this.maze.diamonds = diamonds;

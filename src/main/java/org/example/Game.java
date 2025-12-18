@@ -28,7 +28,7 @@ public class Game {
         if (state instanceof MenuMainState menuState) {
             menuState.getModel().updateSize(gui.getScreenWidth(), gui.getScreenHeight());
         }
-
+/*
         try {
             Clip clip = new MusicLoader().loadSound(
                     AudioSystem.getAudioInputStream(
@@ -41,6 +41,7 @@ public class Game {
             System.out.println("Aviso: Não foi possível carregar a música de fundo.");
             e.printStackTrace();
         }
+ */
     }
 
     public void setState(State<?> state) {

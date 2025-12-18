@@ -5,12 +5,14 @@ import org.example.model.game.character.CharacterFactory;
 import org.example.model.game.character.Guard;
 import org.example.model.game.character.Knight;
 import org.example.model.game.element.*;
+import org.example.viewer.Image;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Level1MazeBuilder extends MazeBuilder {
     private final MazeParser parser;
@@ -25,7 +27,7 @@ public class Level1MazeBuilder extends MazeBuilder {
     }
 
     @Override
-    protected Maze createMaze() {
+    protected Maze createMaze() throws IOException, URISyntaxException, FontFormatException {
         return new Maze() {};
     }
 
@@ -40,9 +42,9 @@ public class Level1MazeBuilder extends MazeBuilder {
         List<Diamond> diamonds = new ArrayList<>();
         List<Guard> guards = new ArrayList<>();
         Knight knight = null;
-        Key key = null;
         Door door = null;
-        Countdown countdown = new Countdown(19);
+        Key key = null;
+        Countdown countdown = new Countdown(800);
 
         char[][] map = parser.getMaze();
         for (int y = 0; y < map.length; y++) {
@@ -59,12 +61,16 @@ public class Level1MazeBuilder extends MazeBuilder {
             }
         }
 
+        Random rand = new Random();
+        int val = rand.nextInt(diamonds.size()-1);
+        diamonds.get(val).setKey();
+
         this.maze.walls = walls;
         this.maze.diamonds = diamonds;
         this.maze.guards = guards;
         this.maze.knight = knight;
-        this.maze.key = key;
         this.maze.door = door;
+        this.maze.key = key;
         this.maze.countdown = countdown;
         this.maze.countdown.start();
     }

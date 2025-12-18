@@ -4,7 +4,11 @@ import org.example.model.Position;
 import org.example.model.game.character.Guard;
 import org.example.model.game.character.Knight;
 import org.example.model.game.element.*;
+import org.example.viewer.Image;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 public abstract class Maze {
@@ -15,8 +19,12 @@ public abstract class Maze {
     protected Key key;
     protected Door door;
     protected Countdown countdown;
+    protected boolean showKey = false;
+    private final Image background = new Image(new Position(0, 0), "images/Floor.png").resizeImage(640, 360);
 
     protected int curLevel;
+
+    protected Maze() throws IOException, URISyntaxException, FontFormatException {}
 
     public Knight getKnight() { return knight; }
     public List<Guard> getGuards() { return guards; }
@@ -27,6 +35,14 @@ public abstract class Maze {
     public Countdown getCountdown(){return countdown;}
 
     public int getCurLevel(){return curLevel;}
+
+    public boolean getShowKey() {
+        return showKey;
+    }
+
+    public void setShowKey(boolean showKey) {
+        this.showKey = showKey;
+    }
 
     public boolean isWallKnight(Position pos) {
         int knightWidth = 85;
@@ -64,6 +80,21 @@ public abstract class Maze {
         return false;
     }
 
+    public boolean isKnight(Position pos) {
+        int knightWidth = 85;
+        int knightHeight = 50;
+
+        Position knightPos = knight.getPosition_currentImage();
+
+        boolean overlapX = (pos.getX() < knightPos.getX() - 10) && (pos.getX() + knightWidth > knightPos.getX());
+        boolean overlapY = (pos.getY() < knightPos.getY() + 5) && (pos.getY() + knightHeight > knightPos.getY() + 5);
+
+        if (overlapX && overlapY) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean isGuard(Position pos) {
         int guardWidth = 55;
         int guardHeight = 40;
@@ -79,5 +110,60 @@ public abstract class Maze {
             }
         }
         return false;
+    }
+
+    public void removeDiamond(Diamond diamond) {
+        diamonds.remove(diamond);
+    }
+
+    public Diamond isDiamond(Position pos) {
+        int knightWidth = 85;
+        int knightHeight = 50;
+
+        for (Diamond diamond : diamonds) {
+            Position diamondPos = diamond.getPosition();
+
+            boolean overlapX = (pos.getX() < diamondPos.getX() - 30) && (pos.getX() + knightWidth > diamondPos.getX() + 25);
+            boolean overlapY = (pos.getY() < diamondPos.getY() - 5) && (pos.getY() + knightHeight > diamondPos.getY() + 10);
+
+            if (overlapX && overlapY) {
+                return diamond;
+            }
+        }
+        return null;
+    }
+
+    public boolean isKey(Position pos) {
+        int knightWidth = 85;
+        int knightHeight = 50;
+
+        Position keyPos = key.getPosition();
+
+        boolean overlapX = (pos.getX() < keyPos.getX() - 10) && (pos.getX() + knightWidth > keyPos.getX());
+        boolean overlapY = (pos.getY() < keyPos.getY() + 5) && (pos.getY() + knightHeight > keyPos.getY() + 5);
+
+        if (overlapX && overlapY) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isDoor(Position pos) {
+        int knightWidth = 85;
+        int knightHeight = 50;
+
+        Position doorPos = door.getPosition();
+
+        boolean overlapX = (pos.getX() < doorPos.getX() - 10) && (pos.getX() + knightWidth > doorPos.getX());
+        boolean overlapY = (pos.getY() < doorPos.getY() - 5) && (pos.getY() + knightHeight > doorPos.getY() + 5);
+
+        if (overlapX && overlapY) {
+            return true;
+        }
+        return false;
+    }
+
+    public Image getBackground() {
+        return background;
     }
 }

@@ -5,6 +5,12 @@ import org.example.model.game.character.Guard;
 import org.example.model.Position;
 import org.example.gui.GUI;
 import org.example.model.game.maze.Maze;
+import org.example.model.menu.MenuGameOver;
+import org.example.state.MenuGameOverState;
+
+import java.awt.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Random;
 
 public class GuardController extends GameController {
@@ -58,7 +64,7 @@ public class GuardController extends GameController {
     }
 
     @Override
-    public void step(Game game, GUI.ACTION action, long time) {
+    public void step(Game game, GUI.ACTION action, long time) throws IOException, URISyntaxException, FontFormatException {
         lastMovement += time;
 
         if (lastMovement > 800) {
@@ -68,10 +74,38 @@ public class GuardController extends GameController {
                 this.guard = guard;
                 int actionNumber = rand.nextInt(4);
 
-                if (actionNumber == 0) moveGuardUp();
-                if (actionNumber == 1) moveGuardRight();
-                if (actionNumber == 2) moveGuardDown();
-                if (actionNumber == 3) moveGuardLeft();
+                if (actionNumber == 0) {
+                    Position posUp = guard.getPosition_currentImage().getUp();
+
+                    if (!getModel().isKnight(posUp))
+                        moveGuardUp();
+                    else
+                        game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));moveGuardUp();
+                }
+                if (actionNumber == 1) {
+                    Position posRight = guard.getPosition_currentImage().getUp();
+
+                    if (!getModel().isKnight(posRight))
+                        moveGuardRight();
+                    else
+                        game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+                }
+                if (actionNumber == 2) {
+                    Position posDown = guard.getPosition_currentImage().getUp();
+
+                    if (!getModel().isKnight(posDown))
+                        moveGuardDown();
+                    else
+                        game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+                }
+                if (actionNumber == 3) {
+                    Position posLeft = guard.getPosition_currentImage().getUp();
+
+                    if (!getModel().isKnight(posLeft))
+                        moveGuardLeft();
+                    else
+                        game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+                }
             }
             lastMovement = 0;
         }

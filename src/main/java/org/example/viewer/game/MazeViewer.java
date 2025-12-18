@@ -26,14 +26,16 @@ public class MazeViewer extends Viewer<Maze> {
     public void draw(GUI gui) throws IOException, URISyntaxException, FontFormatException {
         gui.clear();
 
+        //gui.drawImage(getModel().getBackground());
         drawElement(gui, getModel().getDoor(), new DoorViewer());
         drawElements(gui, getModel().getDiamonds(), new DiamondViewer());
-        drawElement(gui, getModel().getKey(), new KeyViewer());
+        if (getModel().getShowKey()) {
+            drawElement(gui, getModel().getKey(), new KeyViewer());
+        }
         drawCharacter(gui, getModel().getKnight(), new KnightViewer());
         drawCharacters(gui, getModel().getGuards(), new GuardViewer());
         drawElements(gui, getModel().getWalls(), new WallViewer());
         drawCountdown(gui, getModel().getCountdown());
-
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {

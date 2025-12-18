@@ -13,8 +13,8 @@ public class Key extends Element {
     public Key(int x, int y) throws IOException, URISyntaxException, FontFormatException {
         super(new Image(new Position(x,y), "images/Key.png").resizeImage(25,25));
     }
-    public void collectKey(){
-        collected = true;
+    public void collectKey(boolean collected) {
+        this.collected = collected;
     }
     public boolean isCollected() {
         return collected;

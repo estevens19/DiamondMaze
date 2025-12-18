@@ -3,8 +3,12 @@ package org.example.controller.game;
 import org.example.Game;
 import org.example.gui.GUI;
 import org.example.model.Position;
+import org.example.model.game.element.Diamond;
+import org.example.model.game.maze.Level2MazeBuilder;
+import org.example.model.game.maze.Level3MazeBuilder;
 import org.example.model.game.maze.Maze;
 import org.example.model.menu.MenuGameOver;
+import org.example.state.GameState;
 import org.example.state.MenuGameOverState;
 
 import java.awt.*;
@@ -24,6 +28,19 @@ public class KnightController extends GameController {
             moveKnight(posLeft);
             getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
             getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
+
+            Diamond diamond = getModel().isDiamond(getModel().getKnight().getPosition_currentImage());
+            if (diamond != null) {
+                if (diamond.isKey()) {
+                    getModel().setShowKey(true);
+                }
+                getModel().removeDiamond(diamond);
+            }
+
+            if (getModel().isKey(getModel().getKnight().getPosition_currentImage())) {
+                getModel().getKey().collectKey(true);
+                getModel().setShowKey(false);
+            }
         }
     }
 
@@ -35,6 +52,19 @@ public class KnightController extends GameController {
             moveKnight(posRight);
             getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
             getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
+
+            Diamond diamond = getModel().isDiamond(getModel().getKnight().getPosition_currentImage());
+            if (diamond != null) {
+                if (diamond.isKey()) {
+                    getModel().setShowKey(true);
+                }
+                getModel().removeDiamond(diamond);
+            }
+
+            if (getModel().isKey(getModel().getKnight().getPosition_currentImage())) {
+                getModel().getKey().collectKey(true);
+                getModel().setShowKey(false);
+            }
         }
     }
 
@@ -45,6 +75,19 @@ public class KnightController extends GameController {
             moveKnight(posUp);
             getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
             getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
+
+            Diamond diamond = getModel().isDiamond(getModel().getKnight().getPosition_currentImage());
+            if (diamond != null) {
+                if (diamond.isKey()) {
+                    getModel().setShowKey(true);
+                }
+                getModel().removeDiamond(diamond);
+            }
+
+            if (getModel().isKey(getModel().getKnight().getPosition_currentImage())) {
+                getModel().getKey().collectKey(true);
+                getModel().setShowKey(false);
+            }
         }
     }
 
@@ -55,6 +98,19 @@ public class KnightController extends GameController {
             moveKnight(posDown);
             getModel().getKnight().setPosition_imageLeft(getModel().getKnight().getCurrentImage().getPosition());
             getModel().getKnight().setPosition_imageRight(getModel().getKnight().getCurrentImage().getPosition());
+
+            Diamond diamond = getModel().isDiamond(getModel().getKnight().getPosition_currentImage());
+            if (diamond != null) {
+                if (diamond.isKey()) {
+                    getModel().setShowKey(true);
+                }
+                getModel().removeDiamond(diamond);
+            }
+
+            if (getModel().isKey(getModel().getKnight().getPosition_currentImage())) {
+                getModel().getKey().collectKey(true);
+                getModel().setShowKey(false);
+            }
         }
     }
 
@@ -66,10 +122,19 @@ public class KnightController extends GameController {
     public void step(Game game, GUI.ACTION action, long time) throws IOException, URISyntaxException, FontFormatException {
         if (action == GUI.ACTION.UP) {
             Position posUp = getModel().getKnight().getPosition_currentImage().getUp();
+
             if (!getModel().isGuard(posUp))
                 moveKnightUp();
             else
                 game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+            if (getModel().isDoor(posUp) && getModel().getKey().isCollected()) {
+                if (getModel().getCurLevel() == 1)
+                    game.setState(new GameState(new Level2MazeBuilder().build()));
+                else if (getModel().getCurLevel() == 2)
+                    game.setState(new GameState(new Level3MazeBuilder().build()));
+                else
+                    game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+            }
         }
         if (action == GUI.ACTION.RIGHT) {
             Position posRight = getModel().getKnight().getPosition_currentImage().getRight();
@@ -77,6 +142,14 @@ public class KnightController extends GameController {
                 moveKnightRight();
             else
                 game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+            if (getModel().isDoor(posRight) && getModel().getKey().isCollected()) {
+                if (getModel().getCurLevel() == 1)
+                    game.setState(new GameState(new Level2MazeBuilder().build()));
+                else if (getModel().getCurLevel() == 2)
+                    game.setState(new GameState(new Level3MazeBuilder().build()));
+                else
+                    game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+            }
         }
         if (action == GUI.ACTION.DOWN) {
             Position posDown = getModel().getKnight().getPosition_currentImage().getDown();
@@ -84,6 +157,14 @@ public class KnightController extends GameController {
                 moveKnightDown();
             else
                 game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+            if (getModel().isDoor(posDown) && getModel().getKey().isCollected()) {
+                if (getModel().getCurLevel() == 1)
+                    game.setState(new GameState(new Level2MazeBuilder().build()));
+                else if (getModel().getCurLevel() == 2)
+                    game.setState(new GameState(new Level3MazeBuilder().build()));
+                else
+                    game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+            }
         }
         if (action == GUI.ACTION.LEFT) {
             Position posLeft = getModel().getKnight().getPosition_currentImage().getLeft();
@@ -91,6 +172,15 @@ public class KnightController extends GameController {
                 moveKnightLeft();
             else
                 game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+            if (getModel().isDoor(posLeft) && getModel().getKey().isCollected()) {
+
+                if (getModel().getCurLevel() == 1)
+                    game.setState(new GameState(new Level2MazeBuilder().build()));
+                else if (getModel().getCurLevel() == 2)
+                    game.setState(new GameState(new Level3MazeBuilder().build()));
+                else
+                    game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+            }
         }
     }
 }

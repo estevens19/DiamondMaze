@@ -3,6 +3,7 @@ package org.example.gui;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -83,10 +84,10 @@ public class LanternaGUI implements GUI {
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.EOF) return ACTION.QUIT;
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character && key.getCharacter() == 'q') return ACTION.QUIT;
 
-        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowUp) return ACTION.UP;
-        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowRight) return ACTION.RIGHT;
-        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowDown) return ACTION.DOWN;
-        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowLeft) return ACTION.LEFT;
+        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowUp || (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character && key.getCharacter() == 'w')) return ACTION.UP;
+        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowRight || (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character && key.getCharacter() == 'd')) return ACTION.RIGHT;
+        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowDown || (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character && key.getCharacter() == 's')) return ACTION.DOWN;
+        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowLeft || (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character && key.getCharacter() == 'a')) return ACTION.LEFT;
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character && key.getCharacter() == ' ') return ACTION.SELECT;
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Enter) return ACTION.SELECT;
         if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Escape) return ACTION.QUIT;
