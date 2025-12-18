@@ -37,7 +37,7 @@ public class KnightController extends GameController {
                 getModel().removeDiamond(diamond);
             }
 
-            if (getModel().isKey(getModel().getKnight().getPosition_currentImage())) {
+            if (getModel().isKey(getModel().getKnight().getPosition_currentImage()) && getModel().getShowKey()) {
                 getModel().getKey().collectKey(true);
                 getModel().setShowKey(false);
             }
@@ -61,7 +61,7 @@ public class KnightController extends GameController {
                 getModel().removeDiamond(diamond);
             }
 
-            if (getModel().isKey(getModel().getKnight().getPosition_currentImage())) {
+            if (getModel().isKey(getModel().getKnight().getPosition_currentImage()) && getModel().getShowKey()) {
                 getModel().getKey().collectKey(true);
                 getModel().setShowKey(false);
             }
@@ -84,7 +84,7 @@ public class KnightController extends GameController {
                 getModel().removeDiamond(diamond);
             }
 
-            if (getModel().isKey(getModel().getKnight().getPosition_currentImage())) {
+            if (getModel().isKey(getModel().getKnight().getPosition_currentImage()) && getModel().getShowKey()) {
                 getModel().getKey().collectKey(true);
                 getModel().setShowKey(false);
             }
@@ -107,7 +107,7 @@ public class KnightController extends GameController {
                 getModel().removeDiamond(diamond);
             }
 
-            if (getModel().isKey(getModel().getKnight().getPosition_currentImage())) {
+            if (getModel().isKey(getModel().getKnight().getPosition_currentImage()) && getModel().getShowKey()) {
                 getModel().getKey().collectKey(true);
                 getModel().setShowKey(false);
             }

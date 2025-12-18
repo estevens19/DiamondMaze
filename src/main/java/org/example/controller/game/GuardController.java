@@ -82,24 +82,24 @@ public class GuardController extends GameController {
                     else
                         game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));moveGuardUp();
                 }
-                if (actionNumber == 1) {
-                    Position posRight = guard.getPosition_currentImage().getUp();
+                else if (actionNumber == 1) {
+                    Position posRight = guard.getPosition_currentImage().getRight();
 
                     if (!getModel().isKnight(posRight))
                         moveGuardRight();
                     else
                         game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
                 }
-                if (actionNumber == 2) {
-                    Position posDown = guard.getPosition_currentImage().getUp();
+                else if (actionNumber == 2) {
+                    Position posDown = guard.getPosition_currentImage().getDown();
 
                     if (!getModel().isKnight(posDown))
                         moveGuardDown();
                     else
                         game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
                 }
-                if (actionNumber == 3) {
-                    Position posLeft = guard.getPosition_currentImage().getUp();
+                else if (actionNumber == 3) {
+                    Position posLeft = guard.getPosition_currentImage().getLeft();
 
                     if (!getModel().isKnight(posLeft))
                         moveGuardLeft();

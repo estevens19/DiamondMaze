@@ -19,7 +19,7 @@ public abstract class Maze {
     protected Key key;
     protected Door door;
     protected Countdown countdown;
-    protected boolean showKey = false;
+    protected boolean showKey = true;
     private final Image background = new Image(new Position(0, 0), "images/Floor.png").resizeImage(640, 360);
 
     protected int curLevel;
@@ -81,13 +81,12 @@ public abstract class Maze {
     }
 
     public boolean isKnight(Position pos) {
-        int knightWidth = 85;
-        int knightHeight = 50;
-
         Position knightPos = knight.getPosition_currentImage();
+        int knightWidth = 115, knightHeight = 50;
+        int guardWidth = 55, guardHeight = 40;
 
-        boolean overlapX = (pos.getX() < knightPos.getX() - 10) && (pos.getX() + knightWidth > knightPos.getX());
-        boolean overlapY = (pos.getY() < knightPos.getY() + 5) && (pos.getY() + knightHeight > knightPos.getY() + 5);
+        boolean overlapX = (pos.getX() < knightPos.getX() + knightWidth - guardWidth - 15) && (pos.getX() + guardWidth > knightPos.getX() + guardWidth + 5);
+        boolean overlapY = (pos.getY() < knightPos.getY() + knightHeight - 10) && (pos.getY() + guardHeight > knightPos.getY() + 35);
 
         if (overlapX && overlapY) {
             return true;
@@ -139,8 +138,8 @@ public abstract class Maze {
 
         Position keyPos = key.getPosition();
 
-        boolean overlapX = (pos.getX() < keyPos.getX() - 10) && (pos.getX() + knightWidth > keyPos.getX());
-        boolean overlapY = (pos.getY() < keyPos.getY() + 5) && (pos.getY() + knightHeight > keyPos.getY() + 5);
+        boolean overlapX = (pos.getX() < keyPos.getX() - 20) && (pos.getX() + knightWidth > keyPos.getX() + 20);
+        boolean overlapY = (pos.getY() < keyPos.getY() - 5) && (pos.getY() + knightHeight > keyPos.getY() + 10);
 
         if (overlapX && overlapY) {
             return true;
@@ -154,8 +153,8 @@ public abstract class Maze {
 
         Position doorPos = door.getPosition();
 
-        boolean overlapX = (pos.getX() < doorPos.getX() - 10) && (pos.getX() + knightWidth > doorPos.getX());
-        boolean overlapY = (pos.getY() < doorPos.getY() - 5) && (pos.getY() + knightHeight > doorPos.getY() + 5);
+        boolean overlapX = (pos.getX() < doorPos.getX() - 30) && (pos.getX() + knightWidth > doorPos.getX() + 40);
+        boolean overlapY = (pos.getY() < doorPos.getY()) && (pos.getY() + knightHeight > doorPos.getY() + 30);
 
         if (overlapX && overlapY) {
             return true;

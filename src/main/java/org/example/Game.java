@@ -38,7 +38,6 @@ public class Game {
             );
             this.menuMusicPlayer = new MenuMusicPlayer(clip);
         } catch (Exception e) {
-            System.out.println("Aviso: Não foi possível carregar a música de fundo.");
             e.printStackTrace();
         }
  */

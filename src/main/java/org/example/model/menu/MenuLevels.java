@@ -48,7 +48,6 @@ public class MenuLevels extends Menu {
     }
 
     private void refreshButtons() throws IOException, URISyntaxException, FontFormatException {
-
         Position l1Pos = (level1 != null) ? level1.getPosition() : new Position(0, 0);
         Position l2Pos = (level2 != null) ? level2.getPosition() : new Position(0, 0);
         Position l3Pos = (level3 != null) ? level3.getPosition() : new Position(0, 0);
