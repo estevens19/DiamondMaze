@@ -45,7 +45,7 @@ public class Level1MazeBuilder extends MazeBuilder {
         Knight knight = null;
         Door door = null;
         Key key = null;
-        Countdown countdown = new Countdown(800);
+        Countdown countdown = new Countdown(120);
 
         char[][] map = parser.getMaze();
         for (int y = 0; y < map.length; y++) {
