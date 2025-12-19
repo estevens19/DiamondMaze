@@ -41,6 +41,7 @@ public class Level1MazeBuilder extends MazeBuilder {
         List<Wall> walls = new ArrayList<>();
         List<Diamond> diamonds = new ArrayList<>();
         List<Guard> guards = new ArrayList<>();
+        List<Potion> potions = new ArrayList<>();
         Knight knight = null;
         Door door = null;
         Key key = null;
@@ -57,6 +58,7 @@ public class Level1MazeBuilder extends MazeBuilder {
                     case 'K': knight = characterFactory.createKnight(pos); break;
                     case 'k': key = elementFactory.createKey(pos); break;
                     case 'D': door = elementFactory.createDoor(pos); break;
+                    case 'p': potions.add(elementFactory.createPotion(pos)); break;
                 }
             }
         }
@@ -69,8 +71,9 @@ public class Level1MazeBuilder extends MazeBuilder {
         this.maze.diamonds = diamonds;
         this.maze.guards = guards;
         this.maze.knight = knight;
-        this.maze.door = door;
+        this.maze.potions = potions;
         this.maze.key = key;
+        this.maze.door = door;
         this.maze.countdown = countdown;
         this.maze.countdown.start();
     }

@@ -33,4 +33,9 @@ public class LevelElementFactory implements ElementFactory {
     public Door createDoor(Position position) throws IOException, URISyntaxException, FontFormatException {
         return new Door(position.getX(), position.getY());
     }
+
+    @Override
+    public Potion createPotion(Position position) throws IOException, URISyntaxException, FontFormatException {
+        return new Potion(position.getX(), position.getY());
+    }
 }

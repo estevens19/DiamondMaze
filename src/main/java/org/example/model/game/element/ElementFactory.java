@@ -11,4 +11,5 @@ public interface ElementFactory {
     Diamond createDiamond(Position position) throws IOException, URISyntaxException, FontFormatException;
     Key createKey(Position position) throws IOException, URISyntaxException, FontFormatException;
     Door createDoor(Position position) throws IOException, URISyntaxException, FontFormatException;
+    Potion createPotion(Position position) throws IOException, URISyntaxException, FontFormatException;
 }
