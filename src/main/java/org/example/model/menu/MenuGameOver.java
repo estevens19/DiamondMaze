@@ -26,10 +26,6 @@ public class MenuGameOver extends Menu {
 
     private final int curLevel;
 
-    private MenuMain menuMain;
-    //private MazeLevel1 mazeLevel1;
-    //private boolean inLevel1 = false;
-
     public MenuGameOver(int curLevel) throws IOException, URISyntaxException, FontFormatException {
         this.curLevel = curLevel;
 
@@ -47,7 +43,6 @@ public class MenuGameOver extends Menu {
     }
 
     private void refreshButtons() {
-
         Position restartPos = (restart != null) ? restart.getPosition() : new Position(0, 0);
         Position menuPos = (menu != null) ? menu.getPosition() : new Position(0, 0);
 
@@ -76,8 +71,6 @@ public class MenuGameOver extends Menu {
         restart.setPosition(new Position(centerX - spacing - (buttonWidth / 2), centerY));
         menu.setPosition(new Position(centerX + spacing - (buttonWidth / 2), centerY));
         title.setPosition(new Position(centerX - title.getWidth() / 2 + 14, -40));
-
-
     }
 
     public int getCurLevel() { return curLevel; }
