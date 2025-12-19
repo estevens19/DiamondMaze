@@ -162,7 +162,7 @@ public abstract class Maze {
 
     public void speedGuard() {
         new Thread(() -> {
-            guardInterval = 500;
+            guardInterval = 300;
             try {
                 Thread.sleep(10000);
             } catch (InterruptedException e) {

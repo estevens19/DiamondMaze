@@ -129,6 +129,10 @@ public class MenuPassed extends Menu {
                     star2 = starShine2;
                     star3 = starDark3;
                 }
+                else{
+                    star2 = starDark2;
+                    star3 = starDark3;
+                }
                 break;
             case 3:
                 if(score.getPoints() >= 25000){
@@ -137,6 +141,10 @@ public class MenuPassed extends Menu {
                 }
                 else if(score.getPoints() >= 15000){
                     star2 = starShine2;
+                    star3 = starDark3;
+                }
+                else{
+                    star2 = starDark2;
                     star3 = starDark3;
                 }
                 break;
