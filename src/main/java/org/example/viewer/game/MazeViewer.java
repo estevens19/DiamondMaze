@@ -34,8 +34,12 @@ public class MazeViewer extends Viewer<Maze> {
             drawElement(gui, getModel().getKey(), new KeyViewer());
         }
         drawElements(gui, getModel().getPotions(), new PotionViewer());
-        drawCharacter(gui, getModel().getKnight(), new KnightViewer());
-        drawCharacters(gui, getModel().getGuards(), new GuardViewer());
+        if (getModel().getShowKnight()) {
+            drawCharacter(gui, getModel().getKnight(), new KnightViewer());
+        }
+        if(getModel().getShowGuards()) {
+            drawCharacters(gui, getModel().getGuards(), new GuardViewer());
+        }
         drawElements(gui, getModel().getWalls(), new WallViewer());
         drawCountdown(gui, getModel().getCountdown());
         drawScore(gui, getModel().getScore());

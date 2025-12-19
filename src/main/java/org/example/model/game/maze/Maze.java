@@ -30,6 +30,8 @@ public abstract class Maze {
     protected int guardSpeed = 5;
     protected long guardInterval = 800;
 
+    protected boolean showKnight = true;
+    protected boolean showGuards = true;
 
     protected Maze() throws IOException, URISyntaxException, FontFormatException {}
 
@@ -44,6 +46,8 @@ public abstract class Maze {
     }
     public Countdown getCountdown(){return countdown;}
     public Score getScore() {return score;}
+    public boolean getShowKnight(){return showKnight;}
+    public boolean getShowGuards() {return showGuards;}
 
     public int getCurLevel(){return curLevel;}
 
@@ -186,6 +190,30 @@ public abstract class Maze {
         }).start();
     }
 
+    public void hideKnight() {
+        new Thread(() -> {
+            showKnight = false;
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            showKnight = true;
+        }).start();
+    }
+
+    public void hideGuards() {
+        new Thread(() -> {
+            showGuards = false;
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            showGuards = true;
+        }).start();
+    }
+
     public void setPotionEffect(Potion potion){
         switch (potion.getEffect()){
             case 0:
@@ -202,6 +230,13 @@ public abstract class Maze {
                 break;
             case 4:
                 countdown.addTime(-10);
+                break;
+            case 5:
+                hideKnight();
+                break;
+            case 6:
+                hideGuards();
+                break;
         }
     }
 
@@ -271,6 +306,10 @@ public abstract class Maze {
             return true;
         }
         return false;
+    }
+
+    public void addScorePoints(int points){
+        score.addPoints(points);
     }
 
     public Image getBackground() {

@@ -3,10 +3,7 @@ package org.example.model.game.maze;
 import org.example.model.Position;
 import org.example.viewer.Image;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -16,7 +13,7 @@ public class Score {
 
     public Score() {
         this.points = 0;
-        this.position = new Position(400,20);
+        this.position = new Position(460,20);
     }
 
     public void addPoints(int points) {

@@ -85,16 +85,26 @@ public class Image {
         Font baseFont = LanternaGUI.getFont();
         Font font = baseFont.deriveFont(Font.PLAIN, (float)fontSize);
 
+        String[] lines = text.split("\n");
+
         BufferedImage imgTemp = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2dTemp = imgTemp.createGraphics();
-
         g2dTemp.setFont(font);
         FontMetrics fm = g2dTemp.getFontMetrics();
-        int width = fm.stringWidth(text);
-        int height = fm.getHeight();
+
+        int maxWidth = 0;
+        for (String line : lines) {
+            int w = fm.stringWidth(line);
+            if (w > maxWidth) maxWidth = w;
+        }
+
+        int lineHeight = fm.getHeight();
+        int totalHeight = lineHeight * lines.length;
         g2dTemp.dispose();
 
-        BufferedImage img = new BufferedImage(width + 5, height + 5, BufferedImage.TYPE_INT_ARGB);
+        if (maxWidth == 0) maxWidth = 1;
+        if (totalHeight == 0) totalHeight = 1;
+        BufferedImage img = new BufferedImage(maxWidth + 5, totalHeight + 5, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = img.createGraphics();
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
@@ -104,7 +114,14 @@ public class Image {
         g2d.setFont(font);
         g2d.setColor(Color.WHITE);
 
-        g2d.drawString(text, 0, fm.getAscent());
+        int x = 0;
+        int y = fm.getAscent();
+
+        for (String line : lines) {
+            g2d.drawString(line, x, y);
+            y += lineHeight;
+        }
+
         g2d.dispose();
 
         return new Image(position, img);

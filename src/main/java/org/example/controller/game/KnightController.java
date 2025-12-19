@@ -15,6 +15,7 @@ import org.example.state.MenuGameOverState;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Random;
 
 public class KnightController extends GameController {
 
@@ -36,6 +37,7 @@ public class KnightController extends GameController {
                 if (diamond.isKey()) {
                     getModel().setShowKey(true);
                 }
+                getModel().addScorePoints(diamond.getPoints());
                 getModel().removeDiamond(diamond);
             }
 
@@ -66,6 +68,7 @@ public class KnightController extends GameController {
                 if (diamond.isKey()) {
                     getModel().setShowKey(true);
                 }
+                getModel().addScorePoints(diamond.getPoints());
                 getModel().removeDiamond(diamond);
             }
 
@@ -95,6 +98,7 @@ public class KnightController extends GameController {
                 if (diamond.isKey()) {
                     getModel().setShowKey(true);
                 }
+                getModel().addScorePoints(diamond.getPoints());
                 getModel().removeDiamond(diamond);
             }
 
@@ -123,6 +127,7 @@ public class KnightController extends GameController {
                 if (diamond.isKey()) {
                     getModel().setShowKey(true);
                 }
+                getModel().addScorePoints(diamond.getPoints());
                 getModel().removeDiamond(diamond);
             }
 
