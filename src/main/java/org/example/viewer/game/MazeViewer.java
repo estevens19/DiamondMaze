@@ -6,7 +6,6 @@ import org.example.model.game.character.Character;
 import org.example.model.game.element.Element;
 import org.example.model.game.maze.Countdown;
 import org.example.model.game.maze.Maze;
-import org.example.model.game.maze.Score;
 import org.example.viewer.Viewer;
 import org.example.viewer.game.character.CharacterViewer;
 import org.example.viewer.game.character.GuardViewer;
@@ -33,13 +32,10 @@ public class MazeViewer extends Viewer<Maze> {
         if (getModel().getShowKey()) {
             drawElement(gui, getModel().getKey(), new KeyViewer());
         }
-        drawElements(gui, getModel().getPotions(), new PotionViewer());
         drawCharacter(gui, getModel().getKnight(), new KnightViewer());
         drawCharacters(gui, getModel().getGuards(), new GuardViewer());
         drawElements(gui, getModel().getWalls(), new WallViewer());
         drawCountdown(gui, getModel().getCountdown());
-        drawScore(gui, getModel().getScore());
-
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
@@ -62,9 +58,5 @@ public class MazeViewer extends Viewer<Maze> {
 
     private void drawCountdown(GUI gui, Countdown countdown) throws IOException, URISyntaxException, FontFormatException {
         gui.drawImage(countdown.timeImage());
-    }
-
-    private void drawScore(GUI gui, Score score) throws IOException, URISyntaxException, FontFormatException {
-        gui.drawImage(score.scoreImage());
     }
 }
