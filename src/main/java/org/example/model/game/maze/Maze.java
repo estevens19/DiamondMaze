@@ -22,6 +22,7 @@ public abstract class Maze {
     protected Countdown countdown;
     protected boolean showKey = false;
     private final Image background = new Image(new Position(0, 0), "images/Floor.png").resizeImage(640, 360);
+    protected Score score;
 
     protected int curLevel;
 
@@ -42,6 +43,7 @@ public abstract class Maze {
         return potions;
     }
     public Countdown getCountdown(){return countdown;}
+    public Score getScore() {return score;}
 
     public int getCurLevel(){return curLevel;}
 
