@@ -5,17 +5,15 @@ import org.example.gui.GUI;
 import org.example.model.Position;
 import org.example.model.game.element.Diamond;
 import org.example.model.game.element.Potion;
-import org.example.model.game.maze.Level2MazeBuilder;
-import org.example.model.game.maze.Level3MazeBuilder;
 import org.example.model.game.maze.Maze;
 import org.example.model.menu.MenuGameOver;
-import org.example.state.GameState;
+import org.example.model.menu.MenuPassed;
 import org.example.state.MenuGameOverState;
+import org.example.state.MenuPassedState;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Random;
 
 public class KnightController extends GameController {
     public KnightController(Maze maze) {
@@ -156,11 +154,11 @@ public class KnightController extends GameController {
                 game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
             if (getModel().isDoor(posUp) && getModel().getDoor().isOpen()) {
                 if (getModel().getCurLevel() == 1)
-                    game.setState(new GameState(new Level2MazeBuilder().build()));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
                 else if (getModel().getCurLevel() == 2)
-                    game.setState(new GameState(new Level3MazeBuilder().build()));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
                 else
-                    game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
             }
         }
         if (action == GUI.ACTION.RIGHT) {
@@ -171,11 +169,11 @@ public class KnightController extends GameController {
                 game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
             if (getModel().isDoor(posRight) && getModel().getDoor().isOpen()) {
                 if (getModel().getCurLevel() == 1)
-                    game.setState(new GameState(new Level2MazeBuilder().build()));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
                 else if (getModel().getCurLevel() == 2)
-                    game.setState(new GameState(new Level3MazeBuilder().build()));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
                 else
-                    game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
             }
         }
         if (action == GUI.ACTION.DOWN) {
@@ -186,11 +184,11 @@ public class KnightController extends GameController {
                 game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
             if (getModel().isDoor(posDown) && getModel().getDoor().isOpen()) {
                 if (getModel().getCurLevel() == 1)
-                    game.setState(new GameState(new Level2MazeBuilder().build()));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
                 else if (getModel().getCurLevel() == 2)
-                    game.setState(new GameState(new Level3MazeBuilder().build()));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
                 else
-                    game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
             }
         }
         if (action == GUI.ACTION.LEFT) {
@@ -200,13 +198,12 @@ public class KnightController extends GameController {
             else
                 game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
             if (getModel().isDoor(posLeft) && getModel().getDoor().isOpen()) {
-
                 if (getModel().getCurLevel() == 1)
-                    game.setState(new GameState(new Level2MazeBuilder().build()));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
                 else if (getModel().getCurLevel() == 2)
-                    game.setState(new GameState(new Level3MazeBuilder().build()));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
                 else
-                    game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
             }
         }
     }
