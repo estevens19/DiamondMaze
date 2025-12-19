@@ -46,8 +46,6 @@ public abstract class Maze {
     }
     public Countdown getCountdown(){return countdown;}
     public Score getScore() {return score;}
-    public boolean getShowKnight(){return showKnight;}
-    public boolean getShowGuards() {return showGuards;}
 
     public int getCurLevel(){return curLevel;}
 

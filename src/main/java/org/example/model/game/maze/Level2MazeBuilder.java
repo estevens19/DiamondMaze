@@ -40,12 +40,10 @@ public class Level2MazeBuilder extends MazeBuilder {
         java.util.List<Wall> walls = new ArrayList<>();
         java.util.List<Diamond> diamonds = new ArrayList<>();
         List<Guard> guards = new ArrayList<>();
-        List<Potion> potions = new ArrayList<>();
         Knight knight = null;
         Key key = null;
         Door door = null;
         Countdown countdown = new Countdown(900);
-        Score score = new Score();
 
         char[][] map = parser.getMaze();
         for (int y = 0; y < map.length; y++) {
@@ -58,7 +56,6 @@ public class Level2MazeBuilder extends MazeBuilder {
                     case 'K': knight = characterFactory.createKnight(pos); break;
                     case 'k': key = elementFactory.createKey(pos); break;
                     case 'D': door = elementFactory.createDoor(pos); break;
-                    case 'p': potions.add(elementFactory.createPotion(pos)); break;
                 }
             }
         }
@@ -71,13 +68,10 @@ public class Level2MazeBuilder extends MazeBuilder {
         this.maze.diamonds = diamonds;
         this.maze.guards = guards;
         this.maze.knight = knight;
-        this.maze.potions = potions;
         this.maze.key = key;
         this.maze.door = door;
         this.maze.countdown = countdown;
         this.maze.countdown.start();
-
-        this.maze.score = score;
 
     }
 }

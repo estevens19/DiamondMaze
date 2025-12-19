@@ -11,17 +11,17 @@ public class Position {
         this.y = y;
     }
 
-    public Position getRight(int speed) {
-        return new Position(x+speed,y);
+    public Position getRight() {
+        return new Position(x+5,y);
     }
-    public Position getLeft(int speed) {
-        return new Position(x-speed,y);
+    public Position getLeft() {
+        return new Position(x-5,y);
     }
-    public Position getUp(int speed) {
-        return new Position(x,y-speed);
+    public Position getUp() {
+        return new Position(x,y-5);
     }
-    public Position getDown(int speed) {
-        return new Position(x,y+speed);
+    public Position getDown() {
+        return new Position(x,y+5);
     }
 
     public int getX() {
