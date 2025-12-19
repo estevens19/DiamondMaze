@@ -16,6 +16,7 @@ public abstract class Maze {
     protected Key key;
     protected Door door;
     protected Countdown countdown;
+    protected Score score;
 
     protected int curLevel;
 
@@ -33,6 +34,7 @@ public abstract class Maze {
         return potions;
     }
     public Countdown getCountdown(){return countdown;}
+    public Score getScore() {return score;}
 
     public int getCurLevel(){return curLevel;}
 

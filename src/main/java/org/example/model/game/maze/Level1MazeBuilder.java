@@ -44,6 +44,7 @@ public class Level1MazeBuilder extends MazeBuilder {
         Key key = null;
         Door door = null;
         Countdown countdown = new Countdown(19);
+        Score score = new Score();
 
         char[][] map = parser.getMaze();
         for (int y = 0; y < map.length; y++) {
@@ -68,7 +69,10 @@ public class Level1MazeBuilder extends MazeBuilder {
         this.maze.potions = potions;
         this.maze.key = key;
         this.maze.door = door;
+
         this.maze.countdown = countdown;
         this.maze.countdown.start();
+
+        this.maze.score = score;
     }
 }
