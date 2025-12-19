@@ -15,7 +15,6 @@ public class Potion extends Element {
         super(new Image(new Position(x,y), "images/Potion.png").resizeImage(20,20));
         Random rand = new Random();
         effect = rand.nextInt(8);
-        effect = 7;
     }
 
     public int getEffect() {

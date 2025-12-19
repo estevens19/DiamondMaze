@@ -4,6 +4,7 @@ import org.example.Game;
 import org.example.gui.GUI;
 import org.example.model.Position;
 import org.example.model.game.element.Diamond;
+import org.example.model.game.element.Potion;
 import org.example.model.game.maze.Level2MazeBuilder;
 import org.example.model.game.maze.Level3MazeBuilder;
 import org.example.model.game.maze.Maze;
@@ -43,6 +44,11 @@ public class KnightController extends GameController {
                 getModel().getDoor().openDoor(true);
                 getModel().setShowKey(false);
             }
+            Potion potion = getModel().isPotion(getModel().getKnight().getCurrentImage().getPosition());
+            if (potion != null){
+                getModel().setPotionEffect(potion);
+                getModel().removePotion(potion);
+            }
         }
     }
 
@@ -68,6 +74,12 @@ public class KnightController extends GameController {
                 getModel().getDoor().openDoor(true);
                 getModel().setShowKey(false);
             }
+
+            Potion potion = getModel().isPotion(getModel().getKnight().getCurrentImage().getPosition());
+            if (potion != null){
+                getModel().setPotionEffect(potion);
+                getModel().removePotion(potion);
+            }
         }
     }
 
@@ -92,6 +104,11 @@ public class KnightController extends GameController {
                 getModel().getDoor().openDoor(true);
                 getModel().setShowKey(false);
             }
+            Potion potion = getModel().isPotion(getModel().getKnight().getCurrentImage().getPosition());
+            if (potion != null){
+                getModel().setPotionEffect(potion);
+                getModel().removePotion(potion);
+            }
         }
     }
 
@@ -115,6 +132,11 @@ public class KnightController extends GameController {
             if (getModel().isKey(getModel().getKnight().getPosition_currentImage()) && getModel().getShowKey()) {
                 getModel().getDoor().openDoor(true);
                 getModel().setShowKey(false);
+            }
+            Potion potion = getModel().isPotion(getModel().getKnight().getCurrentImage().getPosition());
+            if (potion != null){
+                getModel().setPotionEffect(potion);
+                getModel().removePotion(potion);
             }
         }
     }
