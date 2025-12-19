@@ -75,7 +75,7 @@ public class GuardController extends GameController {
                 int actionNumber = rand.nextInt(4);
 
                 if (actionNumber == 0) {
-                    Position posUp = guard.getPosition_currentImage().getUp();
+                    Position posUp = guard.getPosition_currentImage().getUp(getModel().getGuardSpeed());
 
                     if (!getModel().isKnight(posUp))
                         moveGuardUp();
@@ -83,7 +83,7 @@ public class GuardController extends GameController {
                         game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));moveGuardUp();
                 }
                 else if (actionNumber == 1) {
-                    Position posRight = guard.getPosition_currentImage().getRight();
+                    Position posRight = guard.getPosition_currentImage().getRight(getModel().getGuardSpeed());
 
                     if (!getModel().isKnight(posRight))
                         moveGuardRight();
@@ -91,7 +91,7 @@ public class GuardController extends GameController {
                         game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
                 }
                 else if (actionNumber == 2) {
-                    Position posDown = guard.getPosition_currentImage().getDown();
+                    Position posDown = guard.getPosition_currentImage().getDown(getModel().getGuardSpeed());
 
                     if (!getModel().isKnight(posDown))
                         moveGuardDown();
@@ -99,7 +99,7 @@ public class GuardController extends GameController {
                         game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
                 }
                 else if (actionNumber == 3) {
-                    Position posLeft = guard.getPosition_currentImage().getLeft();
+                    Position posLeft = guard.getPosition_currentImage().getLeft(getModel().getGuardSpeed());
 
                     if (!getModel().isKnight(posLeft))
                         moveGuardLeft();

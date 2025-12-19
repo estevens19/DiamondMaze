@@ -20,7 +20,7 @@ public abstract class Maze {
     protected Key key;
     protected Door door;
     protected Countdown countdown;
-    protected boolean showKey = true;
+    protected boolean showKey = false;
     private final Image background = new Image(new Position(0, 0), "images/Floor.png").resizeImage(640, 360);
 
     protected int curLevel;
@@ -174,7 +174,7 @@ public abstract class Maze {
 
     public void slowGuard() {
         new Thread(() -> {
-            guardSpeed = 2;
+            guardSpeed = 1;
             try {
                 Thread.sleep(10000);
             } catch (InterruptedException e) {
@@ -198,6 +198,8 @@ public abstract class Maze {
             case 3:
                 slowKnight();
                 break;
+            case 4:
+                countdown.addTime(-10);
         }
     }
 
