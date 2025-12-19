@@ -21,7 +21,7 @@ public class KnightController extends GameController {
     }
 
     public void moveKnightLeft() {
-        Position posLeft = getModel().getKnight().getPosition_currentImage().getLeft();
+        Position posLeft = getModel().getKnight().getPosition_currentImage().getLeft(getModel().getKnightSpeed());
 
         if (!getModel().isWallKnight(posLeft)) {
             getModel().getKnight().setCurrentImage(getModel().getKnight().getImageLeft());
@@ -51,7 +51,7 @@ public class KnightController extends GameController {
     }
 
     public void moveKnightRight() {
-        Position posRight = getModel().getKnight().getPosition_currentImage().getRight();
+        Position posRight = getModel().getKnight().getPosition_currentImage().getRight(getModel().getKnightSpeed());
 
         if (!getModel().isWallKnight(posRight)) {
             getModel().getKnight().setCurrentImage(getModel().getKnight().getImageRight());
@@ -82,7 +82,7 @@ public class KnightController extends GameController {
     }
 
     public void moveKnightUp() {
-        Position posUp = getModel().getKnight().getPosition_currentImage().getUp();
+        Position posUp = getModel().getKnight().getPosition_currentImage().getUp(getModel().getKnightSpeed());
 
         if (!getModel().isWallKnight(posUp)) {
             moveKnight(posUp);
@@ -111,7 +111,7 @@ public class KnightController extends GameController {
     }
 
     public void moveKnightDown() {
-        Position posDown = getModel().getKnight().getPosition_currentImage().getDown();
+        Position posDown = getModel().getKnight().getPosition_currentImage().getDown(getModel().getKnightSpeed());
 
         if (!getModel().isWallKnight(posDown)) {
             moveKnight(posDown);
@@ -146,7 +146,7 @@ public class KnightController extends GameController {
     @Override
     public void step(Game game, GUI.ACTION action, long time) throws IOException, URISyntaxException, FontFormatException {
         if (action == GUI.ACTION.UP) {
-            Position posUp = getModel().getKnight().getPosition_currentImage().getUp();
+            Position posUp = getModel().getKnight().getPosition_currentImage().getUp(getModel().getKnightSpeed());
 
             if (!getModel().isGuard(posUp))
                 moveKnightUp();
@@ -162,7 +162,7 @@ public class KnightController extends GameController {
             }
         }
         if (action == GUI.ACTION.RIGHT) {
-            Position posRight = getModel().getKnight().getPosition_currentImage().getRight();
+            Position posRight = getModel().getKnight().getPosition_currentImage().getRight(getModel().getKnightSpeed());
             if (!getModel().isGuard(posRight))
                 moveKnightRight();
             else
@@ -177,7 +177,7 @@ public class KnightController extends GameController {
             }
         }
         if (action == GUI.ACTION.DOWN) {
-            Position posDown = getModel().getKnight().getPosition_currentImage().getDown();
+            Position posDown = getModel().getKnight().getPosition_currentImage().getDown(getModel().getKnightSpeed());
             if (!getModel().isGuard(posDown))
                 moveKnightDown();
             else
@@ -192,7 +192,7 @@ public class KnightController extends GameController {
             }
         }
         if (action == GUI.ACTION.LEFT) {
-            Position posLeft = getModel().getKnight().getPosition_currentImage().getLeft();
+            Position posLeft = getModel().getKnight().getPosition_currentImage().getLeft(getModel().getKnightSpeed());
             if (!getModel().isGuard(posLeft))
                 moveKnightLeft();
             else
