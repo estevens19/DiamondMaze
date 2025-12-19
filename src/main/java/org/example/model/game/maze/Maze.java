@@ -146,8 +146,8 @@ public abstract class Maze {
         for (Potion potion : potions) {
             Position potionPos = potion.getPosition();
 
-            boolean overlapX = (pos.getX() < potionPos.getX() + potionSide) && (pos.getX() + knightWidth > potionPos.getX());
-            boolean overlapY = (pos.getY() < potionPos.getY() + potionSide) && (pos.getY() + knightHeight > potionPos.getY());
+            boolean overlapX = (pos.getX() < potionPos.getX() - potionSide - 15) && (pos.getX() + knightWidth > potionPos.getX() + potionSide - 20);
+            boolean overlapY = (pos.getY() < potionPos.getY() - potionSide + 10) && (pos.getY() + knightHeight > potionPos.getY() + 5);
 
             if (overlapX && overlapY) {
                 return potion;
@@ -275,7 +275,7 @@ public abstract class Maze {
             Position diamondPos = diamond.getPosition();
 
             boolean overlapX = (pos.getX() < diamondPos.getX() - 30) && (pos.getX() + knightWidth > diamondPos.getX() + 25);
-            boolean overlapY = (pos.getY() < diamondPos.getY() - 5) && (pos.getY() + knightHeight > diamondPos.getY() + 10);
+            boolean overlapY = (pos.getY() < diamondPos.getY() - 5) && (pos.getY() + knightHeight > diamondPos.getY() + 15);
 
             if (overlapX && overlapY) {
                 return diamond;
