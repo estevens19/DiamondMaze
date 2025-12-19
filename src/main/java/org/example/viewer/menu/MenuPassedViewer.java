@@ -19,5 +19,8 @@ public class MenuPassedViewer extends Viewer<MenuPassed> {
         gui.drawImage(getModel().getTitle());
         gui.drawImage(getModel().getLevel());
         gui.drawImage(getModel().getMenu());
+        gui.drawImage(getModel().getStar1());
+        gui.drawImage(getModel().getStar2());
+        gui.drawImage(getModel().getStar3());
     }
 }

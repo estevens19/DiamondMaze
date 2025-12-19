@@ -154,11 +154,11 @@ public class KnightController extends GameController {
                 game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
             if (getModel().isDoor(posUp) && getModel().getDoor().isOpen()) {
                 if (getModel().getCurLevel() == 1)
-                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel(), getModel().getScore())));
                 else if (getModel().getCurLevel() == 2)
-                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel(), getModel().getScore())));
                 else
-                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel(), getModel().getScore())));
             }
         }
         if (action == GUI.ACTION.RIGHT) {
@@ -169,11 +169,11 @@ public class KnightController extends GameController {
                 game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
             if (getModel().isDoor(posRight) && getModel().getDoor().isOpen()) {
                 if (getModel().getCurLevel() == 1)
-                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel(), getModel().getScore())));
                 else if (getModel().getCurLevel() == 2)
-                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel(), getModel().getScore())));
                 else
-                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel(), getModel().getScore())));
             }
         }
         if (action == GUI.ACTION.DOWN) {
@@ -184,11 +184,11 @@ public class KnightController extends GameController {
                 game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
             if (getModel().isDoor(posDown) && getModel().getDoor().isOpen()) {
                 if (getModel().getCurLevel() == 1)
-                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel(), getModel().getScore())));
                 else if (getModel().getCurLevel() == 2)
-                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel(), getModel().getScore())));
                 else
-                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel(), getModel().getScore())));
             }
         }
         if (action == GUI.ACTION.LEFT) {
@@ -199,11 +199,11 @@ public class KnightController extends GameController {
                 game.setState(new MenuGameOverState((new MenuGameOver(getModel().getCurLevel()))));
             if (getModel().isDoor(posLeft) && getModel().getDoor().isOpen()) {
                 if (getModel().getCurLevel() == 1)
-                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel(), getModel().getScore())));
                 else if (getModel().getCurLevel() == 2)
-                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel(), getModel().getScore())));
                 else
-                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel())));
+                    game.setState(new MenuPassedState(new MenuPassed(getModel().getCurLevel(), getModel().getScore())));
             }
         }
     }

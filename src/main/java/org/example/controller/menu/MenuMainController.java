@@ -3,11 +3,14 @@ package org.example.controller.menu;
 import org.example.Game;
 import org.example.controller.Controller;
 import org.example.gui.GUI;
+import org.example.model.game.maze.Score;
 import org.example.model.menu.MenuControls;
 import org.example.model.menu.MenuMain;
 import org.example.model.menu.MenuLevels;
+import org.example.model.menu.MenuPassed;
 import org.example.state.MenuControlsState;
 import org.example.state.MenuLevelsState;
+import org.example.state.MenuPassedState;
 
 import java.awt.*;
 import java.io.IOException;
