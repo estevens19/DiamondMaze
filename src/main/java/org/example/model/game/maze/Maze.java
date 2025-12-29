@@ -76,18 +76,6 @@ public abstract class Maze {
         return guardInterval;
     }
 
-    public void setKnightSpeed(int knightSpeed) {
-        this.knightSpeed = knightSpeed;
-    }
-
-    public void setGuardSpeed(int guardSpeed) {
-        this.guardSpeed = guardSpeed;
-    }
-
-    public void setGuardInterval(long guardInterval) {
-        this.guardInterval = guardInterval;
-    }
-
     public boolean isWallKnight(Position pos) {
         int knightWidth = 85;
         int knightHeight = 50;

@@ -3,20 +3,21 @@ package org.example;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Objects;
-
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 
 import org.example.gui.GUI;
 import org.example.gui.LanternaGUI;
+import org.example.model.game.maze.Score;
+import org.example.model.menu.MenuGameOver;
 import org.example.model.menu.MenuMain;
+import org.example.model.menu.MenuPassed;
+import org.example.observer.GameObserver;
 import org.example.sound.MenuMusicPlayer;
-import org.example.sound.MusicLoader;
+import org.example.state.MenuGameOverState;
 import org.example.state.MenuMainState;
+import org.example.state.MenuPassedState;
 import org.example.state.State;
 
-public class Game {
+public class Game implements GameObserver {
     private final LanternaGUI gui;
     private State<?> state;
     private MenuMusicPlayer menuMusicPlayer;
@@ -28,7 +29,7 @@ public class Game {
         if (state instanceof MenuMainState menuState) {
             menuState.getModel().updateSize(gui.getScreenWidth(), gui.getScreenHeight());
         }
-
+/*
         try {
             Clip clip = new MusicLoader().loadSound(
                     AudioSystem.getAudioInputStream(
@@ -40,7 +41,7 @@ public class Game {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+*/
     }
 
     public void setState(State<?> state) {
@@ -61,6 +62,18 @@ public class Game {
         if (currentState == state) {
             currentState.getViewerInstance().draw(gui);
         }
+    }
+
+    @Override
+    public void onMenuGameOver() throws IOException, URISyntaxException, FontFormatException {
+        if (state instanceof org.example.state.GameState gameState) {
+            this.setState(new MenuGameOverState(new MenuGameOver(gameState.getModel().getCurLevel())));
+        }
+    }
+
+    @Override
+    public void onMenuPassed(int currentLevel, Score score) throws IOException, URISyntaxException, FontFormatException {
+        this.setState(new MenuPassedState(new MenuPassed(currentLevel, score)));
     }
 
     public void start() throws IOException, URISyntaxException, FontFormatException {

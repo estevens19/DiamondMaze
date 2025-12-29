@@ -14,16 +14,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class ImageTest {
-
     private Image image;
     private BufferedImage mockBufferedImage;
     private Position initialPosition;
 
     @BeforeEach
     void setUp() {
-
         mockBufferedImage = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
-
 
         int redColor = new Color(255, 0, 0, 255).getRGB();
         mockBufferedImage.setRGB(0, 0, redColor);

@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
 class KnightViewerTest {
-
     private KnightViewer viewer;
     private GUI guiMock;
     private Knight knightMock;
@@ -25,11 +24,9 @@ class KnightViewerTest {
 
     @Test
     void testDrawAndDrawImage() {
-        when(knightMock.getImage()).thenReturn(imageMock);
-
+        when(knightMock.getCurrentImage()).thenReturn(imageMock);
         viewer.draw(knightMock, guiMock);
-        verify(knightMock, times(1)).getImage();
-
+        verify(knightMock, times(1)).getCurrentImage();
         verify(guiMock, times(1)).drawImage(imageMock);
     }
 }

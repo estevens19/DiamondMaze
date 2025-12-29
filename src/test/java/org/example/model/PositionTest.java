@@ -2,33 +2,38 @@ package org.example.model;
 
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PositionTest {
-    private Position position;
-
     @Property
-    void getLeft(@ForAll int x, @ForAll int y) {
-        assertEquals(x - 1, new Position(x, y).getLeft().getX());
-        assertEquals(y, new Position(x, y).getLeft().getY());
+    public void testGetRight(@ForAll int x, @ForAll int y, @ForAll int speed) {
+        Position pos = new Position(x, y);
+        Position move = pos.getRight(speed);
+        assertEquals(x + speed, move.getX());
+        assertEquals(y, move.getY());
     }
 
     @Property
-    void getRight(@ForAll int x, @ForAll int y) {
-        assertEquals(x + 1, new Position(x, y).getRight().getX());
-        assertEquals(y, new Position(x, y).getRight().getY());
+    public void testGetLeft(@ForAll int x, @ForAll int y, @ForAll int speed) {
+        Position pos = new Position(x, y);
+        Position move = pos.getLeft(speed);
+        assertEquals(x - speed, move.getX());
+        assertEquals(y, move.getY());
     }
 
     @Property
-    void getUp(@ForAll int x, @ForAll int y) {
-        assertEquals(x, new Position(x, y).getUp().getX());
-        assertEquals(y - 1, new Position(x, y).getUp().getY());
+    public void testGetUp(@ForAll int x, @ForAll int y, @ForAll int speed) {
+        Position pos = new Position(x, y);
+        Position move = pos.getUp(speed);
+        assertEquals(x, move.getX());
+        assertEquals(y - speed, move.getY());
     }
 
     @Property
-    void getDown(@ForAll int x, @ForAll int y) {
-        assertEquals(x, new Position(x, y).getDown().getX());
-        assertEquals(y + 1, new Position(x, y).getDown().getY());
+    public void testGetDown(@ForAll int x, @ForAll int y, @ForAll int speed) {
+        Position pos = new Position(x, y);
+        Position move = pos.getDown(speed);
+        assertEquals(x, move.getX());
+        assertEquals(y + speed, move.getY());
     }
 }

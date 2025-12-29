@@ -5,6 +5,7 @@ import org.example.model.Position;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Objects;
 
 public class MazeParser {
     private final char[][] maze;
@@ -19,7 +20,7 @@ public class MazeParser {
 
     private char[][] render(String filePath) throws IOException {
         try (BufferedReader br = new BufferedReader(
-                new InputStreamReader(getClass().getClassLoader().getResourceAsStream(filePath)))) {
+                new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(filePath))))) {
             return br.lines()
                     .map(String::toCharArray)
                     .toArray(char[][]::new);

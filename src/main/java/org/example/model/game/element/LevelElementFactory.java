@@ -8,15 +8,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class LevelElementFactory implements ElementFactory {
-    private Image wallImage;
-
-    public LevelElementFactory() throws IOException, URISyntaxException, FontFormatException {
-        this.wallImage = new Image(new Position(0, 0), "images/Wall.png").resizeImage(20, 20);
-    }
-
     @Override
-    public Wall createWall(Position position) {
-        return new Wall(position.getX(), position.getY(), wallImage.getSprite());
+    public Wall createWall(Position position) throws IOException, URISyntaxException, FontFormatException {
+        return new Wall(position.getX(), position.getY());
     }
 
     @Override

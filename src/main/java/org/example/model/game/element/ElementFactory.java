@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public interface ElementFactory {
-    Wall createWall(Position position) throws IOException;
+    Wall createWall(Position position) throws IOException, URISyntaxException, FontFormatException;
     Diamond createDiamond(Position position) throws IOException, URISyntaxException, FontFormatException;
     Key createKey(Position position) throws IOException, URISyntaxException, FontFormatException;
     Door createDoor(Position position) throws IOException, URISyntaxException, FontFormatException;
