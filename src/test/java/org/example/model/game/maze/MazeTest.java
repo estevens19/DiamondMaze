@@ -5,6 +5,8 @@ import org.example.model.game.element.Potion;
 import org.example.model.game.element.Wall;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.awt.FontFormatException;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class MazeTest {
+public class MazeTest {
     private MazeStub maze;
 
     private static class MazeStub extends Maze {
@@ -45,15 +47,19 @@ class MazeTest {
 
     @Test
     void testWallCollision() throws IOException, URISyntaxException, FontFormatException {
-        maze.addWall(new Wall(100, 100));
-        Position collisionPos = new Position(50, 90);
+        BufferedImage dummyImage = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
+        maze.addWall(new Wall(100, 100, dummyImage));
+
+        Position collisionPos = new Position(50, 80);
 
         assertTrue(maze.isWallKnight(collisionPos));
     }
 
     @Test
     void testNoWallCollision() throws IOException, URISyntaxException, FontFormatException {
-        maze.addWall(new Wall(100, 100));
+        BufferedImage dummyImage = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
+        maze.addWall(new Wall(100, 100, dummyImage));
+
         Position safePos = new Position(0, 0);
 
         assertFalse(maze.isWallKnight(safePos));

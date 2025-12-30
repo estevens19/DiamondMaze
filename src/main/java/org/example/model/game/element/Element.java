@@ -10,6 +10,7 @@ public abstract class Element {
     public Element(Image image) {
         this.image = image;
     }
+
     public Element(Image image1, Image image2) {
         this.image = image1;
         this.image2 = image2;

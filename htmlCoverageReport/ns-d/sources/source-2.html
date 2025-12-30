@@ -1,0 +1,193 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > MenuControls</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.model.menu</a>
+</div>
+
+<h1>Coverage Summary for Class: MenuControls (org.example.model.menu)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MenuControls</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/19)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.model.menu;
+&nbsp;
+&nbsp;import org.example.model.Position;
+&nbsp;import org.example.viewer.Image;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;import java.io.IOException;
+&nbsp;import java.net.URISyntaxException;
+&nbsp;
+&nbsp;    public class MenuControls extends Menu {
+&nbsp;
+&nbsp;        private final Image backSelected;
+&nbsp;        private final Image text;
+&nbsp;
+<b class="nc">&nbsp;        private final int buttonWidth = 130;</b>
+<b class="nc">&nbsp;        private final int buttonHeight = 105;</b>
+&nbsp;
+<b class="nc">&nbsp;        public MenuControls() throws IOException, URISyntaxException, FontFormatException {</b>
+<b class="nc">&nbsp;            this.screenWidth = 640;</b>
+<b class="nc">&nbsp;            this.screenHeight = 360;</b>
+&nbsp;
+<b class="nc">&nbsp;            backSelected = new Image(new Position(0, 0), &quot;images_menu/Back_shine.png&quot;).resizeImage(buttonWidth, buttonHeight);</b>
+<b class="nc">&nbsp;            text = textImage();</b>
+&nbsp;
+<b class="nc">&nbsp;            refreshButtons();</b>
+<b class="nc">&nbsp;            updateSize(screenWidth, screenHeight);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        private void refreshButtons() throws IOException, URISyntaxException, FontFormatException {
+&nbsp;
+<b class="nc">&nbsp;            Position backPos = (backSelected != null) ? backSelected.getPosition() : new Position(0, 0);</b>
+&nbsp;
+<b class="nc">&nbsp;            backSelected.setPosition(backPos);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        @Override
+&nbsp;        public void updateSize(int width, int height) throws IOException {
+<b class="nc">&nbsp;            setBackground(getBackground().resizeImage(width, height));</b>
+&nbsp;
+<b class="nc">&nbsp;            int backX = width - buttonWidth - 20;</b>
+<b class="nc">&nbsp;            int backY = 0;</b>
+&nbsp;
+<b class="nc">&nbsp;            backSelected.setPosition(new Position(backX - 20, backY + 20));</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        public Image getBack() {
+<b class="nc">&nbsp;            return backSelected;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        public Image getText(){return text;}</b>
+&nbsp;
+&nbsp;        public Image textImage() throws IOException, URISyntaxException, FontFormatException {
+<b class="nc">&nbsp;            String t = &quot;&quot;&quot;</b>
+&nbsp;                    Arrows / WASD - Move Knight
+&nbsp;                    
+&nbsp;                    Space - Select
+&nbsp;                    
+&nbsp;                    Esc - Exit
+&nbsp;                    
+&nbsp;                    Q - Back if in game or Exit if in menus
+&nbsp;                    
+&nbsp;                    
+&nbsp;                    
+&nbsp;                    Diamonds - Increase Score and can
+&nbsp;                    
+&nbsp;                               reveal key position
+&nbsp;                    
+&nbsp;                    Potions - Give a random effect
+&nbsp;                    
+&nbsp;                    Guards - Kill the knight
+&nbsp;                    
+&nbsp;                    Key - Open the door
+&nbsp;                    
+&nbsp;                    Door - To pass the level&quot;&quot;&quot;;
+<b class="nc">&nbsp;            return Image.createTextImage(new Position(150,60), t,10);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-12-30 22:53</div>
+</div>
+</body>
+</html>

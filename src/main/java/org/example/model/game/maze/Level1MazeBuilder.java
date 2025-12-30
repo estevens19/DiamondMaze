@@ -64,7 +64,7 @@ public class Level1MazeBuilder extends MazeBuilder {
         }
 
         Random rand = new Random();
-        int val = rand.nextInt(diamonds.size()-1);
+        int val = rand.nextInt(diamonds.size());
         diamonds.get(val).setKey();
 
         this.maze.walls = walls;

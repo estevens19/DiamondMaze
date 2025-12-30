@@ -13,7 +13,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class ImageTest {
+public class ImageTest {
     private Image image;
     private BufferedImage mockBufferedImage;
     private Position initialPosition;

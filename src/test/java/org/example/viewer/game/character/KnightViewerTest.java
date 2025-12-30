@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-class KnightViewerTest {
+public class KnightViewerTest {
     private KnightViewer viewer;
     private GUI guiMock;
     private Knight knightMock;

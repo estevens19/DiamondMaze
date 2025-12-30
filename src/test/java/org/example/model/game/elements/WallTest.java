@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -15,7 +16,8 @@ public class WallTest {
 
     @BeforeEach
     void setup() throws IOException, URISyntaxException, FontFormatException {
-        wall = new Wall(10,10);
+        BufferedImage dummyImage = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
+        wall = new Wall(10, 10, dummyImage);
     }
 
     @Test

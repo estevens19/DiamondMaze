@@ -3,6 +3,7 @@ package org.example.model.game.element;
 import org.example.model.Position;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URISyntaxException;
 

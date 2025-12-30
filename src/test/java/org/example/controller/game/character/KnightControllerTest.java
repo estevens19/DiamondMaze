@@ -13,7 +13,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.atLeastOnce;
 
-class KnightControllerTest {
+public class KnightControllerTest {
     private KnightController controller;
     private Maze mazeMock;
     private Game gameMock;

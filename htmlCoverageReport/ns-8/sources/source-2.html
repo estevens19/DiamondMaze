@@ -1,0 +1,265 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > LanternaGUI</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.gui</a>
+</div>
+
+<h1>Coverage Summary for Class: LanternaGUI (org.example.gui)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LanternaGUI</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (3/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    82.6%
+  </span>
+  <span class="absValue">
+    (38/46)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    32.8%
+  </span>
+  <span class="absValue">
+    (20/61)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.gui;
+&nbsp;
+&nbsp;import com.googlecode.lanterna.TerminalSize;
+&nbsp;import com.googlecode.lanterna.graphics.TextGraphics;
+&nbsp;import com.googlecode.lanterna.input.KeyStroke;
+&nbsp;import com.googlecode.lanterna.screen.Screen;
+&nbsp;import com.googlecode.lanterna.screen.TerminalScreen;
+&nbsp;import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+&nbsp;import com.googlecode.lanterna.terminal.Terminal;
+&nbsp;import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+&nbsp;import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+&nbsp;import org.example.model.Position;
+&nbsp;import org.example.viewer.Image;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;import java.io.File;
+&nbsp;import java.io.IOException;
+&nbsp;import java.net.URISyntaxException;
+&nbsp;import java.net.URL;
+&nbsp;
+&nbsp;public class LanternaGUI implements GUI {
+&nbsp;    private Screen screen;
+&nbsp;    private TextGraphics graphics;
+&nbsp;    private Terminal terminal;
+&nbsp;    private int screenWidth;
+&nbsp;    private int screenHeight;
+&nbsp;
+<b class="nc">&nbsp;    public LanternaGUI(int width, int height) throws IOException, FontFormatException, URISyntaxException {</b>
+<b class="nc">&nbsp;        AWTTerminalFontConfiguration cfg = loadFont();</b>
+<b class="nc">&nbsp;        this.terminal = createTerminal(width, height, cfg);</b>
+<b class="nc">&nbsp;        this.screen = createScreen(terminal);</b>
+<b class="nc">&nbsp;        this.graphics = screen.newTextGraphics();</b>
+&nbsp;
+<b class="nc">&nbsp;        TerminalSize terminalSize = screen.getTerminalSize();</b>
+<b class="nc">&nbsp;        this.screenWidth = terminalSize.getColumns();</b>
+<b class="nc">&nbsp;        this.screenHeight = terminalSize.getRows();</b>
+&nbsp;
+<b class="nc">&nbsp;        if (terminal instanceof AWTTerminalFrame) {</b>
+<b class="nc">&nbsp;            AWTTerminalFrame frame = (AWTTerminalFrame) terminal;</b>
+<b class="nc">&nbsp;            frame.setExtendedState(Frame.MAXIMIZED_BOTH);</b>
+<b class="nc">&nbsp;            frame.setTitle(&quot;Diamond Maze&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public LanternaGUI(Screen screen) {</b>
+<b class="fc">&nbsp;        this.screen = screen;</b>
+<b class="fc">&nbsp;        this.graphics = screen.newTextGraphics();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private Screen createScreen(Terminal terminal) throws IOException {
+<b class="nc">&nbsp;        final Screen screen = new TerminalScreen(terminal);</b>
+<b class="nc">&nbsp;        screen.setCursorPosition(null);</b>
+<b class="nc">&nbsp;        screen.startScreen();</b>
+<b class="nc">&nbsp;        screen.doResizeIfNecessary();</b>
+<b class="nc">&nbsp;        return screen;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration cfg) throws IOException {
+<b class="nc">&nbsp;        DefaultTerminalFactory factory = new DefaultTerminalFactory();</b>
+<b class="nc">&nbsp;        factory.setTerminalEmulatorFontConfiguration(cfg);</b>
+<b class="nc">&nbsp;        factory.setForceAWTOverSwing(true);</b>
+<b class="nc">&nbsp;        factory.setInitialTerminalSize(new TerminalSize(width, height));</b>
+<b class="nc">&nbsp;        return factory.createTerminal();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private AWTTerminalFontConfiguration loadFont() throws URISyntaxException, FontFormatException, IOException {
+<b class="nc">&nbsp;        Font font = getFont();</b>
+&nbsp;
+<b class="nc">&nbsp;        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();</b>
+<b class="nc">&nbsp;        ge.registerFont(font);</b>
+&nbsp;
+<b class="nc">&nbsp;        Font loadedFont = font.deriveFont(Font.PLAIN, 3);</b>
+<b class="nc">&nbsp;        return AWTTerminalFontConfiguration.newInstance(loadedFont);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public ACTION getKey() throws IOException {
+<b class="fc">&nbsp;        KeyStroke key = screen.pollInput();</b>
+&nbsp;
+<b class="pc">&nbsp;        if (key == null) return ACTION.NONE;</b>
+&nbsp;
+<b class="fc">&nbsp;        KeyStroke currentKey = screen.pollInput();</b>
+<b class="pc">&nbsp;        while (currentKey != null) {</b>
+<b class="nc">&nbsp;            key = currentKey;</b>
+<b class="nc">&nbsp;            currentKey = screen.pollInput();</b>
+&nbsp;        }
+&nbsp;
+<b class="pc">&nbsp;        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.EOF) return ACTION.QUIT;</b>
+<b class="fc">&nbsp;        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character &amp;&amp; key.getCharacter() == &#39;q&#39;) return ACTION.QUIT;</b>
+&nbsp;
+<b class="fc">&nbsp;        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowUp || (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character &amp;&amp; key.getCharacter() == &#39;w&#39;)) return ACTION.UP;</b>
+<b class="fc">&nbsp;        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowRight || (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character &amp;&amp; key.getCharacter() == &#39;d&#39;)) return ACTION.RIGHT;</b>
+<b class="fc">&nbsp;        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowDown || (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character &amp;&amp; key.getCharacter() == &#39;s&#39;)) return ACTION.DOWN;</b>
+<b class="fc">&nbsp;        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.ArrowLeft || (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character &amp;&amp; key.getCharacter() == &#39;a&#39;)) return ACTION.LEFT;</b>
+<b class="pc">&nbsp;        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Character &amp;&amp; key.getCharacter() == &#39; &#39;) return ACTION.SELECT;</b>
+<b class="fc">&nbsp;        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Enter) return ACTION.SELECT;</b>
+<b class="pc">&nbsp;        if (key.getKeyType() == com.googlecode.lanterna.input.KeyType.Escape) return ACTION.QUIT;</b>
+&nbsp;
+<b class="nc">&nbsp;        return ACTION.NONE;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static Font getFont() throws IOException, FontFormatException, URISyntaxException {
+<b class="fc">&nbsp;        URL resource = LanternaGUI.class.getClassLoader().getResource(&quot;fonts/square.ttf&quot;);</b>
+<b class="pc">&nbsp;        if (resource == null) {</b>
+<b class="nc">&nbsp;            throw new IOException(&quot;Font file not found&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        File fontFile = new File(resource.toURI());</b>
+<b class="fc">&nbsp;        return Font.createFont(Font.TRUETYPE_FONT, fontFile);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawImage(Image image) {
+<b class="nc">&nbsp;        image.draw(graphics);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawText(Position position, String text) {
+<b class="nc">&nbsp;        graphics.putString(position.getX(), position.getY(), text);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void clear() {
+<b class="nc">&nbsp;        screen.clear();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void refresh() throws IOException {
+<b class="nc">&nbsp;        screen.refresh();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void close() throws IOException {
+<b class="nc">&nbsp;        screen.close();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getScreenWidth() {
+<b class="nc">&nbsp;        return screenWidth;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getScreenHeight() {
+<b class="nc">&nbsp;        return screenHeight;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void updateScreenSize() {
+<b class="nc">&nbsp;        TerminalSize terminalSize = screen.getTerminalSize();</b>
+<b class="nc">&nbsp;        this.screenWidth = terminalSize.getColumns();</b>
+<b class="nc">&nbsp;        this.screenHeight = terminalSize.getRows();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-12-30 22:53</div>
+</div>
+</body>
+</html>

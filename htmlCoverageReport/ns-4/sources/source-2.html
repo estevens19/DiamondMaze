@@ -1,0 +1,152 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > MazeController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.controller.game</a>
+</div>
+
+<h1>Coverage Summary for Class: MazeController (org.example.controller.game)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MazeController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (2/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (6/9)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.controller.game;
+&nbsp;
+&nbsp;import org.example.Game;
+&nbsp;import org.example.controller.game.character.GuardController;
+&nbsp;import org.example.controller.game.character.KnightController;
+&nbsp;import org.example.gui.GUI;
+&nbsp;import org.example.model.game.maze.Maze;
+&nbsp;import org.example.model.menu.MenuMain;
+&nbsp;import org.example.state.MenuMainState;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;import java.io.IOException;
+&nbsp;import java.net.URISyntaxException;
+&nbsp;
+&nbsp;public class MazeController extends GameController {
+&nbsp;    private final KnightController knightController;
+&nbsp;    private final GuardController guardController;
+&nbsp;
+&nbsp;    public MazeController(Maze maze) {
+<b class="fc">&nbsp;        super(maze);</b>
+<b class="fc">&nbsp;        this.knightController = new KnightController(maze);</b>
+<b class="fc">&nbsp;        this.guardController = new GuardController(maze);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void step(Game game, GUI.ACTION action, long time) throws IOException, URISyntaxException, FontFormatException {
+<b class="pc">&nbsp;        if (action == GUI.ACTION.QUIT)</b>
+<b class="nc">&nbsp;            game.setState(new MenuMainState(new MenuMain()));</b>
+<b class="pc">&nbsp;        else if (getModel().getCountdown().getTime() == 0) {</b>
+<b class="fc">&nbsp;            game.onMenuGameOver();</b>
+&nbsp;        }
+&nbsp;        else {
+<b class="nc">&nbsp;            knightController.step(game, action, time);</b>
+<b class="nc">&nbsp;            guardController.step(game, action, time);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-12-30 22:53</div>
+</div>
+</body>
+</html>

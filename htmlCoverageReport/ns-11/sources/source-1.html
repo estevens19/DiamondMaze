@@ -1,0 +1,190 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > MazeViewer</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.viewer.game</a>
+</div>
+
+<h1>Coverage Summary for Class: MazeViewer (org.example.viewer.game)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MazeViewer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    12.5%
+  </span>
+  <span class="absValue">
+    (1/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    4.5%
+  </span>
+  <span class="absValue">
+    (1/22)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.viewer.game;
+&nbsp;
+&nbsp;import org.example.gui.GUI;
+&nbsp;import org.example.gui.LanternaGUI;
+&nbsp;import org.example.model.game.character.Character;
+&nbsp;import org.example.model.game.element.Element;
+&nbsp;import org.example.model.game.maze.Countdown;
+&nbsp;import org.example.model.game.maze.Maze;
+&nbsp;import org.example.model.game.maze.Score;
+&nbsp;import org.example.viewer.Viewer;
+&nbsp;import org.example.viewer.game.character.CharacterViewer;
+&nbsp;import org.example.viewer.game.character.GuardViewer;
+&nbsp;import org.example.viewer.game.character.KnightViewer;
+&nbsp;import org.example.viewer.game.element.*;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;import java.io.IOException;
+&nbsp;import java.net.URISyntaxException;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public class MazeViewer extends Viewer&lt;Maze&gt; {
+&nbsp;    public MazeViewer(Maze maze) {
+<b class="fc">&nbsp;        super(maze);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void draw(GUI gui) throws IOException, URISyntaxException, FontFormatException {
+<b class="nc">&nbsp;        gui.clear();</b>
+&nbsp;
+&nbsp;        //gui.drawImage(getModel().getBackground());
+<b class="nc">&nbsp;        drawElement(gui, getModel().getDoor(), new DoorViewer());</b>
+<b class="nc">&nbsp;        drawElements(gui, getModel().getDiamonds(), new DiamondViewer());</b>
+<b class="nc">&nbsp;        if (getModel().getShowKey()) {</b>
+<b class="nc">&nbsp;            drawElement(gui, getModel().getKey(), new KeyViewer());</b>
+&nbsp;        }
+<b class="nc">&nbsp;        drawElements(gui, getModel().getPotions(), new PotionViewer());</b>
+<b class="nc">&nbsp;        if (getModel().getShowKnight()) {</b>
+<b class="nc">&nbsp;            drawCharacter(gui, getModel().getKnight(), new KnightViewer());</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if(getModel().getShowGuards()) {</b>
+<b class="nc">&nbsp;            drawCharacters(gui, getModel().getGuards(), new GuardViewer());</b>
+&nbsp;        }
+<b class="nc">&nbsp;        drawElements(gui, getModel().getWalls(), new WallViewer());</b>
+<b class="nc">&nbsp;        drawCountdown(gui, getModel().getCountdown());</b>
+<b class="nc">&nbsp;        drawScore(gui, getModel().getScore());</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    private &lt;T extends Element&gt; void drawElements(GUI gui, List&lt;T&gt; elements, ElementViewer&lt;T&gt; viewer) {
+<b class="nc">&nbsp;        for (T element : elements)</b>
+<b class="nc">&nbsp;            drawElement(gui, element, viewer);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private &lt;T extends Element&gt; void drawElement(GUI gui, T element, ElementViewer&lt;T&gt; viewer) {
+<b class="nc">&nbsp;        viewer.draw(element, gui);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private &lt;T extends Character&gt; void drawCharacters(GUI gui, List&lt;T&gt; characters, CharacterViewer&lt;T&gt; viewer) {
+<b class="nc">&nbsp;        for (T character : characters)</b>
+<b class="nc">&nbsp;            drawCharacter(gui, character, viewer);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private &lt;T extends Character&gt; void drawCharacter(GUI gui, T character, CharacterViewer&lt;T&gt; viewer) {
+<b class="nc">&nbsp;        viewer.draw(character, gui);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void drawCountdown(GUI gui, Countdown countdown) throws IOException, URISyntaxException, FontFormatException {
+<b class="nc">&nbsp;        gui.drawImage(countdown.timeImage());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void drawScore(GUI gui, Score score) throws IOException, URISyntaxException, FontFormatException {
+<b class="nc">&nbsp;        gui.drawImage(score.scoreImage());</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-12-30 22:53</div>
+</div>
+</body>
+</html>

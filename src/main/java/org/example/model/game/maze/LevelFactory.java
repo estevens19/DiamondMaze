@@ -13,7 +13,7 @@ public class LevelFactory {
     private final ElementFactory elementFactory;
     private final CharacterFactory characterFactory;
 
-    public LevelFactory() {
+    public LevelFactory() throws IOException, URISyntaxException, FontFormatException {
         this.elementFactory = new LevelElementFactory();
         this.characterFactory = new LevelCharacterFactory();
     }

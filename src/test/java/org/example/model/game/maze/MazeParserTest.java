@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MazeParserTest {
+public class MazeParserTest {
     @Test
     void testRenderMapDimensions() throws IOException {
         MazeParser parser = new MazeParser("mazeParserTest.txt");

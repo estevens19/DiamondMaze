@@ -4,7 +4,7 @@ import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PositionTest {
+public class PositionTest {
     @Property
     public void testGetRight(@ForAll int x, @ForAll int y, @ForAll int speed) {
         Position pos = new Position(x, y);

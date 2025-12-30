@@ -3,7 +3,6 @@ package org.example.gui;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -41,6 +40,11 @@ public class LanternaGUI implements GUI {
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
             frame.setTitle("Diamond Maze");
         }
+    }
+
+    public LanternaGUI(Screen screen) {
+        this.screen = screen;
+        this.graphics = screen.newTextGraphics();
     }
 
     private Screen createScreen(Terminal terminal) throws IOException {

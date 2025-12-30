@@ -14,7 +14,7 @@ import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-class GuardControllerTest {
+public class GuardControllerTest {
     private GuardController controller;
     private Maze mazeMock;
     private Game gameMock;
