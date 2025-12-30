@@ -45,62 +45,62 @@ Current scope:     <a href="../../index.html">all classes</a>
   <td class="name">Maze</td>
 <td class="coverageStat">
   <span class="percent">
-    24.4%
+    73.2%
   </span>
   <span class="absValue">
-    (10/41)
+    (30/41)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    17.7%
+    71.7%
   </span>
   <span class="absValue">
-    (20/113)
+    (81/113)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    25.9%
+    87.8%
   </span>
   <span class="absValue">
-    (36/139)
+    (122/139)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">Maze$MockitoMock$9TWyIMrM</td>
+    <td class="name">Maze$MockitoMock$J4J7Nfcl</td>
   </tr>
   <tr>
-    <td class="name">Maze$MockitoMock$9TWyIMrM$auxiliary$Lhp4JwgH</td>
+    <td class="name">Maze$MockitoMock$J4J7Nfcl$auxiliary$h3EnVfz5</td>
   </tr>
   <tr>
-    <td class="name">Maze$MockitoMock$9TWyIMrM$auxiliary$lXRilBv3</td>
+    <td class="name">Maze$MockitoMock$J4J7Nfcl$auxiliary$Kl1Z6gpO</td>
   </tr>
 <tr>
   <td class="name"><strong>Total</strong></td>
 <td class="coverageStat">
   <span class="percent">
-    24.4%
+    73.2%
   </span>
   <span class="absValue">
-    (10/41)
+    (30/41)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    17.7%
+    71.7%
   </span>
   <span class="absValue">
-    (20/113)
+    (81/113)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    25.9%
+    87.8%
   </span>
   <span class="absValue">
-    (36/139)
+    (122/139)
   </span>
 </td>
 </tr>
@@ -171,11 +171,11 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;    public int getCurLevel(){return curLevel;}</b>
 &nbsp;
 &nbsp;    public boolean getShowKey() {
-<b class="nc">&nbsp;        return showKey;</b>
+<b class="fc">&nbsp;        return showKey;</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public void setShowKey(boolean showKey) {
-<b class="nc">&nbsp;        this.showKey = showKey;</b>
+<b class="fc">&nbsp;        this.showKey = showKey;</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public int getKnightSpeed() {
@@ -208,35 +208,35 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    }
 &nbsp;
 &nbsp;    public boolean isWallGuard(Position pos) {
-<b class="nc">&nbsp;        int guardWidth = 55;</b>
-<b class="nc">&nbsp;        int guardHeight = 40;</b>
-<b class="nc">&nbsp;        int wallSide = 20;</b>
+<b class="fc">&nbsp;        int guardWidth = 55;</b>
+<b class="fc">&nbsp;        int guardHeight = 40;</b>
+<b class="fc">&nbsp;        int wallSide = 20;</b>
 &nbsp;
-<b class="nc">&nbsp;        for (Wall wall : walls) {</b>
-<b class="nc">&nbsp;            Position wallPos = wall.getPosition();</b>
+<b class="pc">&nbsp;        for (Wall wall : walls) {</b>
+<b class="fc">&nbsp;            Position wallPos = wall.getPosition();</b>
 &nbsp;
-<b class="nc">&nbsp;            boolean overlapX = (pos.getX() &lt; wallPos.getX() + wallSide - 15) &amp;&amp; (pos.getX() + guardWidth &gt; wallPos.getX() + 15);</b>
-<b class="nc">&nbsp;            boolean overlapY = (pos.getY() &lt; wallPos.getY() + wallSide - 5) &amp;&amp; (pos.getY() + guardHeight &gt; wallPos.getY() + 10);</b>
+<b class="pc">&nbsp;            boolean overlapX = (pos.getX() &lt; wallPos.getX() + wallSide - 15) &amp;&amp; (pos.getX() + guardWidth &gt; wallPos.getX() + 15);</b>
+<b class="pc">&nbsp;            boolean overlapY = (pos.getY() &lt; wallPos.getY() + wallSide - 5) &amp;&amp; (pos.getY() + guardHeight &gt; wallPos.getY() + 10);</b>
 &nbsp;
-<b class="nc">&nbsp;            if (overlapX &amp;&amp; overlapY) {</b>
-<b class="nc">&nbsp;                return true;</b>
+<b class="pc">&nbsp;            if (overlapX &amp;&amp; overlapY) {</b>
+<b class="fc">&nbsp;                return true;</b>
 &nbsp;            }
 &nbsp;        }
 <b class="nc">&nbsp;        return false;</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public boolean isKnight(Position pos) {
-<b class="nc">&nbsp;        Position knightPos = knight.getPosition_currentImage();</b>
-<b class="nc">&nbsp;        int knightWidth = 115, knightHeight = 50;</b>
-<b class="nc">&nbsp;        int guardWidth = 55, guardHeight = 40;</b>
+<b class="fc">&nbsp;        Position knightPos = knight.getPosition_currentImage();</b>
+<b class="fc">&nbsp;        int knightWidth = 115, knightHeight = 50;</b>
+<b class="fc">&nbsp;        int guardWidth = 55, guardHeight = 40;</b>
 &nbsp;
-<b class="nc">&nbsp;        boolean overlapX = (pos.getX() &lt; knightPos.getX() + knightWidth - guardWidth - 15) &amp;&amp; (pos.getX() + guardWidth &gt; knightPos.getX() + guardWidth + 5);</b>
-<b class="nc">&nbsp;        boolean overlapY = (pos.getY() &lt; knightPos.getY() + knightHeight - 10) &amp;&amp; (pos.getY() + guardHeight &gt; knightPos.getY() + 35);</b>
+<b class="pc">&nbsp;        boolean overlapX = (pos.getX() &lt; knightPos.getX() + knightWidth - guardWidth - 15) &amp;&amp; (pos.getX() + guardWidth &gt; knightPos.getX() + guardWidth + 5);</b>
+<b class="pc">&nbsp;        boolean overlapY = (pos.getY() &lt; knightPos.getY() + knightHeight - 10) &amp;&amp; (pos.getY() + guardHeight &gt; knightPos.getY() + 35);</b>
 &nbsp;
-<b class="nc">&nbsp;        if (overlapX &amp;&amp; overlapY) {</b>
-<b class="nc">&nbsp;            return true;</b>
+<b class="pc">&nbsp;        if (overlapX &amp;&amp; overlapY) {</b>
+<b class="fc">&nbsp;            return true;</b>
 &nbsp;        }
-<b class="nc">&nbsp;        return false;</b>
+<b class="fc">&nbsp;        return false;</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public Potion isPotion(Position pos) {
@@ -262,63 +262,63 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    }
 &nbsp;
 &nbsp;    public void speedGuard() {
-<b class="nc">&nbsp;        new Thread(() -&gt; {</b>
-<b class="nc">&nbsp;            guardInterval = 300;</b>
+<b class="fc">&nbsp;        new Thread(() -&gt; {</b>
+<b class="fc">&nbsp;            guardInterval = 300;</b>
 &nbsp;            try {
-<b class="nc">&nbsp;                Thread.sleep(10000);</b>
+<b class="fc">&nbsp;                Thread.sleep(10000);</b>
 &nbsp;            } catch (InterruptedException e) {
 <b class="nc">&nbsp;                e.printStackTrace();</b>
 &nbsp;            }
-<b class="nc">&nbsp;            guardInterval = 800;</b>
-<b class="nc">&nbsp;        }).start();</b>
+<b class="fc">&nbsp;            guardInterval = 800;</b>
+<b class="fc">&nbsp;        }).start();</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public void slowKnight() {
-<b class="nc">&nbsp;        new Thread(() -&gt; {</b>
-<b class="nc">&nbsp;            knightSpeed = 2;</b>
+<b class="fc">&nbsp;        new Thread(() -&gt; {</b>
+<b class="fc">&nbsp;            knightSpeed = 2;</b>
 &nbsp;            try {
-<b class="nc">&nbsp;                Thread.sleep(10000);</b>
+<b class="fc">&nbsp;                Thread.sleep(10000);</b>
 &nbsp;            } catch (InterruptedException e) {
 <b class="nc">&nbsp;                e.printStackTrace();</b>
 &nbsp;            }
-<b class="nc">&nbsp;            knightSpeed = 5;</b>
-<b class="nc">&nbsp;        }).start();</b>
+<b class="fc">&nbsp;            knightSpeed = 5;</b>
+<b class="fc">&nbsp;        }).start();</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public void slowGuard() {
-<b class="nc">&nbsp;        new Thread(() -&gt; {</b>
-<b class="nc">&nbsp;            guardSpeed = 1;</b>
+<b class="fc">&nbsp;        new Thread(() -&gt; {</b>
+<b class="fc">&nbsp;            guardSpeed = 1;</b>
 &nbsp;            try {
-<b class="nc">&nbsp;                Thread.sleep(10000);</b>
+<b class="fc">&nbsp;                Thread.sleep(10000);</b>
 &nbsp;            } catch (InterruptedException e) {
 <b class="nc">&nbsp;                e.printStackTrace();</b>
 &nbsp;            }
-<b class="nc">&nbsp;            guardSpeed = 5;</b>
-<b class="nc">&nbsp;        }).start();</b>
+<b class="fc">&nbsp;            guardSpeed = 5;</b>
+<b class="fc">&nbsp;        }).start();</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public void hideKnight() {
-<b class="nc">&nbsp;        new Thread(() -&gt; {</b>
-<b class="nc">&nbsp;            showKnight = false;</b>
+<b class="fc">&nbsp;        new Thread(() -&gt; {</b>
+<b class="fc">&nbsp;            showKnight = false;</b>
 &nbsp;            try {
-<b class="nc">&nbsp;                Thread.sleep(10000);</b>
+<b class="fc">&nbsp;                Thread.sleep(10000);</b>
 &nbsp;            } catch (InterruptedException e) {
 <b class="nc">&nbsp;                e.printStackTrace();</b>
 &nbsp;            }
-<b class="nc">&nbsp;            showKnight = true;</b>
-<b class="nc">&nbsp;        }).start();</b>
+<b class="fc">&nbsp;            showKnight = true;</b>
+<b class="fc">&nbsp;        }).start();</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public void hideGuards() {
-<b class="nc">&nbsp;        new Thread(() -&gt; {</b>
-<b class="nc">&nbsp;            showGuards = false;</b>
+<b class="fc">&nbsp;        new Thread(() -&gt; {</b>
+<b class="fc">&nbsp;            showGuards = false;</b>
 &nbsp;            try {
-<b class="nc">&nbsp;                Thread.sleep(10000);</b>
+<b class="fc">&nbsp;                Thread.sleep(10000);</b>
 &nbsp;            } catch (InterruptedException e) {
 <b class="nc">&nbsp;                e.printStackTrace();</b>
 &nbsp;            }
-<b class="nc">&nbsp;            showGuards = true;</b>
-<b class="nc">&nbsp;        }).start();</b>
+<b class="fc">&nbsp;            showGuards = true;</b>
+<b class="fc">&nbsp;        }).start();</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public void setPotionEffect(Potion potion){
@@ -327,96 +327,96 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;                countdown.addTime(10);</b>
 &nbsp;                break;
 &nbsp;            case 1:
-<b class="nc">&nbsp;                slowGuard();</b>
+<b class="fc">&nbsp;                slowGuard();</b>
 &nbsp;                break;
 &nbsp;            case 2:
-<b class="nc">&nbsp;                speedGuard();</b>
+<b class="fc">&nbsp;                speedGuard();</b>
 &nbsp;                break;
 &nbsp;            case 3:
-<b class="nc">&nbsp;                slowKnight();</b>
+<b class="fc">&nbsp;                slowKnight();</b>
 &nbsp;                break;
 &nbsp;            case 4:
-<b class="nc">&nbsp;                countdown.addTime(-10);</b>
+<b class="fc">&nbsp;                countdown.addTime(-10);</b>
 &nbsp;                break;
 &nbsp;            case 5:
-<b class="nc">&nbsp;                hideKnight();</b>
+<b class="fc">&nbsp;                hideKnight();</b>
 &nbsp;                break;
 &nbsp;            case 6:
-<b class="nc">&nbsp;                hideGuards();</b>
+<b class="fc">&nbsp;                hideGuards();</b>
 &nbsp;                break;
 &nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    public boolean isGuard(Position pos) {
-<b class="nc">&nbsp;        int guardWidth = 55;</b>
-<b class="nc">&nbsp;        int guardHeight = 40;</b>
+<b class="fc">&nbsp;        int guardWidth = 55;</b>
+<b class="fc">&nbsp;        int guardHeight = 40;</b>
 &nbsp;
-<b class="nc">&nbsp;        for (Guard guard : guards) {</b>
-<b class="nc">&nbsp;            Position guardPos = guard.getPosition_currentImage();</b>
+<b class="fc">&nbsp;        for (Guard guard : guards) {</b>
+<b class="fc">&nbsp;            Position guardPos = guard.getPosition_currentImage();</b>
 &nbsp;
-<b class="nc">&nbsp;            boolean overlapX = (pos.getX() &lt; guardPos.getX() - 10) &amp;&amp; (pos.getX() + guardWidth &gt; guardPos.getX());</b>
-<b class="nc">&nbsp;            boolean overlapY = (pos.getY() &lt; guardPos.getY() + 5) &amp;&amp; (pos.getY() + guardHeight &gt; guardPos.getY() + 5);</b>
+<b class="pc">&nbsp;            boolean overlapX = (pos.getX() &lt; guardPos.getX() - 10) &amp;&amp; (pos.getX() + guardWidth &gt; guardPos.getX());</b>
+<b class="pc">&nbsp;            boolean overlapY = (pos.getY() &lt; guardPos.getY() + 5) &amp;&amp; (pos.getY() + guardHeight &gt; guardPos.getY() + 5);</b>
 &nbsp;
-<b class="nc">&nbsp;            if (overlapX &amp;&amp; overlapY) {</b>
-<b class="nc">&nbsp;                return true;</b>
+<b class="pc">&nbsp;            if (overlapX &amp;&amp; overlapY) {</b>
+<b class="fc">&nbsp;                return true;</b>
 &nbsp;            }
 &nbsp;        }
-<b class="nc">&nbsp;        return false;</b>
+<b class="fc">&nbsp;        return false;</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public void removeDiamond(Diamond diamond) {
-<b class="nc">&nbsp;        diamonds.remove(diamond);</b>
+<b class="fc">&nbsp;        diamonds.remove(diamond);</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public Diamond isDiamond(Position pos) {
-<b class="nc">&nbsp;        int knightWidth = 85;</b>
-<b class="nc">&nbsp;        int knightHeight = 50;</b>
+<b class="fc">&nbsp;        int knightWidth = 85;</b>
+<b class="fc">&nbsp;        int knightHeight = 50;</b>
 &nbsp;
-<b class="nc">&nbsp;        for (Diamond diamond : diamonds) {</b>
-<b class="nc">&nbsp;            Position diamondPos = diamond.getPosition();</b>
+<b class="fc">&nbsp;        for (Diamond diamond : diamonds) {</b>
+<b class="fc">&nbsp;            Position diamondPos = diamond.getPosition();</b>
 &nbsp;
-<b class="nc">&nbsp;            boolean overlapX = (pos.getX() &lt; diamondPos.getX() - 30) &amp;&amp; (pos.getX() + knightWidth &gt; diamondPos.getX() + 25);</b>
-<b class="nc">&nbsp;            boolean overlapY = (pos.getY() &lt; diamondPos.getY() - 5) &amp;&amp; (pos.getY() + knightHeight &gt; diamondPos.getY() + 15);</b>
+<b class="pc">&nbsp;            boolean overlapX = (pos.getX() &lt; diamondPos.getX() - 30) &amp;&amp; (pos.getX() + knightWidth &gt; diamondPos.getX() + 25);</b>
+<b class="pc">&nbsp;            boolean overlapY = (pos.getY() &lt; diamondPos.getY() - 5) &amp;&amp; (pos.getY() + knightHeight &gt; diamondPos.getY() + 15);</b>
 &nbsp;
-<b class="nc">&nbsp;            if (overlapX &amp;&amp; overlapY) {</b>
-<b class="nc">&nbsp;                return diamond;</b>
+<b class="pc">&nbsp;            if (overlapX &amp;&amp; overlapY) {</b>
+<b class="fc">&nbsp;                return diamond;</b>
 &nbsp;            }
 &nbsp;        }
-<b class="nc">&nbsp;        return null;</b>
+<b class="fc">&nbsp;        return null;</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public boolean isKey(Position pos) {
-<b class="nc">&nbsp;        int knightWidth = 85;</b>
-<b class="nc">&nbsp;        int knightHeight = 50;</b>
+<b class="fc">&nbsp;        int knightWidth = 85;</b>
+<b class="fc">&nbsp;        int knightHeight = 50;</b>
 &nbsp;
-<b class="nc">&nbsp;        Position keyPos = key.getPosition();</b>
+<b class="fc">&nbsp;        Position keyPos = key.getPosition();</b>
 &nbsp;
-<b class="nc">&nbsp;        boolean overlapX = (pos.getX() &lt; keyPos.getX() - 20) &amp;&amp; (pos.getX() + knightWidth &gt; keyPos.getX() + 20);</b>
-<b class="nc">&nbsp;        boolean overlapY = (pos.getY() &lt; keyPos.getY() - 5) &amp;&amp; (pos.getY() + knightHeight &gt; keyPos.getY() + 10);</b>
+<b class="pc">&nbsp;        boolean overlapX = (pos.getX() &lt; keyPos.getX() - 20) &amp;&amp; (pos.getX() + knightWidth &gt; keyPos.getX() + 20);</b>
+<b class="pc">&nbsp;        boolean overlapY = (pos.getY() &lt; keyPos.getY() - 5) &amp;&amp; (pos.getY() + knightHeight &gt; keyPos.getY() + 10);</b>
 &nbsp;
-<b class="nc">&nbsp;        if (overlapX &amp;&amp; overlapY) {</b>
-<b class="nc">&nbsp;            return true;</b>
+<b class="pc">&nbsp;        if (overlapX &amp;&amp; overlapY) {</b>
+<b class="fc">&nbsp;            return true;</b>
 &nbsp;        }
-<b class="nc">&nbsp;        return false;</b>
+<b class="fc">&nbsp;        return false;</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public boolean isDoor(Position pos) {
-<b class="nc">&nbsp;        int knightWidth = 85;</b>
-<b class="nc">&nbsp;        int knightHeight = 50;</b>
+<b class="fc">&nbsp;        int knightWidth = 85;</b>
+<b class="fc">&nbsp;        int knightHeight = 50;</b>
 &nbsp;
-<b class="nc">&nbsp;        Position doorPos = door.getPosition();</b>
+<b class="fc">&nbsp;        Position doorPos = door.getPosition();</b>
 &nbsp;
-<b class="nc">&nbsp;        boolean overlapX = (pos.getX() &lt; doorPos.getX() - 30) &amp;&amp; (pos.getX() + knightWidth &gt; doorPos.getX() + 40);</b>
-<b class="nc">&nbsp;        boolean overlapY = (pos.getY() &lt; doorPos.getY()) &amp;&amp; (pos.getY() + knightHeight &gt; doorPos.getY() + 30);</b>
+<b class="pc">&nbsp;        boolean overlapX = (pos.getX() &lt; doorPos.getX() - 30) &amp;&amp; (pos.getX() + knightWidth &gt; doorPos.getX() + 40);</b>
+<b class="pc">&nbsp;        boolean overlapY = (pos.getY() &lt; doorPos.getY()) &amp;&amp; (pos.getY() + knightHeight &gt; doorPos.getY() + 30);</b>
 &nbsp;
-<b class="nc">&nbsp;        if (overlapX &amp;&amp; overlapY) {</b>
-<b class="nc">&nbsp;            return true;</b>
+<b class="pc">&nbsp;        if (overlapX &amp;&amp; overlapY) {</b>
+<b class="fc">&nbsp;            return true;</b>
 &nbsp;        }
-<b class="nc">&nbsp;        return false;</b>
+<b class="fc">&nbsp;        return false;</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public void addScorePoints(int points){
-<b class="nc">&nbsp;        score.addPoints(points);</b>
+<b class="fc">&nbsp;        score.addPoints(points);</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public Image getBackground() {
@@ -446,7 +446,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2025-12-30 22:53</div>
+    <div style="float:right;">generated on 2025-12-30 23:46</div>
 </div>
 </body>
 </html>

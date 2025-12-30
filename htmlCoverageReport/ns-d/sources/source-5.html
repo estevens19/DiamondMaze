@@ -56,26 +56,26 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    30%
+    60%
   </span>
   <span class="absValue">
-    (3/10)
+    (6/10)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    33.3%
+    93.3%
   </span>
   <span class="absValue">
-    (5/15)
+    (14/15)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    67.3%
+    92.3%
   </span>
   <span class="absValue">
-    (35/52)
+    (48/52)
   </span>
 </td>
 </tr>
@@ -144,9 +144,9 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;    public Image getExit() { return exit; }</b>
 &nbsp;
 &nbsp;    private void refreshButtons() {
-<b class="pc">&nbsp;        Position startPos = (start != null) ? start.getPosition() : new Position(0, 0);</b>
-<b class="pc">&nbsp;        Position controlsPos = (controls != null) ? controls.getPosition() : new Position(0, 0);</b>
-<b class="pc">&nbsp;        Position exitPos = (exit != null) ? exit.getPosition() : new Position(0, 0);</b>
+<b class="fc">&nbsp;        Position startPos = (start != null) ? start.getPosition() : new Position(0, 0);</b>
+<b class="fc">&nbsp;        Position controlsPos = (controls != null) ? controls.getPosition() : new Position(0, 0);</b>
+<b class="fc">&nbsp;        Position exitPos = (exit != null) ? exit.getPosition() : new Position(0, 0);</b>
 &nbsp;
 <b class="pc">&nbsp;        switch (currButton) {</b>
 &nbsp;            case 1:
@@ -155,14 +155,14 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;                exit = exitUnselected;</b>
 &nbsp;                break;
 &nbsp;            case 2:
-<b class="nc">&nbsp;                start = startUnselected;</b>
-<b class="nc">&nbsp;                controls = controlsSelected;</b>
-<b class="nc">&nbsp;                exit = exitUnselected;</b>
+<b class="fc">&nbsp;                start = startUnselected;</b>
+<b class="fc">&nbsp;                controls = controlsSelected;</b>
+<b class="fc">&nbsp;                exit = exitUnselected;</b>
 &nbsp;                break;
 &nbsp;            case 3:
-<b class="nc">&nbsp;                start = startUnselected;</b>
-<b class="nc">&nbsp;                controls = controlsUnselected;</b>
-<b class="nc">&nbsp;                exit = exitSelected;</b>
+<b class="fc">&nbsp;                start = startUnselected;</b>
+<b class="fc">&nbsp;                controls = controlsUnselected;</b>
+<b class="fc">&nbsp;                exit = exitSelected;</b>
 &nbsp;                break;
 &nbsp;        }
 &nbsp;
@@ -187,20 +187,20 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    }
 &nbsp;
 &nbsp;    public int getCurrButton() {
-<b class="nc">&nbsp;        return currButton;</b>
+<b class="fc">&nbsp;        return currButton;</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    public void backCurrButton() throws IOException {
-<b class="nc">&nbsp;        if (currButton &gt; 1) {</b>
-<b class="nc">&nbsp;            currButton--;</b>
-<b class="nc">&nbsp;            refreshButtons();</b>
+<b class="fc">&nbsp;        if (currButton &gt; 1) {</b>
+<b class="fc">&nbsp;            currButton--;</b>
+<b class="fc">&nbsp;            refreshButtons();</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    public void nextCurrButton() throws IOException {
-<b class="nc">&nbsp;        if (currButton &lt; 3) {</b>
-<b class="nc">&nbsp;            currButton++;</b>
-<b class="nc">&nbsp;            refreshButtons();</b>
+<b class="fc">&nbsp;        if (currButton &lt; 3) {</b>
+<b class="fc">&nbsp;            currButton++;</b>
+<b class="fc">&nbsp;            refreshButtons();</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;}
@@ -227,7 +227,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2025-12-30 22:53</div>
+    <div style="float:right;">generated on 2025-12-30 23:46</div>
 </div>
 </body>
 </html>
