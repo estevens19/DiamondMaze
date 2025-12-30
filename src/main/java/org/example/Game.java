@@ -3,6 +3,7 @@ package org.example;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Objects;
 
 import org.example.gui.GUI;
 import org.example.gui.LanternaGUI;
@@ -12,10 +13,14 @@ import org.example.model.menu.MenuMain;
 import org.example.model.menu.MenuPassed;
 import org.example.observer.GameObserver;
 import org.example.sound.MenuMusicPlayer;
+import org.example.sound.MusicLoader;
 import org.example.state.MenuGameOverState;
 import org.example.state.MenuMainState;
 import org.example.state.MenuPassedState;
 import org.example.state.State;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class Game implements GameObserver {
     private final LanternaGUI gui;
@@ -29,7 +34,7 @@ public class Game implements GameObserver {
         if (state instanceof MenuMainState menuState) {
             menuState.getModel().updateSize(gui.getScreenWidth(), gui.getScreenHeight());
         }
-/*
+
         try {
             Clip clip = new MusicLoader().loadSound(
                     AudioSystem.getAudioInputStream(
@@ -41,7 +46,7 @@ public class Game implements GameObserver {
         } catch (Exception e) {
             e.printStackTrace();
         }
-*/
+
     }
 
     public void setState(State<?> state) {
