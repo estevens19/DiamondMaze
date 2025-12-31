@@ -10,37 +10,52 @@ To capture the key, the player must discover which of the diamonds holds the key
 > 	⁠This project was developed by *Ricardo Estevéns* ([up202405321@up.pt](mailto:up202405321@up.pt)), *Gustavo Oliveira* ([up202205770@up.pt](mailto:up202205770@up.pt)), and *Rogério Barbosa* ([up202406902@up.pt](mailto:up202406902@up.pt)) for LDTS 2025/26.
 
 
-### IMPLEMENTED FEATURE
+### IMPLEMENTED FEATURES
 
 - *Knight* - The game's character.
 - *Guards* - Scattered throughout the map.
 - *Time* - There is a timer to complete the level.
+- *Score* - Determines the stars after completing the level.
 - *Key* - It will be hidden in a diamond. It is used to open the portal.
-- *Diamonds* - Located in random places on the map.
-- ⁠*Gate* - Allows you to proceed to the next level.
-- ⁠*Maze* - Limits the movement area within the map.
-- ⁠*Movement* - Using the arrow keys (up, down, left, and right).
+- *Diamonds* - Located in the map, gives a random score.
+- *Potions* - Give a random positive or negative effect to the game for a limited period (Guards or Knight visual disappearing, time increase or decrease, Guards or Knight speed change).
+- ⁠*Door* - Allows you to proceed to the next level.
+- ⁠*Walls* - Limits the movement area within the map.
+- ⁠*Movement* - Using the arrow keys or WASD (up, down, left, and right).
 <br>
 
 - *Main Menu*
-<img width="1862" height="1048" alt="Mockup 1" src="https://github.com/user-attachments/assets/89a0d485-e3da-4746-8e51-30a9ea5562e6" />
+<img width="1920" height="1080" alt="Mockup 1" src="https://github.com/user-attachments/assets/7014a8d5-6595-46a5-a0de-a0afa41dbfac" />
+
+- *Controls Menu*
+<img width="1920" height="1080" alt="Mockup 2" src="https://github.com/user-attachments/assets/36320354-047e-4ef3-a3a9-40d45b070e22" />
 
 - *Levels Menu*
-<img width="1862" height="1048" alt="Mockup 2" src="https://github.com/user-attachments/assets/6a97a074-3c0e-464e-be4b-f4bb2c813230" />
+<img width="1920" height="1080" alt="Mockup 3" src="https://github.com/user-attachments/assets/bdf7c848-be01-485a-aa79-6e28f66ffb66" />
 
 - *Level 1*
-<img width="1862" height="1048" alt="Mockup 3" src="https://github.com/user-attachments/assets/631a92b8-3863-49b1-aa78-ff3f097872cf" />
+<img width="1920" height="1080" alt="Captura de ecrã de 2025-12-30 19-14-50" src="https://github.com/user-attachments/assets/13a55767-1e97-458c-86fe-a2792da23f4a" />
+
+- *Level 2*
+<img width="1920" height="1080" alt="Captura de ecrã de 2025-12-30 19-29-21" src="https://github.com/user-attachments/assets/7a309308-5125-40e8-886b-60421b7d1197" />
+
+- *Level 3*
+<img width="1920" height="1080" alt="Captura de ecrã de 2025-12-30 19-30-47" src="https://github.com/user-attachments/assets/2757ff25-1305-4a86-94a3-18731c4d2330" />
+
+- *Level Passed*
+<img width="1920" height="1080" alt="Captura de ecrã de 2025-12-30 19-35-41" src="https://github.com/user-attachments/assets/c953047a-2649-47ad-979b-5680df180eaa" />
+
+- *Game Over*
+<img width="1920" height="1080" alt="Captura de ecrã de 2025-12-30 19-32-08" src="https://github.com/user-attachments/assets/ea131302-4186-48bf-b102-b7a58635052a" />
 
 
 ### PLANNED FEATURES
 
-- *Score* - It will be crucial for being able to open the portal (minimum score).
-- ⁠*Potions* - They can have either a positive or negative effect on the level.
 - ⁠*Unveiling the map* - The player will have to walk around the map to reveal it.
 
 ### DESIGN
 
-<img width="5728" height="1789" alt="UML" src="https://github.com/user-attachments/assets/c8c3ed52-e6c2-4a50-8a87-bfcae97636bc" />
+<img width="8175" height="5557" alt="UML" src="https://github.com/user-attachments/assets/eac794ac-90ff-4a01-b107-e89e6ed4ba28" />
 
 *Problem in Context.*
 
@@ -127,8 +142,26 @@ The use of the *Builder Pattern* in the current Maze design allows for the follo
 - ⁠*Validation and Consistency:* This ensures that every ⁠ Maze ⁠ object is in a consistent and valid state upon creation.
 - ⁠*Separation of Concerns:* It separates the code for constructing a maze from the ⁠ Maze ⁠ class itself. The ⁠ Maze ⁠ class can remain focused on its core responsibility representing the maze structure and providing an interface for navigation and interaction.
 
+#### KNOWN CODE SMELLS
+
+- *Duplicate Code & Resource Inefficiency*: The project initially contained redundant logic for loading resources, specifically within the *Image* and *Wall* classes. The font file was being read from the disk for every single entity instantiation rather than being cached. This caused severe performance bottlenecks during level transitions.
+
+- *Magic Numbers*: The codebase relies heavily on hardcoded numeric literals to define UI layouts, sprite dimensions (e.g., resizing images to 25x25 or 40x40), and specific screen coordinates in menus. The lack of context of those values, made the *UI* difficult to adjust or maintain without breaking the layout.
+
+- *High Coupling*: There was a tight coupling between the *Image* viewer class and the *LanternaGUI* implementation. The domain objects were directly dependent on the specific *GUI* implementation to fetch font resources, violating the principle of Separation of Concerns and making the code harder to test in isolation.
+
+- *Temporary Fields*: In the *Image* class, the font field was being initialized in the constructor but was never actually used by the object's instance methods, serving only as unnecessary overhead.
+    
+### TESTING
+
+*Coverage Report*
+<img width="1600" height="625" alt="Coverage" src="https://github.com/user-attachments/assets/067b441b-81d1-409a-af06-3b4dc587827e" />
+
+*Pitest Report*
+<img width="1512" height="815" alt="Pitest" src="https://github.com/user-attachments/assets/c865dca6-587a-49c2-bb87-1774eb325e98" />
+
 ### SELF-EVALUATION
 
-- ⁠Gustavo Oliveira: 34%
+- ⁠Gustavo Oliveira: 33%
 - ⁠Ricardo Estevéns: 33%
-- ⁠Rogério Barbosa: 33%
+- ⁠Rogério Barbosa: 34%
