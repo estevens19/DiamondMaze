@@ -57,6 +57,8 @@ To capture the key, the player must discover which of the diamonds holds the key
 
 <img width="8175" height="5557" alt="UML" src="https://github.com/user-attachments/assets/eac794ac-90ff-4a01-b107-e89e6ed4ba28" />
 
+### MVC Architectural Pattern
+
 *Problem in Context.*
 
 To improve code organization, we needed a design approach that would allow us to implement a better *separation of concerns* for each game object. The core problem was the *excessive interdependence* between the game's logic, visual presentation, and user input handling.
@@ -83,6 +85,8 @@ Benefits and liabilities of the design after the pattern instantiation, eventual
 - ⁠*Improved Testability:* The Model can be tested in isolation with unit tests, as it has no dependencies on the View or Controller. For example, we can write tests for ⁠ knight.move() ⁠ without testing into the game.
 - ⁠*Parallel Development:* The clear boundaries allow one developer to work on the ⁠ Maze ⁠ logic (Model) while another works on the ⁠ MazeViewer ⁠ (View), with minimal conflict.
 - ⁠*Clarity and Structure:* The code is now organized according to a well-known pattern, making it instantly more understandable to new developers joining the project.
+
+### State Pattern
 
 *Problem in Context.*
 
@@ -117,6 +121,8 @@ The use of the State Pattern in the current design allows the following benefits
 - ⁠*Improve Code Readability:* The several states that represent the Maze changes with different stages of the Game become more explicit in the code.
 - ⁠*State Management:* The implementation now involves a greater number of classes and instances, but this added structure *significantly simplifies overall management and scalability*.
 
+### Builder Pattern
+
 *Problem in Context.*
 
 To address the complexity inherent in Maze implementations containing numerous diverse components, a approach was required to enable more organized and maintainable Maze creation.
@@ -142,6 +148,79 @@ The use of the *Builder Pattern* in the current Maze design allows for the follo
 - ⁠*Validation and Consistency:* This ensures that every ⁠ Maze ⁠ object is in a consistent and valid state upon creation.
 - ⁠*Separation of Concerns:* It separates the code for constructing a maze from the ⁠ Maze ⁠ class itself. The ⁠ Maze ⁠ class can remain focused on its core responsibility representing the maze structure and providing an interface for navigation and interaction.
 
+### Observer Pattern
+
+Problem in Context
+
+The Game class is responsible for managing the high-level application states (such as switching between the Main Menu, the active Game, and the Game Over screen). However, the specific events that trigger these state changes—such as the Knight colliding with a Guard or reaching the exit door—occur deep within the logic of the KnightController and GuardController. We needed a way to communicate these critical events from the specific controllers back to the main Game class without creating tight coupling or circular dependencies between them.
+
+The Pattern
+
+We implemented the Observer Pattern. This pattern defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified.
+
+Observer: The GameObserver interface defines the contract with methods onMenuGameOver() and onMenuPassed(). The Game class implements this interface, acting as the concrete observer.
+Subject: The KnightController and GuardController act as subjects that notify the GameObserver (passed to them via the step method) when specific conditions are met.
+
+Implementation
+
+UML representation showing above.
+
+Consequences
+
+Decoupling: The controllers (KnightController, GuardController) do not need to know the internal details of the Game class; they only interact with the GameObserver interface.
+
+Cleaner State Management: The logic for switching states is centralized in the Game class, while the detection of the events remains in the controllers where it belongs.
+
+Extensibility: If we need to add other components that need to listen to game events (e.g., an achievement system), we can easily do so by implementing the observer interface without modifying the controller logic.
+
+### Strategy Pattern
+
+Problem in Context
+
+The Guards in the game need to move autonomously within the maze. Currently, the movement is random, but we anticipated the need to implement different movement behaviors in the future—such as chasing the player, patrolling a fixed path, or staying stationary. Hardcoding a specific movement algorithm directly into the GuardController would make the class rigid and difficult to extend or modify if we wanted to introduce varied enemy types.
+
+The Pattern
+
+We implemented the Strategy Pattern. This pattern defines a family of algorithms, encapsulates each one, and makes them interchangeable.
+
+Strategy Interface: MoveStrategy defines the method getNextMove(Guard guard, Maze maze).
+Concrete Strategy: RandomMoveStrategy implements the interface to provide random movement logic.
+Context: The GuardController holds a reference to a MoveStrategy and delegates the calculation of the next position to it.
+
+Implementation
+
+UML representation showing above.
+
+Consequences
+
+Flexibility: We can easily switch the movement behavior of a guard by assigning a different strategy (e.g., a SmartMoveStrategy or PatrolStrategy) without changing the code in GuardController.
+Separation of Concerns: The complex logic for determining "where to move" is isolated in separate strategy classes, keeping the GuardController focused on managing the entity's state and updates.
+Simplified Testing: Individual movement strategies can be unit tested in isolation to ensure they produce valid moves.
+
+Command Pattern
+
+Problem in Context
+
+The KnightController is responsible for reacting to user input (UP, DOWN, LEFT, RIGHT). implementing this handling using a large chain of if-else or switch statements directly inside the update loop leads to code that is hard to read and difficult to extend. We needed a way to parameterize the requests and decouple the object that invokes the operation (the input handler) from the one that knows how to perform it (the controller methods).
+
+The Pattern
+
+We implemented the Command Pattern. This pattern encapsulates a request as an object, thereby allowing for parameterization of clients with different requests.
+
+Command Interface: Command declares the execute(KnightController controller) method.
+Concrete Commands: Classes like MoveUpCommand, MoveRightCommand, MoveDownCommand, and MoveLeftCommand implement the specific logic by calling methods on the receiver.
+Invoker/Receiver: The KnightController acts as both the invoker (mapping GUI.ACTION to commands) and the receiver (performing the actual logic like moveKnightUp()).
+
+Implementation
+
+UML representation showing above.
+
+Consequences
+
+Decoupling: The logic for triggering an action is separated from the execution of that action. The input handling simply looks up a command and executes it.
+Extensibility: Adding new controls or changing key bindings is straightforward. We can simply map a new key to an existing command or create a new command class without altering the core step logic.
+Code Clarity: The step method in the controller is significantly cleaner, as it replaces conditional logic with polymorphic calls to command objects.
+
 #### KNOWN CODE SMELLS
 
 - *Duplicate Code & Resource Inefficiency*: The project initially contained redundant logic for loading resources, specifically within the *Image* and *Wall* classes. The font file was being read from the disk for every single entity instantiation rather than being cached. This caused severe performance bottlenecks during level transitions.
@@ -158,7 +237,7 @@ The use of the *Builder Pattern* in the current Maze design allows for the follo
 <img width="1600" height="625" alt="Coverage" src="https://github.com/user-attachments/assets/067b441b-81d1-409a-af06-3b4dc587827e" />
 
 *Pitest Report*
-<img width="1512" height="815" alt="Pitest" src="https://github.com/user-attachments/assets/c865dca6-587a-49c2-bb87-1774eb325e98" />
+<img width="1600" height="625" alt="Coverage" src="https://github.com/user-attachments/assets/4f9fbb64-833f-4991-a3c2-244fdfb444e1" />
 
 ### SELF-EVALUATION
 
