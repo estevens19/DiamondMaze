@@ -31,7 +31,5 @@ test {
 }
 
 pitest {
-    targetClasses = ['org.example.*']
-    targetTests = ['org.example.*']
     junit5PluginVersion = '1.2.1'
 }
